@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play & Learn - Savvy Mother Toddler School</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #536acc;
+      --accent: #f89e2e;
+      --accent-2: #ff7b2f;
+      --cream: #FFFDD0;
+      --white: #ffffff;
+      --dark: #1e293b;
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.86);
+      --stats-green: #15a170;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: white;
+    }
+
+    .navbar-container,
+    .play-container,
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .play-container {
+      background: #f4f0c2;
+      border-radius: 18px;
+    }
+    .play-container:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(255, 255, 255, 0.8);
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* NAVBAR */
+    .navbar-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .navbar {
+      position: relative;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.96),
+        rgba(255,255,255,0.90),
+        rgba(255,255,255,0.96)
+      );
+      border-bottom: 1px solid rgba(148,163,184,0.18);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.12);
+    }
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1.5rem;
+      background: #ffffff;
+      border-radius: 18px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .brand-logo-img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0% 0%, #ffffff);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 10px 25px rgba(15,23,42,0.25);
+      transform: translateX(-16px);
+      opacity: 0;
+      animation: brandIn 0.7s ease-out forwards 0.15s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-main { font-size: 1.05rem; font-weight: 700; color: var(--dark); }
+    .brand-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); }
+
+    @keyframes brandIn {
+      0% { opacity: 0; transform: translateX(-16px) translateY(4px) scale(0.96); }
+      100% { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+    }
+
+    /* Search box */
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.15rem 0.6rem;
+      background: rgba(248,250,252,0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.35);
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 6px 4px;
+      font-size: 0.85rem;
+      width: 140px;
+    }
+    .search-box button {
+      padding: 6px 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: white;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(248,150,30,0.45);
+      height: 40px;
+      width: 60px;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0.15rem;
+      margin: 0;
+      border-radius: 999px;
+      background: rgba(248,250,252,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
+      position: relative;
+    }
+    .nav-menu li { position: relative; }
+    .nav-link {
+      display: block;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover {
+      color: #0f172a;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    }
+    .nav-link.active {
+      color: #0f172a;
+      background: linear-gradient(135deg, var(--primary), #0954c6);
+    }
+
+    .nav-indicator {
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--primary), #8b5cf6);
+      transition: transform 0.25s ease, width 0.25s ease, opacity 0.25s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 28px;
+      height: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      background: var(--dark);
+      border-radius: 999px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* HERO (Play & Learn) */
+    .hero{
+      width:100%;
+      height:50vh;
+      position:relative;
+      overflow:hidden;
+      background:#000;
+    }
+    .hero-slider{ position:absolute; inset:0; }
+    .hero-slide{
+      position:absolute;
+      inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:0;
+      filter:blur(10px);
+      transition:opacity 1.5s ease, filter 1.5s ease;
+    }
+    .hero-slide.active{
+      opacity:1;
+      filter:blur(0);
+    }
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      padding:0 6%;
+      color:#fff;
+      z-index:2;
+      text-align:center;
+      background:linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+    }
+    .hero-text h1{
+      font-size:34px;
+      font-weight:900;
+      text-shadow:0 8px 30px rgba(0,0,0,0.8);
+      margin-bottom: 10px;
+    }
+    .hero-text p{
+      font-size:18px;
+      color:#ffeb3b;
+      font-weight:600;
+      text-shadow:0 6px 22px rgba(0,0,0,0.7);
+    }
+
+    /* SECTION + CARDS */
+    .section { padding: 4rem 0; } 
+    .section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+.card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      will-change: transform;
+      max-width: 800px;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
+      border-color: rgba(83, 106, 204, 0.35);
+    }
+    .card:focus-visible {
+      outline: 3px solid rgba(83,106,204,0.35);
+      outline-offset: 3px;
+    }
+    .card h3 { color: var(--primary); margin-bottom: 0.7rem; }
+
+    .reveal { opacity: 0; transform: translateY(50px); transition: all 0.6s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .play-intro {
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
+      text-align: center;
+      font-size: 1rem;
+      color: #4b5563;
+    }
+    .play-note {
+      max-width: 760px;
+      margin: 2rem auto 0;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #ff0000;
+    }
+
+    .play-card-image-wrapper {
+      width: 100%;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      background: #e5e7eb;
+    }
+    .play-card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+    .card:hover .play-card-image {
+      transform: scale(1.06);
+    }
+    .play-card-link-text {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    /* FOOTER (same style) */
+    .site-footer {
+      background: #020617;
+      color: #e5e7eb;
+      padding-top: 3rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(148,163,184,0.3);
+    }
+    .footer-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+    }
+    .footer-col h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #f9fafb;
+    }
+    .footer-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f9fafb;
+      margin-bottom: 0.5rem;
+    }
+    .footer-tagline {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      max-width: 260px;
+    }
+    .footer-copy-small {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li + li { margin-top: 0.4rem; }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #fbbf24;
+      transform: translateX(2px);
+    }
+    .footer-contact {
+      font-size: 0.9rem;
+      color: #d1d5db;
+      margin-bottom: 0.6rem;
+    }
+    .footer-contact a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+    .footer-contact a:hover { text-decoration: underline; }
+
+    .footer-social {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
+      margin-left: 120px;
+    }
+    .footer-social a {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #020617;
+      border: 1px solid #374151;
+      color: #e5e7eb;
+      font-size: 14px;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+    .footer-social a:hover {
+      background: #fbbf24;
+      color: #020617;
+      transform: translateY(-1px);
+    }
+    .footer-bottom {
+      border-top: 1px solid #111827;
+      padding: 0.8rem 0;
+      text-align: center;
+      background: #020617;
+    }
+    .footer-bottom p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    /* FLOATING SOCIAL ICONS */
+    .social-floating {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+    .social-floating a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 8px 18px rgba(15,23,42,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      font-size: 20px;
+    }
+    .social-floating a:hover {
+      transform: translateY(-2px) scale(1.10);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.4);
+    }
+    .whatsapp-btn { background:#25d366; }
+    .facebook-btn { background:#1877f2; }
+    .instagram-btn {
+      background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+
+    @media (max-width: 992px) {
+      .navbar-inner { flex-wrap: wrap; }
+      .search-box input { width: 120px; }
+    }
+    @media (max-width: 768px) {
+      .navbar-inner { flex-wrap: nowrap; }
+      .search-box { display: none; }
+      .menu-toggle { display: flex; }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        left: 20px;
+        flex-direction: column;
+        gap: 0;
+        background: var(--glass);
+        margin-top: 0.6rem;
+        padding: 0.4rem;
+        max-height: 0;
+        overflow: hidden;
+        transform-origin: top;
+        transition: max-height 0.25s ease;
+      }
+      .nav-menu.open { max-height: 350px; }
+
+      .nav-menu li { width: 100%; }
+      .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.55rem 0.9rem;
+      }
+      .nav-indicator { display: none; }
+    }
+
+    
+        /* ================= OFFER POPUP ================= */
+
+.offer-popup{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.offer-popup.show{
+  opacity: 1;
+  visibility: visible;
+}
+
+.offer-popup-content{
+  position: relative;
+
+  width: 95%;
+  max-width: 500px;
+
+  border-radius: 24px;
+  overflow: hidden;
+
+  background: white;
+
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.5),
+    0 0 0 6px rgba(255,255,255,0.15);
+
+  transform: scale(0.8);
+  transition: 0.4s ease;
+}
+
+.offer-popup.show .offer-popup-content{
+  transform: scale(1);
+}
+
+/* IMAGE AREA */
+
+.offer-slider{
+  position: relative;
+  width: 100%;
+  /* keep entire image visible */
+  aspect-ratio: 3 / 4;
+  background: #fff;
+  overflow: hidden;
+}
+
+.offer-popup.show .offer-popup-content{
+  transform: scale(1);
+}
+
+.offer-slide{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+/* CLOSE BUTTON */
+
+.offer-close{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+
+  transition: 0.3s;
+}
+
+.offer-close:hover{
+  transform: rotate(90deg) scale(1.1);
+  background: #ff4d4d;
+  color: white;
+}
+
+/* SLIDER */
+
+
+
+.offer-slide.active{
+  opacity: 1;
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .offer-popup-content{
+    width: 95%;
+  }
+
+  .offer-slider{
+    height: 320px;
+  }
+}
+  </style>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <span>SILPARA, BAIRAGI ROAD, REWA (M.P) | Mon – Sat: 08:30 AM – 06:30 PM | +91 9329517009</span>
+  </div>
+
+  <div class="navbar-wrapper">
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="index.html" class="brand-pill">
+          <img src="image/toddler_logo.png"
+               alt="Savvy Mother Toddler School logo"
+               class="brand-logo-img">
+          <div class="brand-text">
+            <span class="brand-main">Savvy Mother</span>
+            <span class="brand-sub">Toddler School</span>
+          </div>
+        </a>
+        <div class="search-box">
+          <input type="text" placeholder="Search...">
+          <button onclick="searchSite()">Go</button>
+        </div>
+
+        <ul class="nav-menu" id="navMenu">
+          <div class="nav-indicator" id="navIndicator"></div>
+          <li><a href="index.html" class="nav-link ">Home</a></li>
+          <li><a href="play-learn.html" class="nav-link active">Play &amp; Learn</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="faculty.html" class="nav-link ">Faculty</a></li>
+          <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="menu-toggle" id="menuToggle">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slider">
+    <img src="image/5.png" class="hero-slide active" alt="Play and learn hero">
+  </div>
+
+  <div class="hero-overlay">
+    <div class="hero-text">
+      <h1>Play &amp; Learn</h1>
+      <p>Where every game, ride and splash becomes a learning experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ONLY PLAY & LEARN CARDS -->
+<section id="play-learn" class="section">
+  <div class="play-container">
+    <h2>PLAY &amp; LEARN</h2>
+
+    <p class="play-intro">
+      Our Play & Learn zones combine safe infrastructure, engaging equipment and guided activities
+      so that children learn through joyful experiences every day.
+    </p>
+
+    <div class="grid-3">
+      <a href="play-toy-train.html" class="card reveal" style="text-decoration:none; color:inherit;">
+        <div class="play-card-image-wrapper">
+          <img src="image/play/toy-train-1.jpg" alt="Toy Train Play Area" class="play-card-image">
+        </div>
+        <h3>Toy Train</h3>
+        <p>
+          A colourful toy train ride that builds hand‑eye coordination, balance and curiosity as children
+          explore movement in a playful way.
+        </p>
+        <span class="play-card-link-text">View photos &amp; details →</span>
+      </a>
+
+      <a href="play-multiplay.html" class="card reveal" style="text-decoration:none; color:inherit;">
+        <div class="play-card-image-wrapper">
+          <img src="image/play/multiplay-1.jpg" alt="Multiplay Station" class="play-card-image">
+        </div>
+        <h3>Multiplay Station</h3>
+        <p>
+          Slides, swings, climbing frames and bridges designed to strengthen gross motor skills and
+          encourage teamwork in a safe environment.
+        </p>
+        <span class="play-card-link-text">View photos &amp; details →</span>
+      </a>
+
+      <a href="play-rock-climbing.html" class="card reveal" style="text-decoration:none; color:inherit;">
+        <div class="play-card-image-wrapper">
+          <img src="image/play/rock-1.jpg" alt="Rock Climbing Zone" class="play-card-image">
+        </div>
+        <h3>Rock-Climbing</h3>
+        <p>
+          Age‑appropriate rock walls that develop strength, focus, confidence and problem‑solving
+          as children plan every step upwards.
+        </p>
+        <span class="play-card-link-text">View photos &amp; details →</span>
+      </a>
+
+      <a href="play-water-park.html" class="card reveal" style="text-decoration:none; color:inherit;">
+        <div class="play-card-image-wrapper">
+          <img src="image/play/water-1.jpg" alt="Kids Water Park" class="play-card-image">
+        </div>
+        <h3>Water Park</h3>
+        <p>
+          Safe splash pools and water activities that help children stay active, relaxed and
+          comfortable with water under teacher supervision.
+        </p>
+        <span class="play-card-link-text">View photos &amp; details →</span>
+      </a>
+
+      <a href="play-cycling.html" class="card reveal" style="text-decoration:none; color:inherit;">
+        <div class="play-card-image-wrapper">
+          <img src="image/play/cycling-1.jpg" alt="Cycling Track" class="play-card-image">
+        </div>
+        <h3>Cycling Track</h3>
+        <p>
+          Dedicated cycling track that improves stamina, balance and road‑sense in a completely
+          controlled and child‑friendly zone.
+        </p>
+        <span class="play-card-link-text">View photos &amp; details →</span>
+      </a>
+
+      <a href="play-skating.html" class="card reveal" style="text-decoration:none; color:inherit;">
+        <div class="play-card-image-wrapper">
+          <img src="image/play/skating-1.jpg" alt="Skating Arena" class="play-card-image">
+        </div>
+        <h3>Skating Arena</h3>
+        <p>
+          Guided skating sessions that build core strength, rhythm and confidence as children glide,
+          play and enjoy healthy exercise.
+        </p>
+        <span class="play-card-link-text">View photos &amp; details →</span>
+      </a>
+    </div>
+
+    <p class="play-note">
+      Every zone is monitored through CCTV, maintained regularly and operated under trained staff
+      so that children are always safe while they play and learn.
+    </p>
+  </div> 
+</section>
+
+<footer class="site-footer" id="contact">
+  <div class="footer-container">
+    <!-- Column 1: Brand -->
+    <div class="footer-col">
+      <h3 class="footer-logo">Savvy Mother Toddler School</h3>
+      <p class="footer-tagline">
+        A joyful place where little minds grow with confidence, curiosity and care.
+      </p>
+      <p class="footer-copy-small">
+        © <span id="year"></span> Savvy Mother Toddler School. All rights reserved.
+      </p>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About School</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="programs.html">Programs</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: For Parents & Students -->
+    <div class="footer-col">
+      <h4>For Parents & Students</h4>
+      <ul class="footer-links">
+        <li><a href="calendar.html">Academic Calendar</a></li>
+        <li><a href="fees.html">Fee Structure</a></li>
+        <li><a href="transport.html">Transport</a></li>
+        <li><a href="downloads.html">Downloads &amp; Forms</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Contact & Social -->
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p class="footer-contact">
+        SILPARA, BAISA ROAD,<br>
+        REWA, Madhya Pradesh
+      </p>
+      <p class="footer-contact">
+        Phone: <a href="tel:+919329517009">+91 9329517009</a><br>
+        Email: <a href="mailto:savvymotherschool@gmail.com">savvymotherschool@gmail.com</a>
+      </p>
+
+      <div class="footer-social">
+        <a href="https://wa.me/919329517009" target="_blank" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div>
+      <p><i>Powered by </i><b> SR Tech Innovation &amp; Solution Pvt. Ltd. </b></p>
+    </div>
+  </div>
+</footer>
+
+<div class="social-floating">
+  <a href="https://wa.me/919329517009" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://www.facebook.com" target="_blank" class="facebook-btn" aria-label="Facebook">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+  <a href="https://www.instagram.com" target="_blank" class="instagram-btn" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+</div>
+
+<!-- ================= POPUP OFFER MODAL ================= -->
+<div class="offer-popup" id="offerPopup">
+  <div class="offer-popup-content">
+
+    <!-- Close Button -->
+    <button class="offer-close" id="offerClose">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Image Slider -->
+    <div class="offer-slider">
+      <img src="image/offer1.jpeg" class="offer-slide active">
+      <img src="image/offer2.jpg" class="offer-slide">
+      <img src="image/offer3.jpg" class="offer-slide">
+      <img src="image/offer4.jpg" class="offer-slide">
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function searchSite() {
+    const value = document.querySelector('.search-box input')?.value || "";
+    if (value.trim()) alert('Searching for: ' + value);
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) {
+        el.classList.add('active');
+      }
+    });
+  });
+
+  const navMenu = document.getElementById("navMenu");
+  const navIndicator = document.getElementById("navIndicator");
+  const navLinks = navMenu.querySelectorAll(".nav-link");
+  const menuToggle = document.getElementById("menuToggle");
+
+  function moveIndicator(targetLink) {
+    const rect = targetLink.getBoundingClientRect();
+    const containerRect = navMenu.getBoundingClientRect();
+    const width = rect.width;
+    const offsetX = rect.left - containerRect.left;
+    navIndicator.style.width = width + "px";
+    navIndicator.style.transform = `translateX(${offsetX}px)`;
+    navIndicator.style.opacity = 1;
+  }
+
+  const activeLink = navMenu.querySelector(".nav-link.active");
+  if (activeLink && window.innerWidth > 768) {
+    setTimeout(() => moveIndicator(activeLink), 200);
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      if (window.innerWidth <= 768) return;
+      moveIndicator(link);
+    });
+    link.addEventListener("click", () => {
+      navLinks.forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+      if (window.innerWidth <= 768) {
+        navMenu.classList.remove("open");
+        menuToggle.classList.remove("active");
+      }
+    });
+  });
+
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    navMenu.classList.toggle("open");
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth <= 768) {
+      navIndicator.style.opacity = 0;
+    } else {
+      const currentActive = navMenu.querySelector(".nav-link.active");
+      if (currentActive) moveIndicator(currentActive);
+    }
+  });
+
+    /* ================= OFFER POPUP ================= */
+
+const offerPopup = document.getElementById("offerPopup");
+const offerClose = document.getElementById("offerClose");
+const offerSlides = document.querySelectorAll(".offer-slide");
+
+let offerIndex = 0;
+
+/* ===== OPEN POPUP FUNCTION ===== */
+
+function showOfferPopup() {
+  offerPopup.classList.add("show");
+}
+
+/* ===== CLOSE POPUP FUNCTION ===== */
+
+function hideOfferPopup() {
+  offerPopup.classList.remove("show");
+
+  /* SHOW AGAIN AFTER 30 SECONDS */
+  setTimeout(() => {
+    showOfferPopup();
+  }, 50000);
+}
+
+/* ===== FIRST POPUP AFTER PAGE LOAD ===== */
+
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+    showOfferPopup();
+  }, 2000);
+
+});
+
+/* ===== CLOSE BUTTON ===== */
+
+offerClose.addEventListener("click", () => {
+  hideOfferPopup();
+});
+
+/* ===== CLOSE WHEN CLICK OUTSIDE ===== */
+
+offerPopup.addEventListener("click", (e) => {
+
+  if(e.target === offerPopup){
+    hideOfferPopup();
+  }
+
+});
+
+/* ===== AUTO IMAGE SLIDER ===== */
+
+setInterval(() => {
+
+  offerSlides.forEach(slide => {
+    slide.classList.remove("active");
+  });
+
+  offerIndex = (offerIndex + 1) % offerSlides.length;
+
+  offerSlides[offerIndex].classList.add("active");
+
+}, 8000);
+</script>
+</body>
+</html>
