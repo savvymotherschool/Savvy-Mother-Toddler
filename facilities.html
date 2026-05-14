@@ -264,21 +264,24 @@
     }
 
 .facility-card {
-      background: #ffffff;
+      background: rgba(255,255,255,0.35);
       border-radius: 18px;
       padding: 1.6rem 1.4rem;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
       display: flex;
       flex-direction: column;
       gap: 0.6rem;
       will-change: transform;
     }
-    .facility-card:hover {
+
+.facility-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
-      border-color: rgba(83, 106, 204, 0.35);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+      border-color: rgba(255,255,255,0.75);
     }
     .facility-card:focus-visible {
       outline: 3px solid rgba(83,106,204,0.35);
@@ -560,21 +563,24 @@
       border-radius: 18px;
       position: relative;
       padding-top: 30px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
       cursor: pointer;
-      background-color: #ffffff;
-      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255,255,255,0.32);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.55);
       margin-bottom: 15px;
       will-change: transform;
     }
-    .feature-card:hover {
+
+.feature-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
-      border-color: rgba(83, 106, 204, 0.35);
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+      border-color: rgba(255,255,255,0.75);
     }
     .feature-card .card-content p {
       color: #000000;
@@ -1050,9 +1056,8 @@
     <!-- Image Slider -->
     <div class="offer-slider">
       <img src="image/offer1.jpeg" class="offer-slide active">
-      <img src="image/offer2.jpg" class="offer-slide">
-      <img src="image/offer3.jpg" class="offer-slide">
-      <img src="image/offer4.jpg" class="offer-slide">
+      <img src="image/offer2.jpeg" class="offer-slide">
+      <img src="image/offer3.jpeg" class="offer-slide">
     </div>
 
   </div>

@@ -318,14 +318,17 @@
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: 1.5rem;
       align-items: center;
-      background: #ffffff;
+      background: rgba(255,255,255,0.35);
       border-radius: 18px;
-      border: 1px solid rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
       overflow: hidden;
       padding: 1.5rem;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
     }
+
 
     .faculty-photo-wrap {
       border-radius: 16px;
@@ -375,6 +378,12 @@
 
     .slider-complex:hover{
          transform: translateY(-3px);
+    }
+
+.faculty-card:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(255, 255, 255, 0.9);
+      border-color: rgba(255,255,255,0.75);
     }
 
 .simple-slide-inner {
@@ -1014,9 +1023,8 @@
     <!-- Image Slider -->
     <div class="offer-slider">
       <img src="image/offer1.jpeg" class="offer-slide active">
-      <img src="image/offer2.jpg" class="offer-slide">
-      <img src="image/offer3.jpg" class="offer-slide">
-      <img src="image/offer4.jpg" class="offer-slide">
+      <img src="image/offer2.jpeg" class="offer-slide">
+      <img src="image/offer3.jpeg" class="offer-slide">
     </div>
 
   </div>

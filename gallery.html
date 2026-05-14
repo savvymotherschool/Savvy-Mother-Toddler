@@ -212,6 +212,7 @@
       background: #f4f0c2;
       border-radius: 40px;
       box-shadow: 0 14px 30px rgba(15,23,42,0.10);
+      transition: transform 0.25s ease;
     }
     .hero-inner:hover {
       transform: translateY(-3px) scale(1.02);
@@ -525,125 +526,176 @@
       }
     }
 
-    
-        /* ================= OFFER POPUP ================= */
+    /* ================= OFFER POPUP ================= */
+    .offer-popup{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
 
-.offer-popup{
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
 
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-}
+    .offer-popup.show{
+      opacity: 1;
+      visibility: visible;
+    }
 
-.offer-popup.show{
-  opacity: 1;
-  visibility: visible;
-}
+    .offer-popup-content{
+      position: relative;
+      width: 95%;
+      max-width: 500px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: white;
+      box-shadow:
+        0 25px 60px rgba(0,0,0,0.5),
+        0 0 0 6px rgba(255,255,255,0.15);
+      transform: scale(0.8);
+      transition: 0.4s ease;
+    }
 
-.offer-popup-content{
-  position: relative;
+    .offer-popup.show .offer-popup-content{
+      transform: scale(1);
+    }
 
-  width: 95%;
-  max-width: 500px;
+    .offer-slider{
+      position: relative;
+      width: 100%;
+      /* keep entire image visible */
+      aspect-ratio: 3 / 4;
+      background: #fff;
+      overflow: hidden;
+    }
 
-  border-radius: 24px;
-  overflow: hidden;
+    .offer-slide{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #fff;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
 
-  background: white;
+    .offer-slide.active{
+      opacity: 1;
+    }
 
-  box-shadow:
-    0 25px 60px rgba(0,0,0,0.5),
-    0 0 0 6px rgba(255,255,255,0.15);
+    .offer-close{
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.9);
+      color: #000;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.3s;
+    }
 
-  transform: scale(0.8);
-  transition: 0.4s ease;
-}
+    .offer-close:hover{
+      transform: rotate(90deg) scale(1.1);
+      background: #ff4d4d;
+      color: white;
+    }
 
-.offer-popup.show .offer-popup-content{
-  transform: scale(1);
-}
+    @media(max-width:768px){
+      .offer-popup-content{
+        width: 95%;
+      }
+      .offer-slider{
+        height: 320px;
+      }
+    }
 
-/* IMAGE AREA */
-
-.offer-slider{
-  position: relative;
-  width: 100%;
-  /* keep entire image visible */
-  aspect-ratio: 3 / 4;
-  background: #fff;
-  overflow: hidden;
-}
-
-.offer-popup.show .offer-popup-content{
-  transform: scale(1);
-}
-
-.offer-slide{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  background: #fff;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-/* CLOSE BUTTON */
-
-.offer-close{
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.9);
-  color: #000;
-  font-size: 18px;
-  cursor: pointer;
-  z-index: 10;
-
-  transition: 0.3s;
-}
-
-.offer-close:hover{
-  transform: rotate(90deg) scale(1.1);
-  background: #ff4d4d;
-  color: white;
-}
-
-/* SLIDER */
-
-
-
-.offer-slide.active{
-  opacity: 1;
-}
-
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-  .offer-popup-content{
-    width: 95%;
-  }
-
-  .offer-slider{
-    height: 320px;
-  }
-}
+    /* =============== IMAGE LIGHTBOX =============== */
+    .img-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+    }
+    .img-lightbox.show {
+      display: flex;
+    }
+    .img-lightbox-backdrop {
+      position: absolute;
+      inset: 0;
+    }
+    .img-lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 20px;
+      overflow: hidden;
+      background: rgba(15,23,42,0.9);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .img-lightbox-content img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 14px;
+      display: block;
+    }
+    .img-lightbox-caption {
+      margin-top: 6px;
+      color: #e5e7eb;
+      font-size: 0.86rem;
+      text-align: center;
+      padding: 4px 10px 8px;
+    }
+    .img-lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(15,23,42,0.9);
+      color: #e5e7eb;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .img-lightbox-close:hover {
+      transform: scale(1.05);
+      background: #ef4444;
+    }
+    body.lightbox-open {
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .img-lightbox-content {
+        max-width: 96vw;
+        max-height: 90vh;
+        padding: 6px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -676,7 +728,7 @@
           <div class="nav-indicator" id="navIndicator"></div>
           <li><a href="index.html" class="nav-link">Home</a></li>
           <li><a href="play-learn.html" class="nav-link">Play &amp; Learn</a></li>
-          <li><a href="gallery.html" class="nav-link active">Gallery</a></li>          
+          <li><a href="gallery.html" class="nav-link active">Gallery</a></li>            
           <li><a href="faculty.html" class="nav-link">Faculty</a></li>
           <li><a href="facilities.html" class="nav-link">Facilities</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -716,7 +768,6 @@
 
   <div class="gallery-wrapper">
     <div class="gallery-grid">
-      <!-- Replace src with your images -->
       <div class="gallery-item large">
         <img src="image/gallery/functions/f1.jpg" alt="Annual function performance">
         <div class="gallery-overlay">
@@ -772,21 +823,21 @@
   <div class="gallery-wrapper">
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="image/gallery/activities/a1.jpg" alt="Art and craft">
+        <img src="image/gallery/activities/a1.jpeg" alt="Art and craft">
         <div class="gallery-overlay">
           <span>Art & Craft</span>
           <span>Fine motor skills</span>
         </div>
       </div>
       <div class="gallery-item tall">
-        <img src="image/gallery/activities/a2.jpg" alt="Circle time activity">
+        <img src="image/gallery/activities/a2.jpeg" alt="Circle time activity">
         <div class="gallery-overlay">
           <span>Circle Time</span>
           <span>Story telling</span>
         </div>
       </div>
       <div class="gallery-item">
-        <img src="image/gallery/activities/a3.jpg" alt="Building blocks">
+        <img src="image/gallery/activities/a3.jpeg" alt="Building blocks">
         <div class="gallery-overlay">
           <span>Blocks</span>
           <span>Creative play</span>
@@ -920,7 +971,6 @@
 
 <footer class="site-footer" id="contact">
   <div class="footer-container">
-    <!-- Column 1: Brand -->
     <div class="footer-col">
       <h3 class="footer-logo">Savvy Mother Toddler School</h3>
       <p class="footer-tagline">
@@ -931,7 +981,6 @@
       </p>
     </div>
 
-    <!-- Column 2: Quick Links -->
     <div class="footer-col">
       <h4>Quick Links</h4>
       <ul class="footer-links">
@@ -943,7 +992,6 @@
       </ul>
     </div>
 
-    <!-- Column 3: For Parents & Students -->
     <div class="footer-col">
       <h4>For Parents & Students</h4>
       <ul class="footer-links">
@@ -955,7 +1003,6 @@
       </ul>
     </div>
 
-    <!-- Column 4: Contact & Social -->
     <div class="footer-col">
       <h4>Contact</h4>
       <p class="footer-contact">
@@ -1000,23 +1047,30 @@
   </a>
 </div>
 
-<!-- ================= POPUP OFFER MODAL ================= -->
+<!-- POPUP OFFER MODAL -->
 <div class="offer-popup" id="offerPopup">
   <div class="offer-popup-content">
-
-    <!-- Close Button -->
     <button class="offer-close" id="offerClose">
       <i class="fa-solid fa-xmark"></i>
     </button>
 
-    <!-- Image Slider -->
     <div class="offer-slider">
       <img src="image/offer1.jpeg" class="offer-slide active">
-      <img src="image/offer2.jpg" class="offer-slide">
-      <img src="image/offer3.jpg" class="offer-slide">
-      <img src="image/offer4.jpg" class="offer-slide">
+      <img src="image/offer2.jpeg" class="offer-slide">
+      <img src="image/offer3.jpeg" class="offer-slide">
     </div>
+  </div>
+</div>
 
+<!-- IMAGE LIGHTBOX MODAL -->
+<div class="img-lightbox" id="imgLightbox">
+  <div class="img-lightbox-backdrop" id="imgLightboxBackdrop"></div>
+  <div class="img-lightbox-content">
+    <button class="img-lightbox-close" id="imgLightboxClose" aria-label="Close image">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img src="" alt="" id="imgLightboxImg">
+    <div class="img-lightbox-caption" id="imgLightboxCaption"></div>
   </div>
 </div>
 
@@ -1078,70 +1132,93 @@
     }
   });
 
-    /* ================= OFFER POPUP ================= */
+  /* ================= OFFER POPUP ================= */
+  const offerPopup = document.getElementById("offerPopup");
+  const offerClose = document.getElementById("offerClose");
+  const offerSlides = document.querySelectorAll(".offer-slide");
+  let offerIndex = 0;
 
-const offerPopup = document.getElementById("offerPopup");
-const offerClose = document.getElementById("offerClose");
-const offerSlides = document.querySelectorAll(".offer-slide");
-
-let offerIndex = 0;
-
-/* ===== OPEN POPUP FUNCTION ===== */
-
-function showOfferPopup() {
-  offerPopup.classList.add("show");
-}
-
-/* ===== CLOSE POPUP FUNCTION ===== */
-
-function hideOfferPopup() {
-  offerPopup.classList.remove("show");
-
-  /* SHOW AGAIN AFTER 30 SECONDS */
-  setTimeout(() => {
-    showOfferPopup();
-  }, 60000);
-}
-
-/* ===== FIRST POPUP AFTER PAGE LOAD ===== */
-
-window.addEventListener("load", () => {
-
-  setTimeout(() => {
-    showOfferPopup();
-  }, 2000);
-
-});
-
-/* ===== CLOSE BUTTON ===== */
-
-offerClose.addEventListener("click", () => {
-  hideOfferPopup();
-});
-
-/* ===== CLOSE WHEN CLICK OUTSIDE ===== */
-
-offerPopup.addEventListener("click", (e) => {
-
-  if(e.target === offerPopup){
-    hideOfferPopup();
+  function showOfferPopup() {
+    offerPopup.classList.add("show");
   }
 
-});
+  function hideOfferPopup() {
+    offerPopup.classList.remove("show");
+    setTimeout(() => {
+      showOfferPopup();
+    }, 60000);
+  }
 
-/* ===== AUTO IMAGE SLIDER ===== */
-
-setInterval(() => {
-
-  offerSlides.forEach(slide => {
-    slide.classList.remove("active");
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      showOfferPopup();
+    }, 2000);
   });
 
-  offerIndex = (offerIndex + 1) % offerSlides.length;
+  offerClose.addEventListener("click", () => {
+    hideOfferPopup();
+  });
 
-  offerSlides[offerIndex].classList.add("active");
+  offerPopup.addEventListener("click", (e) => {
+    if(e.target === offerPopup){
+      hideOfferPopup();
+    }
+  });
 
-}, 8000);
+  setInterval(() => {
+    offerSlides.forEach(slide => {
+      slide.classList.remove("active");
+    });
+    offerIndex = (offerIndex + 1) % offerSlides.length;
+    offerSlides[offerIndex].classList.add("active");
+  }, 8000);
+
+  // ========= GALLERY IMAGE LIGHTBOX =========
+  const galleryImages = document.querySelectorAll(".gallery-item img");
+  const imgLightbox = document.getElementById("imgLightbox");
+  const imgLightboxImg = document.getElementById("imgLightboxImg");
+  const imgLightboxCaption = document.getElementById("imgLightboxCaption");
+  const imgLightboxClose = document.getElementById("imgLightboxClose");
+  const imgLightboxBackdrop = document.getElementById("imgLightboxBackdrop");
+
+  function openImageLightbox(img, overlay) {
+    imgLightboxImg.src = img.src;
+    imgLightboxImg.alt = img.alt || "";
+    if (overlay) {
+      const parts = Array.from(overlay.querySelectorAll("span")).map(s => s.textContent.trim());
+      imgLightboxCaption.textContent = parts.join(" • ");
+    } else {
+      imgLightboxCaption.textContent = img.alt || "";
+    }
+    imgLightbox.classList.add("show");
+    document.body.classList.add("lightbox-open");
+  }
+
+  function closeImageLightbox() {
+    imgLightbox.classList.remove("show");
+    document.body.classList.remove("lightbox-open");
+  }
+
+  galleryImages.forEach(img => {
+    img.addEventListener("click", () => {
+      const overlay = img.parentElement.querySelector(".gallery-overlay");
+      openImageLightbox(img, overlay);
+    });
+  });
+
+  imgLightboxClose.addEventListener("click", closeImageLightbox);
+
+  imgLightbox.addEventListener("click", (e) => {
+    if (e.target === imgLightbox || e.target === imgLightboxBackdrop) {
+      closeImageLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && imgLightbox.classList.contains("show")) {
+      closeImageLightbox();
+    }
+  });
 </script>
 </body>
 </html>
