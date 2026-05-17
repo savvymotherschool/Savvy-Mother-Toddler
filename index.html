@@ -12,16 +12,20 @@
 <style>
   /* ====== COLOR VARIABLES ====== */
 :root {
-  --primary: #536acc;
-  --primary-soft: rgba(83,106,204,0.18);
-  --accent: #f89e2e;
-  --accent-2: #ff7b2f;
-  --cream: #FFFDD0;
+  --primary: #062b5f;
+  --primary-soft: rgba(6,43,95,0.12);
+  --accent: #1d4ed8;
+  --accent-2: #3b82f6;
+  --cream: #f4f6f8;
   --white: #ffffff;
-  --dark: #1e293b;
-  --muted: #94a3b8;
+  --dark: #172033;
+  --muted: #5b6773;
   --glass: rgba(255,255,255,0.86);
-  --stats-green: #15a170;
+  --stats-green: #1d4ed8;
+  --slate: #5b6773;
+  --navy-2: #0b3a78;
+  --blue-soft: rgba(29,78,216,0.14);
+  --sky-soft: rgba(59,130,246,0.12);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +34,7 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.6;
   color: var(--dark);
-  background: #ffffff;
+  background: #d1d6db;
 }
 
 /* ====== SHARED WRAPPERS (SECTION SPECIFIC) ====== */
@@ -52,8 +56,9 @@ body {
 .sis-container,
 .timeline-section,
 .features-section {
-  background: #f4f0c2;
+  background: linear-gradient(135deg, #ffffff, var(--cream));
   border-radius: 18px;
+  border: 1px solid rgba(91,103,115,0.18);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .play-container:hover,
@@ -63,7 +68,7 @@ body {
 .timeline-section:hover,
 .features-section:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 14px 30px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 14px 30px rgba(11, 31, 58, 0.16);
 }
 
 /* ====== TOP BAR ====== */
@@ -87,11 +92,11 @@ body {
   -webkit-backdrop-filter: blur(16px);
   background: linear-gradient(
     120deg,
-    rgba(255,255,255,0.96),
-    rgba(255,255,255,0.90),
-    rgba(255,255,255,0.96)
+    rgba(255,255,255,0.97),
+    rgba(244,246,248,0.93),
+    rgba(255,255,255,0.97)
   );
-  border-bottom: 1px solid rgba(148,163,184,0.18);
+  border-bottom: 1px solid rgba(91,103,115,0.22);
   box-shadow: 0 12px 30px rgba(15,23,42,0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
@@ -102,6 +107,7 @@ body {
   padding: 0.75rem 0;
   gap: 1.5rem;
   background: #ffffff;
+  border: 1px solid rgba(91,103,115,0.16);
   border-radius: 18px;
   margin: 10px 0;
   padding-left: 20px;
@@ -122,9 +128,9 @@ body {
   gap: 0.75rem;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: radial-gradient(circle at 0% 0%, #ffffff);
-  border: 1px solid rgba(148,163,184,0.35);
-  box-shadow: 0 10px 25px rgba(15,23,42,0.25);
+  background: radial-gradient(circle at 0% 0%, #ffffff, #f8fafc);
+  border: 1px solid rgba(29,78,216,0.28);
+  box-shadow: 0 10px 25px rgba(11,31,58,0.18);
   transform: translateX(-16px);
   opacity: 0;
   animation: brandIn 0.7s ease-out forwards 0.15s;
@@ -135,7 +141,7 @@ body {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: conic-gradient(from 220deg, #fbbf24, #f97316, #fbbf24);
+  background: conic-gradient(from 220deg, var(--primary), var(--accent-2), var(--primary));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,7 +149,7 @@ body {
   font-weight: 800;
   font-size: 18px;
   letter-spacing: 1px;
-  box-shadow: 0 10px 25px rgba(248,150,30,0.6);
+  box-shadow: 0 10px 25px rgba(6,43,95,0.28);
 }
 .brand-text {
   display: flex;
@@ -172,9 +178,9 @@ body {
   align-items: center;
   gap: 0.4rem;
   padding: 0.15rem 0.6rem;
-  background: rgba(248,250,252,0.9);
+  background: rgba(248,250,252,0.95);
   border-radius: 999px;
-  border: 1px solid rgba(148,163,184,0.35);
+  border: 1px solid rgba(91,103,115,0.28);
 }
 .search-box input {
   border: none;
@@ -186,14 +192,14 @@ body {
 }
 .search-box button {
   padding: 6px 12px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg, var(--primary), var(--accent-2));
   color: white;
   border: none;
   border-radius: 999px;
   cursor: pointer;
   font-size: 0.8rem;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(248,150,30,0.45);
+  box-shadow: 0 4px 12px rgba(6,43,95,0.22);
   height: 40px;
   width: 60px;
 }
@@ -206,8 +212,8 @@ body {
   padding: 0.15rem;
   margin: 0;
   border-radius: 999px;
-  background: rgba(248,250,252,0.9);
-  border: 1px solid rgba(148,163,184,0.4);
+  background: rgba(248,250,252,0.96);
+  border: 1px solid rgba(91,103,115,0.26);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
   position: relative;
 }
@@ -226,12 +232,12 @@ body {
   white-space: nowrap;
 }
 .nav-link:hover {
-  color: #0f172a;
-  background: linear-gradient(135deg, var(--primary), #8b5cf6);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary), var(--slate));
 }
 .nav-link.active {
-  color: #0f172a;
-  background: linear-gradient(135deg, var(--primary), #0954c6);
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
 }
 .nav-indicator {
   position: absolute;
@@ -239,7 +245,7 @@ body {
   left: 0;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), #8b5cf6);
+  background: linear-gradient(90deg, var(--primary), var(--accent-2));
   transition: transform 0.25s ease, width 0.25s ease, opacity 0.25s ease;
   opacity: 0;
   pointer-events: none;
@@ -277,7 +283,7 @@ body {
   height:80vh;
   position:relative;
   overflow:hidden;
-  background:#000;
+  background: var(--primary);
 }
 .hero-slider{
   position:absolute;
@@ -308,7 +314,7 @@ body {
   color:#fff;
   z-index:2;
   text-align:center;
-  background:linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+  background:linear-gradient(to top, rgba(11,31,58,0.72), rgba(11,31,58,0.28));
 }
 .hero-text h1{
   font-size:40px;
@@ -318,7 +324,7 @@ body {
 }
 .hero-text p{
   font-size:20px;
-  color:#ffeb3b;
+  color: #dbeafe;
   font-weight:700;
   text-shadow:0 6px 22px rgba(0,0,0,0.7);
   transition:opacity .5s;
@@ -349,12 +355,8 @@ body {
   border-radius: 22px;
   text-align: center;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.87),
-    rgba(240, 249, 255, 0.80)
-  );
-  border: 1px solid rgba(148, 163, 184, 0.55);
+  background: #ffffff;
+  border: 1px solid rgba(91, 103, 115, 0.28);
   box-shadow:
     0 20px 45px rgba(15, 23, 42, 0.20),
     0 0 0 1px rgba(255, 255, 255, 0.70);
@@ -371,18 +373,14 @@ body {
 }
 .card:hover {
   transform: translateY(-8px) scale(1.01);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.97),
-    rgba(219, 234, 254, 0.96)
-  );
-  border-color: rgba(83, 106, 204, 0.75);
+  background: #ffffff;
+  border-color: rgba(29, 78, 216, 0.55);
   box-shadow:
     0 26px 60px rgba(15, 23, 42, 0.30),
     0 0 0 1px rgba(255, 255, 255, 0.90);
 }
 .card:focus-visible {
-  outline: 3px solid rgba(83,106,204,0.35);
+  outline: 3px solid rgba(29,78,216,0.28);
   outline-offset: 3px;
 }
 .card h3 {
@@ -405,8 +403,8 @@ body {
   font-size: 3rem;
   background: linear-gradient(
     135deg,
-    rgba(83, 106, 204, 0.10),
-    rgba(248, 158, 46, 0.10)
+    rgba(11, 31, 58, 0.08),
+    rgba(59, 130, 246, 0.14)
   );
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
 }
@@ -415,15 +413,45 @@ body {
 .features-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
+  gap: 1.2rem;
   list-style: none;
+  padding: 0 0.5rem;
 }
 .features-grid li {
   background: var(--white);
-  padding: 1rem;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(91,103,115,0.16);
+  padding: 1.25rem;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 8px 20px rgba(11,31,58,0.10);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.features-grid li:hover {
+  transform: translateY(-4px);
+  border-color: rgba(29,78,216,0.28);
+  box-shadow: 0 14px 28px rgba(11,31,58,0.16);
+}
+.facility-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 1rem;
+}
+.features-grid h3 {
+  color: var(--primary);
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+.features-grid p {
+  color: var(--slate);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 /* CONTACT SECTION */
@@ -452,11 +480,11 @@ body {
 
 /* FOOTER */
 .site-footer {
-  background: #020617;
+  background: var(--primary);
   color: #e5e7eb;
   padding-top: 3rem;
   margin-top: 3rem;
-  border-top: 1px solid rgba(148,163,184,0.3);
+  border-top: 1px solid rgba(59,130,246,0.24);
 }
 .footer-container {
   display: grid;
@@ -483,13 +511,13 @@ body {
 }
 .footer-tagline {
   font-size: 0.9rem;
-  color: #9ca3af;
+  color: #cbd5e1;
   max-width: 260px;
 }
 .footer-copy-small {
   margin-top: 1.2rem;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: #94a3b8;
 }
 .footer-links {
   list-style: none;
@@ -499,12 +527,12 @@ body {
 .footer-links li + li { margin-top: 0.4rem; }
 .footer-links a {
   font-size: 0.9rem;
-  color: #9ca3af;
+  color: #cbd5e1;
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 .footer-links a:hover {
-  color: #fbbf24;
+  color: #93c5fd;
   transform: translateX(2px);
 }
 .footer-contact {
@@ -513,7 +541,7 @@ body {
   margin-bottom: 0.6rem;
 }
 .footer-contact a {
-  color: #fbbf24;
+  color: #93c5fd;
   text-decoration: none;
 }
 .footer-contact a:hover {
@@ -531,27 +559,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #020617;
-  border: 1px solid #374151;
+  background: var(--navy-2);
+  border: 1px solid rgba(147,197,253,0.28);
   color: #e5e7eb;
   font-size: 14px;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 .footer-social a:hover {
-  background: #fbbf24;
-  color: #020617;
+  background: #93c5fd;
+  color: var(--primary);
   transform: translateY(-1px);
 }
 .footer-bottom {
-  border-top: 1px solid #111827;
+  border-top: 1px solid rgba(147,197,253,0.16);
   padding: 0.8rem 0;
   text-align: center;
-  background: #020617;
+  background: var(--primary);
 }
 .footer-bottom p {
   margin: 0;
   font-size: 0.8rem;
-  color: #6b7280;
+  color: #94a3b8;
 }
 
 /* ====== OVERLAPPING STATS BAR ====== */
@@ -564,7 +592,8 @@ body {
 .stats-bar {
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  border: 1px solid rgba(91,103,115,0.18);
+  box-shadow: 0 15px 40px rgba(11,31,58,0.16);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 30px 20px;
@@ -575,7 +604,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 15px;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid rgba(91,103,115,0.22);
   transition: transform 0.2s ease;
 }
 .stat-item:hover{
@@ -586,7 +615,7 @@ body {
 }
 .stat-icon {
   font-size: 2.2rem;
-  color: #334155;
+  color: var(--primary);
 }
 .stat-text {
   display: flex;
@@ -599,7 +628,7 @@ body {
   font-size: 1.1rem;
 }
 .stat-desc {
-  color: #94a3b8;
+  color: var(--slate);
   font-size: 0.85rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -613,19 +642,19 @@ body {
   margin-top: 15px;
 }
 .features-header h2 {
-  color: #1877f2;
+  color: var(--primary);
   font-size: 2.5rem;
   margin-bottom: 15px;
 }
 .underline {
   height: 4px;
   width: 60px;
-  background: linear-gradient(to right, #6f42c1, #e83e8c);
+  background: linear-gradient(to right, var(--primary), var(--accent-2));
   margin: 0 auto 20px auto;
   border-radius: 2px;
 }
 .features-header p {
-  color: #333;
+  color: var(--slate);
   font-size: 1.1rem;
 }
 .cards-container {
@@ -642,12 +671,8 @@ body {
   border-radius: 22px;
   cursor: pointer;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.90),
-    rgba(240, 249, 255, 0.82)
-  );
-  border: 1px solid rgba(148, 163, 184, 0.55);
+  background: #ffffff;
+  border: 1px solid rgba(91, 103, 115, 0.26);
   box-shadow:
     0 18px 45px rgba(15, 23, 42, 0.22),
     0 0 0 1px rgba(255, 255, 255, 0.75);
@@ -667,22 +692,18 @@ body {
 }
 .feature-card:hover {
   transform: translateY(-10px) scale(1.02);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.98),
-    rgba(219, 234, 254, 0.96)
-  );
-  border-color: rgba(83, 106, 204, 0.75);
+  background: #ffffff;
+  border-color: rgba(29, 78, 216, 0.55);
   box-shadow:
     0 28px 70px rgba(15, 23, 42, 0.30),
     0 0 0 1px rgba(255, 255, 255, 0.90);
 }
 .feature-card:focus-visible {
-  outline: 3px solid rgba(83,106,204,0.35);
+  outline: 3px solid rgba(29,78,216,0.28);
   outline-offset: 3px;
 }
 .feature-card .card-content p {
-  color: #020617;
+  color: var(--dark);
   font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.6;
@@ -690,10 +711,10 @@ body {
 }
 .icon-wrapper {
   width: 80px; height: 80px; border-radius: 50%;
-  background: linear-gradient(135deg, #8e44ad, #d81b60);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   display: flex; justify-content: center; align-items: center;
   margin-bottom: 25px;
-  border: 6px solid #fce8ee;
+  border: 6px solid rgba(147,197,253,0.30);
   z-index: 2;
 }
 .icon-wrapper i {
@@ -702,7 +723,7 @@ body {
 }
 .banner {
   width: 100%;
-  background: linear-gradient(to right, #f89e2e, #e87a19);
+  background: linear-gradient(to right, var(--primary), var(--accent));
   color: white;
   text-align: center;
   padding: 15px 30px 15px 15px;
@@ -736,7 +757,7 @@ body {
   grid-template-columns: 1.1fr 1.1fr;
   gap: 2.5rem;
   align-items: center;
-  background: #f4f0c2;
+  background: linear-gradient(135deg, #ffffff, var(--cream));
   border-radius: 18px;
   padding: 20px;
 }
@@ -755,12 +776,12 @@ body {
 }
 .sis-content h3 {
   font-size: 1.4rem;
-  color: var(--accent-2);
+  color: var(--accent);
   margin-bottom: 1rem;
 }
 .sis-content p {
   margin-bottom: 0.8rem;
-  color: #000000;
+  color: var(--dark);
 }
 .btn-apply {
   display: inline-block;
@@ -772,7 +793,7 @@ body {
   font-size: 0.95rem;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #ffffff;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -780,7 +801,7 @@ body {
 }
 .btn-apply:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgb(255, 157, 0);
+  box-shadow: 0 14px 30px rgba(6,43,95,0.34);
 }
 
 /* TIMELINE SECTION */
@@ -788,7 +809,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 80px 20px;
-  background: #f4f0c2;
+  background: linear-gradient(135deg, #ffffff, var(--cream));
   border-radius: 18px;
 }
 .section-header {
@@ -797,13 +818,13 @@ body {
 }
 .section-header h2 {
   font-size: 1.35rem;
-  color: #1877f2;
+  color: var(--primary);
   margin-bottom: 10px;
   font-weight: 700;
 }
 .section-header p {
   font-size: 2.15rem;
-  color: #555;
+  color: var(--slate);
 }
 
 /* Timeline Layout */
@@ -817,7 +838,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 3px;
-  background-color: #000;
+  background-color: var(--primary);
   top: 40px;
   bottom: 40px;
   z-index: 1;
@@ -835,7 +856,7 @@ body {
   width: 16px;
   height: 16px;
   background-color: #fff;
-  border: 3px solid #000;
+  border: 3px solid var(--accent-2);
   border-radius: 50%;
   z-index: 3;
 }
@@ -881,7 +902,7 @@ body {
 }
 .timeline-text p {
   font-size: 0.95rem;
-  color: #777;
+  color: var(--slate);
   line-height: 1.6;
 }
 .color-red { color: #f75c5c; }
@@ -970,7 +991,7 @@ body {
 /* SEPARATE EXPLORE BUTTONS */
 .play-explore-btn,
 .facilities-explore-btn {
-  background: linear-gradient(135deg, #18f2b8, #12cfa0);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
   font-size: 15px;
   font-weight: 600;
@@ -1007,8 +1028,8 @@ body {
 }
 .offer-popup-content{
   position: relative;
-  width: 95%;
-  max-width: 500px;
+  width: min(96vw, 1040px);
+  max-height: 88vh;
   border-radius: 24px;
   overflow: hidden;
   background: white;
@@ -1017,14 +1038,89 @@ body {
     0 0 0 6px rgba(255,255,255,0.15);
   transform: scale(0.8);
   transition: 0.4s ease;
+  display: grid;
+  grid-template-columns: minmax(190px, 0.9fr) minmax(300px, 460px) minmax(190px, 0.9fr);
+  align-items: stretch;
 }
 .offer-popup.show .offer-popup-content{
   transform: scale(1);
 }
+.offer-side-panel {
+  background: linear-gradient(180deg, #061f45, var(--primary));
+  color: #ffffff;
+  padding: 2.4rem 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  border-inline: 1px solid rgba(255,255,255,0.10);
+  min-height: 0;
+}
+.offer-side-panel h3 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  margin-bottom: 0.2rem;
+  color: #d4af37;
+  text-align: center;
+}
+.offer-marquee {
+  position: relative;
+  overflow: hidden;
+  height: min(54vh, 420px);
+  min-height: 270px;
+  border-top: 1px solid rgba(212,175,55,0.24);
+  border-bottom: 1px solid rgba(212,175,55,0.24);
+  padding-block: 0.65rem;
+}
+.offer-marquee-track {
+  display: grid;
+  gap: 0.8rem;
+  animation: offerTextMove 24s linear infinite;
+}
+.offer-side-panel:hover .offer-marquee-track {
+  animation-play-state: paused;
+}
+.offer-side-panel ul {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+.offer-side-panel li {
+  background: rgba(255,255,255,0.055);
+  border-left: 3px solid #d4af37;
+  padding: 0.58rem 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  text-align: left;
+}
+.offer-side-panel li:nth-child(even) {
+  border-left-color: #b11226;
+}
+.offer-side-panel li strong {
+  display: block;
+  color: #d4af37;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.offer-side-panel li:nth-child(even) strong {
+  color: #ffccd3;
+}
+.offer-side-panel li span {
+  display: block;
+  color: rgba(255,255,255,0.86);
+  font-size: 0.76rem;
+  margin-top: 0.18rem;
+}
+@keyframes offerTextMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
 .offer-slider{
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: min(78vh, 650px);
+  min-height: 420px;
   background: #fff;
   overflow: hidden;
 }
@@ -1059,7 +1155,7 @@ body {
 }
 .offer-close:hover{
   transform: rotate(90deg) scale(1.1);
-  background: #ff4d4d;
+  background: var(--primary);
   color: white;
 }
 
@@ -1095,6 +1191,50 @@ body {
     padding: 0.55rem 0.9rem;
   }
   .nav-indicator { display: none; }
+  .offer-popup-content {
+    width: min(94vw, 430px);
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .offer-slider {
+    order: 1;
+    height: min(58vh, 460px);
+    min-height: 310px;
+  }
+  .offer-side-panel {
+    order: 2;
+  }
+  .offer-side-panel {
+    padding: 0.8rem;
+  }
+  .offer-marquee {
+    height: 130px;
+    min-height: 130px;
+  }
+  .offer-marquee-track {
+    animation-duration: 18s;
+  }
+  .offer-side-panel li {
+    font-size: 0.78rem;
+    padding: 0.5rem;
+  }
+  .offer-side-panel li span {
+    display: none;
+  }
+}
+@media (max-width: 420px) {
+  .offer-slider {
+    height: min(54vh, 390px);
+    min-height: 280px;
+  }
+  .offer-side-panel h3 {
+    font-size: 0.74rem;
+  }
+  .offer-marquee {
+    height: 112px;
+    min-height: 112px;
+  }
 }
 @media (max-width: 600px) {
   .footer-container { gap: 1.8rem; }
@@ -1307,17 +1447,17 @@ body {
     <h2>PLAY &amp; LEARN</h2>
     <div class="grid-3">
       <div class="card reveal">
-        <div class="play-icon-box" style="background:#f0f8ff;"><img alt="toy train image" src=""></div>
+        <div class="play-icon-box" style="background:var(--primary-soft);"><img alt="toy train image" src=""></div>
         <h3>Toy Train</h3>
         <p>To develop skills like hand-eye coordination, constructive play and fine motor skills.</p>
       </div>
       <div class="card reveal">
-        <div class="play-icon-box" style="background:#fff5ee;"><img alt="Multiplay image" src=""></div>
+        <div class="play-icon-box" style="background:var(--blue-soft);"><img alt="Multiplay image" src=""></div>
         <h3>Multiplay</h3>
         <p>To develop skills like slides, swings, climbing structures and walking bridges to indulge physical activities.</p>
       </div>
       <div class="card reveal">
-        <div class="play-icon-box" style="background:#e6ffe6;"><img alt="Rock-Climbing image" src=""></div>
+        <div class="play-icon-box" style="background:var(--sky-soft);"><img alt="Rock-Climbing image" src=""></div>
         <h3>Rock-Climbing</h3>
         <p>To develop skills like strength, balance, concentration and build problem solving abilities.</p>
       </div>    
@@ -1336,28 +1476,28 @@ body {
     <h2>FACULTY</h2>
     <div class="grid-4">
       <div class="card reveal">
-        <div style="background:linear-gradient(135deg,#15a170,#1abc9c);height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
+        <div style="background:linear-gradient(135deg,var(--primary),var(--slate));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
           <img alt="Sujay Singh image" src="">
         </div>
         <h3>Dr. Sujay Singh</h3>
         <p>Director</p>
       </div>
       <div class="card reveal">
-        <div style="background:linear-gradient(135deg,#15a170,#1abc9c);height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
+        <div style="background:linear-gradient(135deg,var(--primary),var(--accent));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
           <img alt="Nirmala Singh image" src="">
         </div>
         <h3>Mrs. Nirmala Singh</h3>
         <p>Asst. Managing Director</p>
       </div>
       <div class="card reveal">
-        <div style="background:linear-gradient(135deg,#15a170,#1abc9c);height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
+        <div style="background:linear-gradient(135deg,var(--accent-2),var(--primary));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
           <img alt="Ajeet Singh image" src="">
         </div>
         <h3>Ajeet Singh</h3>
         <p>Principal</p>
       </div>
       <div class="card reveal">
-        <div style="background:linear-gradient(135deg,#15a170,#1abc9c);height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
+        <div style="background:linear-gradient(135deg,var(--slate),var(--primary));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
           <img alt="Rashmi Singh image" src="">
         </div>
         <h3>Mrs. Rashmi Singh</h3>
@@ -1376,13 +1516,48 @@ body {
 <section id="why-us" class="section">
   <div class="facilities-container">
     <h2>FACILITIES</h2>
-    
+
     <ul class="features-grid">
-      
-      <li>Open-Space Classrooms</li>
-      <li>24×7 CCTV-Secured Campus</li>
-      <li>Extracurricular Activities</li>
-      <li>Wi-Fi Enabled Campus</li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-door-open"></i></span>
+        <h3>Open-Space Classrooms</h3>
+        <p>Bright, well-ventilated rooms designed to keep children comfortable, active, and engaged.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-video"></i></span>
+        <h3>24x7 CCTV-Secured Campus</h3>
+        <p>Continuous surveillance supports a safer campus environment for every child and staff member.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-child-reaching"></i></span>
+        <h3>Extracurricular Activities</h3>
+        <p>Creative activities, games, and events help children build confidence beyond classroom learning.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-hands-holding-child"></i></span>
+        <h3>Well Take Care</h3>
+        <p>Caring supervision, gentle routines, and attentive support ensure children feel safe and settled.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-droplet"></i></span>
+        <h3>RO Water</h3>
+        <p>Purified RO drinking water is available to support children's health and daily hydration.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-wifi"></i></span>
+        <h3>Wi-Fi Campus</h3>
+        <p>Secure campus connectivity supports digital administration and smooth learning activities.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-chalkboard-user"></i></span>
+        <h3>Digi-Board Classroom</h3>
+        <p>Interactive digital boards make lessons more visual, participative, and easy to understand.</p>
+      </li>
+      <li>
+        <span class="facility-card-icon"><i class="fa-solid fa-leaf"></i></span>
+        <h3>Eco-Friendly Campus</h3>
+        <p>Clean, green surroundings encourage healthy habits and a calm learning atmosphere.</p>
+      </li>
     </ul>
 
     <div style="text-align:center; margin-top: 2rem;">
@@ -1484,12 +1659,68 @@ body {
       <i class="fa-solid fa-xmark"></i>
     </button>
 
+    <aside class="offer-side-panel">
+      <h3>Admissions Open</h3>
+      <div class="offer-marquee">
+        <div class="offer-marquee-track">
+          <ul>
+            <li><strong>Fees Under 30K</strong><span>Transparent, parent-friendly annual fee structure.</span></li>
+            <li><strong>Day Care</strong><span>Extended care with safe routines and attentive supervision.</span></li>
+            <li><strong>Pre Play</strong><span>Gentle first-school experiences for early confidence.</span></li>
+            <li><strong>Play</strong><span>Activity-based learning through stories, music, movement and guided play.</span></li>
+            <li><strong>Nursery</strong><span>Foundational language, numbers and social habits.</span></li>
+            <li><strong>Junior KG</strong><span>Structured readiness for reading, writing, expression and classroom independence.</span></li>
+            <li><strong>Senior KG</strong><span>Confident preparation for primary school.</span></li>
+            <li><strong>Total CBSE School</strong><span>A continuous academic path with balanced scholastic and co-scholastic development.</span></li>
+          </ul>
+          <ul aria-hidden="true">
+            <li><strong>Fees Under 30K</strong><span>Transparent, parent-friendly annual fee structure.</span></li>
+            <li><strong>Day Care</strong><span>Extended care with safe routines and attentive supervision.</span></li>
+            <li><strong>Pre Play</strong><span>Gentle first-school experiences for early confidence.</span></li>
+            <li><strong>Play</strong><span>Activity-based learning through stories, music, movement and guided play.</span></li>
+            <li><strong>Nursery</strong><span>Foundational language, numbers and social habits.</span></li>
+            <li><strong>Junior KG</strong><span>Structured readiness for reading, writing, expression and classroom independence.</span></li>
+            <li><strong>Senior KG</strong><span>Confident preparation for primary school.</span></li>
+            <li><strong>Total CBSE School</strong><span>A continuous academic path with balanced scholastic and co-scholastic development.</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
     <!-- Image Slider -->
     <div class="offer-slider">
       <img src="image/offer1.jpeg" class="offer-slide active">
       <img src="image/offer2.jpeg" class="offer-slide">
       <img src="image/offer3.jpeg" class="offer-slide">
     </div>
+
+    <aside class="offer-side-panel">
+      <h3>Facilities</h3>
+      <div class="offer-marquee">
+        <div class="offer-marquee-track">
+          <ul>
+            <li><strong>Open-Space Classrooms</strong><span>Bright rooms planned for comfort, movement and active participation.</span></li>
+            <li><strong>24x7 CCTV-Secured Campus</strong><span>Continuous monitoring across important campus zones.</span></li>
+            <li><strong>Extracurricular Activities</strong><span>Music, games, events and creative exposure for confident all-round growth.</span></li>
+            <li><strong>Well Take Care</strong><span>Warm supervision and gentle daily support.</span></li>
+            <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
+            <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
+            <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
+          </ul>
+          <ul aria-hidden="true">
+            <li><strong>Open-Space Classrooms</strong><span>Bright rooms planned for comfort, movement and active participation.</span></li>
+            <li><strong>24x7 CCTV-Secured Campus</strong><span>Continuous monitoring across important campus zones.</span></li>
+            <li><strong>Extracurricular Activities</strong><span>Music, games, events and creative exposure for confident all-round growth.</span></li>
+            <li><strong>Well Take Care</strong><span>Warm supervision and gentle daily support.</span></li>
+            <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
+            <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
+            <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
 
   </div>
 </div>

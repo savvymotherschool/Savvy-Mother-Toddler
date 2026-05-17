@@ -11,14 +11,18 @@
 
   <style>
     :root {
-      --primary: #536acc;
-      --accent: #f89e2e;
-      --accent-2: #ff7b2f;
-      --cream: #FFFDD0;
+      --primary: #062b5f;
+      --accent: #1d4ed8;
+      --accent-2: #3b82f6;
+      --cream: #f4f6f8;
       --white: #ffffff;
-      --dark: #1e293b;
-      --muted: #94a3b8;
+      --dark: #172033;
+      --muted: #5b6773;
       --glass: rgba(255,255,255,0.86);
+      --slate: #5b6773;
+      --navy-2: #0b3a78;
+      --blue-soft: rgba(29,78,216,0.14);
+      --sky-soft: rgba(59,130,246,0.12);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +31,7 @@
       font-family: 'Poppins', sans-serif;
       line-height: 1.6;
       color: var(--dark);
-      background: #ffffff; /* PURE WHITE BG */
+      background: #d1d6db; /* PURE WHITE BG */
     }
 
     .container {
@@ -56,11 +60,11 @@
       -webkit-backdrop-filter: blur(16px);
       background: linear-gradient(
         120deg,
-        rgba(255,255,255,0.96),
-        rgba(255,255,255,0.90),
-        rgba(255,255,255,0.96)
+        rgba(255,255,255,0.97),
+        rgba(244,246,248,0.93),
+        rgba(255,255,255,0.97)
       );
-      border-bottom: 1px solid rgba(148,163,184,0.18);
+      border-bottom: 1px solid rgba(91,103,115,0.22);
       box-shadow: 0 12px 30px rgba(15,23,42,0.12);
     }
     .navbar-inner {
@@ -83,8 +87,8 @@
       gap: 0.75rem;
       padding: 0.35rem 0.85rem;
       border-radius: 999px;
-      background: radial-gradient(circle at 0% 0%, #ffffff);
-      border: 1px solid rgba(148,163,184,0.35);
+      background: radial-gradient(circle at 0% 0%, #ffffff, #f8fafc);
+      border: 1px solid rgba(91,103,115,0.28);
       box-shadow: 0 10px 25px rgba(15,23,42,0.25);
       text-decoration: none;
       color: inherit;
@@ -104,9 +108,9 @@
       align-items: center;
       gap: 0.4rem;
       padding: 0.15rem 0.6rem;
-      background: rgba(248,250,252,0.9);
+      background: rgba(248,250,252,0.96);
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.35);
+      border: 1px solid rgba(91,103,115,0.28);
     }
     .search-box input {
       border: none;
@@ -137,8 +141,8 @@
       padding: 0.15rem;
       margin: 0;
       border-radius: 999px;
-      background: rgba(248,250,252,0.9);
-      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(248,250,252,0.96);
+      border: 1px solid rgba(91,103,115,0.26);
       box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9);
       position: relative;
     }
@@ -157,12 +161,12 @@
       white-space: nowrap;
     }
     .nav-link:hover {
-      color: #0f172a;
-      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      color: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--slate));
     }
     .nav-link.active {
-      color: #0f172a;
-      background: linear-gradient(135deg, var(--primary), #0954c6);
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
     }
 
     .nav-indicator {
@@ -171,7 +175,7 @@
       left: 0;
       height: 3px;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--primary), #8b5cf6);
+      background: linear-gradient(90deg, var(--primary), var(--accent-2));
       transition: transform 0.25s ease, width 0.25s ease, opacity 0.25s ease;
       opacity: 0;
       pointer-events: none;
@@ -258,7 +262,7 @@
     /* SLIDER BASE */
     .slider-wrapper {
       position: relative;
-      background: #f4f0c2;
+      background: linear-gradient(135deg, #ffffff, var(--cream));
       border-radius: 18px;
       box-shadow: 0 14px 30px rgba(15,23,42,0.14);
       padding: 2rem 1rem;
@@ -297,13 +301,13 @@
       justify-content: center;
       cursor: pointer;
       transition: 0.2s;
-      color: #0f172a;
+      color: #ffffff;
       z-index: 5; /* Keep arrows above slider content */
     }
     .slider-arrow:hover {
       transform: translateY(-50%) scale(1.05);
-      background: #fbbf24;
-      color: #020617;
+      background: #93c5fd;
+      color: var(--primary);
     }
     .slider-arrow:active {
       transform: translateY(-50%) scale(0.97);
@@ -318,9 +322,9 @@
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: 1.5rem;
       align-items: center;
-      background: rgba(255,255,255,0.35);
+      background: #ffffff;
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.55);
+      border: 1px solid rgba(91,103,115,0.18);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
@@ -343,15 +347,15 @@
       display: block;
     }
 
-    .faculty-info h3 {
+.faculty-info h3 {
       font-size: 1.4rem;
-      color: #0f172a;
+      color: var(--primary);
       margin-bottom: 0.25rem;
     }
 .faculty-role {
       font-size: 0.95rem;
       font-weight: 600;
-      color: #f97316;
+      color: var(--accent);
       margin-bottom: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -369,7 +373,7 @@
 
     /* IMAGE ONLY SLIDER */
     .simple-slider {
-      background:  #f4f0c2;
+      background: linear-gradient(135deg, #ffffff, var(--cream));
     }
 
 .simple-slider:hover{
@@ -382,8 +386,8 @@
 
 .faculty-card:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 30px rgba(255, 255, 255, 0.9);
-      border-color: rgba(255,255,255,0.75);
+      box-shadow: 0 14px 30px rgba(11, 31, 58, 0.16);
+      border-color: rgba(29,78,216,0.32);
     }
 
 .simple-slide-inner {
@@ -403,7 +407,7 @@
 
     /* FOOTER */
     .site-footer {
-      background: #020617;
+      background: var(--primary);
       color: #e5e7eb;
       padding-top: 3rem;
       margin-top: 3rem;
@@ -453,7 +457,7 @@
       transition: 0.2s;
     }
     .footer-links a:hover {
-      color: #fbbf24;
+      color: #93c5fd;
       transform: translateX(2px);
     }
     .footer-contact {
@@ -462,7 +466,7 @@
       margin-bottom: 0.6rem;
     }
     .footer-contact a {
-      color: #fbbf24;
+      color: #93c5fd;
       text-decoration: none;
     }
     .footer-contact a:hover { text-decoration: underline; }
@@ -479,23 +483,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #020617;
-      border: 1px solid #374151;
+      background: var(--primary);
+      border: 1px solid rgba(147,197,253,0.28);
       color: #e5e7eb;
       font-size: 14px;
       transition: 0.2s;
     }
     .footer-social a:hover {
-      background: #fbbf24;
-      color: #020617;
+      background: #93c5fd;
+      color: var(--primary);
       transform: translateY(-1px);
     }
 
     .footer-bottom {
-      border-top: 1px solid #111827;
+      border-top: 1px solid rgba(147,197,253,0.16);
       padding: 0.8rem 0;
       text-align: center;
-      background: #020617;
+      background: var(--primary);
       font-size: 0.8rem;
       color: #6b7280;
     }
@@ -607,7 +611,7 @@
       .slider-next { right: 4px; }
     }
 
-    
+
         /* ================= OFFER POPUP ================= */
 
 .offer-popup{
@@ -726,7 +730,172 @@
     height: 320px;
   }
 }
-  </style>
+
+/* POLISHED OFFER POPUP OVERRIDES */
+.offer-popup-content{
+  position: relative;
+  width: min(96vw, 1040px);
+  max-width: none;
+  max-height: 88vh;
+  border-radius: 24px;
+  overflow: hidden;
+  background: white;
+  box-shadow:
+    0 25px 60px rgba(0,0,0,0.5),
+    0 0 0 6px rgba(255,255,255,0.15);
+  transform: scale(0.8);
+  transition: 0.4s ease;
+  display: grid;
+  grid-template-columns: minmax(190px, 0.9fr) minmax(300px, 460px) minmax(190px, 0.9fr);
+  align-items: stretch;
+}
+.offer-popup.show .offer-popup-content{
+  transform: scale(1);
+}
+.offer-side-panel {
+  background: linear-gradient(180deg, #061f45, var(--primary));
+  color: #ffffff;
+  padding: 2.4rem 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  border-inline: 1px solid rgba(255,255,255,0.10);
+  min-height: 0;
+}
+.offer-side-panel h3 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  margin-bottom: 0.2rem;
+  color: #d4af37;
+  text-align: center;
+}
+.offer-marquee {
+  position: relative;
+  overflow: hidden;
+  height: min(54vh, 420px);
+  min-height: 270px;
+  border-top: 1px solid rgba(212,175,55,0.24);
+  border-bottom: 1px solid rgba(212,175,55,0.24);
+  padding-block: 0.65rem;
+}
+.offer-marquee-track {
+  display: grid;
+  gap: 0.8rem;
+  animation: offerTextMove 24s linear infinite;
+}
+.offer-side-panel:hover .offer-marquee-track {
+  animation-play-state: paused;
+}
+.offer-side-panel ul {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0;
+}
+.offer-side-panel li {
+  background: rgba(255,255,255,0.055);
+  border-left: 3px solid #d4af37;
+  padding: 0.58rem 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  text-align: left;
+}
+.offer-side-panel li:nth-child(even) {
+  border-left-color: #b11226;
+}
+.offer-side-panel li strong {
+  display: block;
+  color: #d4af37;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+.offer-side-panel li:nth-child(even) strong {
+  color: #ffccd3;
+}
+.offer-side-panel li span {
+  display: block;
+  color: rgba(255,255,255,0.86);
+  font-size: 0.76rem;
+  margin-top: 0.18rem;
+}
+@keyframes offerTextMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.offer-slider{
+  position: relative;
+  width: 100%;
+  height: min(78vh, 650px);
+  min-height: 420px;
+  aspect-ratio: auto;
+  background: #fff;
+  overflow: hidden;
+}
+.offer-slide{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.offer-slide.active{
+  opacity: 1;
+}
+.offer-close{
+  z-index: 20;
+}
+@media (max-width: 768px) {
+  .offer-popup-content {
+    width: min(94vw, 430px);
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .offer-slider {
+    order: 1;
+    height: min(58vh, 460px);
+    min-height: 310px;
+  }
+  .offer-side-panel {
+    order: 2;
+    padding: 0.8rem;
+  }
+  .offer-marquee {
+    height: 130px;
+    min-height: 130px;
+  }
+  .offer-marquee-track {
+    animation-duration: 18s;
+  }
+  .offer-side-panel li {
+    font-size: 0.78rem;
+    padding: 0.5rem;
+  }
+  .offer-side-panel li span {
+    display: none;
+  }
+}
+@media (max-width: 420px) {
+  .offer-slider {
+    height: min(54vh, 390px);
+    min-height: 280px;
+  }
+  .offer-side-panel h3 {
+    font-size: 0.74rem;
+  }
+  .offer-marquee {
+    height: 112px;
+    min-height: 112px;
+  }
+}
+</style>
 </head>
 <body>
 
@@ -1014,20 +1183,73 @@
 <!-- ================= POPUP OFFER MODAL ================= -->
 <div class="offer-popup" id="offerPopup">
   <div class="offer-popup-content">
-
-    <!-- Close Button -->
     <button class="offer-close" id="offerClose">
       <i class="fa-solid fa-xmark"></i>
     </button>
 
-    <!-- Image Slider -->
+    <aside class="offer-side-panel">
+      <h3>Admissions Open</h3>
+      <div class="offer-marquee">
+        <div class="offer-marquee-track">
+          <ul>
+            <li><strong>Fees Under 30K</strong><span>Transparent, parent-friendly annual fee structure.</span></li>
+            <li><strong>Day Care</strong><span>Extended care with safe routines and attentive supervision.</span></li>
+            <li><strong>Pre Play</strong><span>Gentle first-school experiences for early confidence.</span></li>
+            <li><strong>Play</strong><span>Activity-based learning through stories, music, movement and guided play.</span></li>
+            <li><strong>Nursery</strong><span>Foundational language, numbers and social habits.</span></li>
+            <li><strong>Junior KG</strong><span>Structured readiness for reading, writing, expression and classroom independence.</span></li>
+            <li><strong>Senior KG</strong><span>Confident preparation for primary school.</span></li>
+            <li><strong>Total CBSE School</strong><span>A continuous academic path with balanced scholastic and co-scholastic development.</span></li>
+          </ul>
+          <ul aria-hidden="true">
+            <li><strong>Fees Under 30K</strong><span>Transparent, parent-friendly annual fee structure.</span></li>
+            <li><strong>Day Care</strong><span>Extended care with safe routines and attentive supervision.</span></li>
+            <li><strong>Pre Play</strong><span>Gentle first-school experiences for early confidence.</span></li>
+            <li><strong>Play</strong><span>Activity-based learning through stories, music, movement and guided play.</span></li>
+            <li><strong>Nursery</strong><span>Foundational language, numbers and social habits.</span></li>
+            <li><strong>Junior KG</strong><span>Structured readiness for reading, writing, expression and classroom independence.</span></li>
+            <li><strong>Senior KG</strong><span>Confident preparation for primary school.</span></li>
+            <li><strong>Total CBSE School</strong><span>A continuous academic path with balanced scholastic and co-scholastic development.</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
     <div class="offer-slider">
       <img src="image/offer1.jpeg" class="offer-slide active">
       <img src="image/offer2.jpeg" class="offer-slide">
       <img src="image/offer3.jpeg" class="offer-slide">
     </div>
 
+    <aside class="offer-side-panel">
+      <h3>Facilities</h3>
+      <div class="offer-marquee">
+        <div class="offer-marquee-track">
+          <ul>
+            <li><strong>Open-Space Classrooms</strong><span>Bright rooms planned for comfort, movement and active participation.</span></li>
+            <li><strong>24x7 CCTV-Secured Campus</strong><span>Continuous monitoring across important campus zones.</span></li>
+            <li><strong>Extracurricular Activities</strong><span>Music, games, events and creative exposure for confident all-round growth.</span></li>
+            <li><strong>Well Take Care</strong><span>Warm supervision and gentle daily support.</span></li>
+            <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
+            <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
+            <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
+          </ul>
+          <ul aria-hidden="true">
+            <li><strong>Open-Space Classrooms</strong><span>Bright rooms planned for comfort, movement and active participation.</span></li>
+            <li><strong>24x7 CCTV-Secured Campus</strong><span>Continuous monitoring across important campus zones.</span></li>
+            <li><strong>Extracurricular Activities</strong><span>Music, games, events and creative exposure for confident all-round growth.</span></li>
+            <li><strong>Well Take Care</strong><span>Warm supervision and gentle daily support.</span></li>
+            <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
+            <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
+            <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
   </div>
+</div>
 </div>
 
 <script>
