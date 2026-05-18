@@ -59,6 +59,42 @@ header {
   transform: translateY(0);
 }
 
+.social-floating {
+  gap: 9px;
+  z-index: 1001;
+}
+
+.social-floating a {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 20px;
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow:
+    0 12px 24px rgba(15,23,42,0.32),
+    inset 0 1px 0 rgba(255,255,255,0.24);
+}
+
+.social-floating a:hover {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow:
+    0 16px 30px rgba(15,23,42,0.42),
+    inset 0 1px 0 rgba(255,255,255,0.28);
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #128c4a, #0f6f3d);
+}
+
+.facebook-btn {
+  background: linear-gradient(135deg, #1559bd, #0f3f8f);
+}
+
+.instagram-btn {
+  background: radial-gradient(circle at 25% 105%, #d99b16 0%, #c2410c 38%, #9d174d 62%, #1d4ed8 100%);
+}
+
 img,
 video,
 iframe {
