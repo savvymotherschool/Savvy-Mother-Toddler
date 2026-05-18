@@ -583,8 +583,9 @@
 
 .feature-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
-      border-color: rgba(29,78,216,0.32);
+      background: linear-gradient(135deg, #fff8dc, #fff1b8);
+      box-shadow: 0 18px 50px rgba(220, 20, 60, 0.22);
+      border-color: rgba(220, 20, 60, 0.45);
     }
     .feature-card .card-content p {
       color: var(--dark);
@@ -594,7 +595,7 @@
       transition: color 0.4s ease;
     }
 .feature-card:hover .card-content p {
-      color: var(--dark);
+      color: #7f1d1d;
     }
     .icon-wrapper {
       width: 80px; height: 80px; border-radius: 50%;
@@ -603,6 +604,12 @@
       margin-bottom: 25px;
       border: 6px solid rgba(147,197,253,0.30);
       z-index: 2;
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feature-card:hover .icon-wrapper {
+      background: linear-gradient(135deg, #dc143c, #d4af37);
+      border-color: rgba(212,175,55,0.42);
+      box-shadow: 0 12px 28px rgba(220,20,60,0.26);
     }
     .icon-wrapper i {
       color: white;
@@ -620,6 +627,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.25s ease;
+    }
+    .feature-card:hover .banner {
+      background: linear-gradient(to right, #dc143c, #d4af37);
     }
     .banner span {
       text-transform: uppercase;
