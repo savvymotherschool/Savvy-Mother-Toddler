@@ -8,6 +8,29 @@ body {
   overflow-x: hidden;
 }
 
+header {
+  padding-bottom: 92px;
+}
+
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar {
+  position: relative;
+  z-index: 1000;
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 img,
 video,
 iframe {
@@ -33,6 +56,8 @@ img {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .nav-menu,
@@ -188,8 +213,12 @@ input {
 }
 
 @media (max-width: 768px) {
+  header {
+    padding-bottom: 82px;
+  }
+
   .navbar-wrapper {
-    position: sticky;
+    position: fixed;
   }
 
   .navbar-inner {
