@@ -213,31 +213,45 @@
       margin: 0 auto;
       padding: 0 20px;
       text-align: center;
-      background: red;
+      background: #ffffff;
       border-radius: 50px;
+      border: 1px solid rgba(220, 20, 60, 0.25);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .hero-inner:hover{
         transform: translateY(-3px) scale(1.02);
+        background: linear-gradient(135deg, #dc143c, #d4af37);
+        border-color: rgba(220, 20, 60, 0.45);
+        box-shadow: 0 18px 50px rgba(220, 20, 60, 0.22);
         cursor: pointer;
     }
 
     .hero-inner h1 {
       font-size: 2.4rem;
-      color: white;
+      color: var(--primary);
       margin-bottom: 0.5rem;
+      transition: color 0.25s ease;
+    }
+    .hero-inner:hover h1 {
+      color: #fff8dc;
     }
     .hero-inner p {
-      color: #000000;
+      color: #7f1d1d;
       max-width: 720px;
       margin: 0 auto;
-      background: #de5a5a;
+      background: #fff8dc;
       border-radius:25px ;
       margin-bottom: 0.5rem;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+    .hero-inner:hover p {
+      background: rgba(255, 248, 220, 0.92);
+      color: #7f1d1d;
     }
 
     .hero-inner p:hover{
-        background: rgb(230, 230, 192);
         transform: translateY(-3px) scale(1.005);
     }
 
@@ -322,9 +336,11 @@
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
       gap: 1.5rem;
       align-items: center;
-      background: #ffffff;
+      background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, rgba(91,103,115,0.18), rgba(91,103,115,0.18)) border-box;
       border-radius: 18px;
-      border: 1px solid rgba(91,103,115,0.18);
+      border: 2px solid transparent;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
@@ -345,6 +361,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.35s ease;
+    }
+    .faculty-card:hover .faculty-photo-wrap img {
+      transform: scale(1.1);
     }
 
 .faculty-info h3 {
@@ -386,9 +406,18 @@
 
 .faculty-card:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 14px 30px rgba(11, 31, 58, 0.16);
-      border-color: rgba(29,78,216,0.32);
+      background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #dc143c, #d4af37, #dc143c) border-box;
+      background-size: 100% 100%, 220% 220%;
+      animation: crimsonGoldBorder 1.8s linear infinite;
+      box-shadow: 0 18px 50px rgba(220, 20, 60, 0.22);
     }
+
+@keyframes crimsonGoldBorder {
+  0% { background-position: 0 0, 0% 50%; }
+  100% { background-position: 0 0, 200% 50%; }
+}
 
 .simple-slide-inner {
       max-width: 780px;

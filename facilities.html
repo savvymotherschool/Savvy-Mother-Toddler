@@ -284,8 +284,9 @@
 
 .facility-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
-      border-color: rgba(29,78,216,0.32);
+      background: linear-gradient(135deg, #fff8dc, #fff1b8);
+      box-shadow: 0 18px 50px rgba(220, 20, 60, 0.22);
+      border-color: rgba(220, 20, 60, 0.45);
     }
     .facility-card:focus-visible {
       outline: 3px solid rgba(29,78,216,0.28);
@@ -302,12 +303,22 @@
       background: rgba(29,78,216,0.10);
       color: var(--primary);
       font-size: 1.1rem;
+      transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .facility-card:hover .facility-icon {
+      background: linear-gradient(135deg, #dc143c, #d4af37);
+      color: #ffffff;
+      box-shadow: 0 12px 28px rgba(220,20,60,0.26);
     }
 
     .facility-card h3 {
       font-size: 1.15rem;
       color: var(--primary);
       margin: 0.3rem 0 0.15rem;
+      transition: color 0.25s ease;
+    }
+    .facility-card:hover h3 {
+      color: #7f1d1d;
     }
     .facility-tag {
       font-size: 0.78rem;
@@ -315,14 +326,24 @@
       letter-spacing: 1px;
       color: var(--accent);
       font-weight: 600;
+      transition: color 0.25s ease;
+    }
+    .facility-card:hover .facility-tag {
+      color: #dc143c;
     }
     .facility-text {
       font-size: 0.93rem;
       color: #334155;
+      transition: color 0.25s ease;
+    }
+    .facility-card:hover .facility-text,
+    .facility-card:hover .facility-meta {
+      color: #7f1d1d;
     }
     .facility-meta {
       font-size: 0.85rem;
       color: #64748b;
+      transition: color 0.25s ease;
     }
 
     .facility-note {
