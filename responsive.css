@@ -1,6 +1,7 @@
 /* Shared responsive fixes for all pages */
 html {
   overflow-x: hidden;
+  scroll-padding-top: 112px;
 }
 
 body {
@@ -29,6 +30,33 @@ header {
   box-shadow: none;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+}
+
+.contact-submit-btn {
+  min-height: 46px;
+  padding: 0.85rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 10px 22px rgba(6,43,95,0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.contact-submit-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(6,43,95,0.34);
+  filter: brightness(1.04);
+}
+
+.contact-submit-btn:active {
+  transform: translateY(0);
 }
 
 img,
@@ -213,8 +241,17 @@ input {
 }
 
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 104px;
+  }
+
   header {
-    padding-bottom: 82px;
+    padding-bottom: 96px;
+  }
+
+  .top-bar {
+    font-size: 0.78rem;
+    padding-block: 0.35rem;
   }
 
   .navbar-wrapper {
@@ -280,6 +317,15 @@ input {
 
   .hero {
     min-height: 420px;
+  }
+
+  .section,
+  .hero,
+  .hero-inner,
+  .gallery-wrapper,
+  .facilities-wrapper,
+  .contact-main {
+    scroll-margin-top: 104px;
   }
 
   .hero-overlay,

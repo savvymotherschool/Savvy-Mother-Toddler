@@ -740,7 +740,7 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* DISTINCTIVE FEATURES – GLASS FEATURE CARDS */
+/* DISTINCTIVE FEATURES - GLASS FEATURE CARDS */
 .features-header {
   text-align: center;
   margin-bottom: 50px;
@@ -889,9 +889,12 @@ body {
   color: var(--dark);
 }
 .btn-apply {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 1rem;
-  padding: 0.8rem 1.8rem;
+  min-height: 46px;
+  padding: 0.85rem 1.8rem;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
@@ -900,13 +903,16 @@ body {
   text-transform: uppercase;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #ffffff;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  box-shadow: 0 10px 22px rgba(6,43,95,0.28);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   margin-bottom: 15px;
 }
 .btn-apply:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 30px rgba(6,43,95,0.34);
+  filter: brightness(1.04);
 }
 
 /* TIMELINE SECTION */
@@ -1096,21 +1102,28 @@ body {
 /* SEPARATE EXPLORE BUTTONS */
 .play-explore-btn,
 .facilities-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: white;
-  font-size: 15px;
+  font-size: 0.95rem;
   font-weight: 600;
-  padding: 12px 22px;
+  min-height: 46px;
+  padding: 0.85rem 1.8rem;
   border: none;
-  border-radius: 30px;
+  border-radius: 999px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 10px 22px rgba(6,43,95,0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 .play-explore-btn:hover,
 .facilities-explore-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(6,43,95,0.34);
+  filter: brightness(1.04);
 }
 
 /* OFFER POPUP */
@@ -1351,7 +1364,7 @@ body {
 <header>
   <div class="top-bar">
     <div class="">
-      <span>SILPARA, BAIRAGI ROAD, REWA (M.P) | Mon – Sat: 08:30 AM – 06:30 PM | +91 9329517009</span>
+      <span>SILPARA, BAIRAGI ROAD, REWA (M.P) | Mon - Sat: 08:30 AM - 06:30 PM | +91 9329517009</span>
     </div>
   </div>
 
@@ -1464,7 +1477,7 @@ body {
         nurturing environment.
       </p>
       <p>
-        Our admission process is transparent, supportive, and parent‑friendly,
+        Our admission process is transparent, supportive, and parent-friendly,
         ensuring that every young learner feels welcomed, valued, and inspired
         from the very first day.
       </p>
@@ -1519,7 +1532,7 @@ body {
                 <div class="half left-half">
                     <div class="timeline-text">
                         <h3 class="color-pink">Holistic Growth</h3>
-                        <p>At our school, education goes beyond textbooks. We focus on nurturing the mind, body, and character. From academics to arts, sports to values — every child is encouraged to grow fully. Our goal is to shape confident, compassionate, and capable individuals.</p>
+                        <p>At our school, education goes beyond textbooks. We focus on nurturing the mind, body, and character. From academics to arts, sports to values - every child is encouraged to grow fully. Our goal is to shape confident, compassionate, and capable individuals.</p>
                     </div>
                     <div class="timeline-icon bg-pink">
                         <i class="fas fa-heart"></i>
@@ -1669,7 +1682,7 @@ body {
         A joyful place where little minds grow with confidence, curiosity and care.
       </p>
       <p class="footer-copy-small">
-        © <span id="year"></span> Savvy Mother Toddler School. All rights reserved.
+        &copy; <span id="year"></span> Savvy Mother Toddler School. All rights reserved.
       </p>
     </div>
 
@@ -1836,7 +1849,7 @@ body {
     "Brainywood Lab & Library",
     "Expert Faculty Guiding Every Step",
     "Open-Space Classrooms for Free Learning",
-    "24×7 CCTV-Secured Campus",
+    "24x7 CCTV-Secured Campus",
     "Joyful Extracurricular Activities",
     "Healthy R.O. Drinking Water",
     "Khatta Meetha Canteen for Kids",
