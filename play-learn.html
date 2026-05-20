@@ -736,7 +736,7 @@ body {
   min-height: 0;
 }
 .offer-side-panel h3 {
-  font-size: 0.82rem;
+  font-size: 1.22rem;
   text-transform: uppercase;
   letter-spacing: 1.6px;
   margin-bottom: 0.2rem;
@@ -771,7 +771,7 @@ body {
   background: rgba(255,255,255,0.055);
   border-left: 3px solid #d4af37;
   padding: 0.58rem 0.7rem;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   line-height: 1.35;
   text-align: left;
 }
@@ -781,7 +781,7 @@ body {
 .offer-side-panel li strong {
   display: block;
   color: #d4af37;
-  font-size: 0.84rem;
+  font-size: 1.18rem;
   font-weight: 700;
 }
 .offer-side-panel li:nth-child(even) strong {
@@ -790,7 +790,7 @@ body {
 .offer-side-panel li span {
   display: block;
   color: rgba(255,255,255,0.86);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   margin-top: 0.18rem;
 }
 @keyframes offerTextMove {
@@ -832,16 +832,22 @@ body {
   }
   .offer-slider {
     order: 1;
-    height: min(58vh, 460px);
-    min-height: 310px;
+    height: min(42vh, 340px);
+    min-height: 230px;
   }
   .offer-side-panel {
     order: 2;
     padding: 0.8rem;
   }
+  .offer-popup-content > .offer-side-panel:nth-of-type(2) {
+    display: none;
+  }
+  .offer-side-panel h3 {
+    font-size: 0.95rem;
+  }
   .offer-marquee {
-    height: 130px;
-    min-height: 130px;
+    height: 185px;
+    min-height: 185px;
   }
   .offer-marquee-track {
     animation-duration: 18s;
@@ -850,21 +856,24 @@ body {
     font-size: 0.78rem;
     padding: 0.5rem;
   }
+  .offer-side-panel li strong {
+    font-size: 0.95rem;
+  }
   .offer-side-panel li span {
     display: none;
   }
 }
 @media (max-width: 420px) {
   .offer-slider {
-    height: min(54vh, 390px);
-    min-height: 280px;
+    height: min(38vh, 300px);
+    min-height: 210px;
   }
   .offer-side-panel h3 {
-    font-size: 0.74rem;
+    font-size: 0.9rem;
   }
   .offer-marquee {
-    height: 112px;
-    min-height: 112px;
+    height: 165px;
+    min-height: 165px;
   }
 }
 </style>
@@ -1273,7 +1282,7 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     showOfferPopup();
-  }, 2000);
+  }, 6000);
 
 });
 

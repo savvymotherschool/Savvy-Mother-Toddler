@@ -206,12 +206,12 @@
 
     /* HERO */
     .hero {
-      padding: 4rem 0 2rem 0;
+      padding: 2.25rem 0 1.25rem 0;
     }
     .hero-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 1.1rem 20px;
       text-align: center;
       background: #ffffff;
       border-radius: 50px;
@@ -293,11 +293,13 @@
     }
 
     .slide {
+      width: 100%;
       min-width: 100%;
-      flex-shrink: 0;
+      flex: 0 0 100%;
       padding: 0 1rem;
       display: flex;
       justify-content: center;
+      box-sizing: border-box;
     }
 
     .slider-arrow {
@@ -331,9 +333,9 @@
 
     /* DETAIL SLIDE CARD */
 .faculty-card {
-      max-width: 820px;
+      max-width: 940px;
       display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.05fr);
       gap: 1.5rem;
       align-items: center;
       background:
@@ -353,18 +355,24 @@
     .faculty-photo-wrap {
       border-radius: 16px;
       overflow: hidden;
-      background: #e5e7eb;
-      height: 260px;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(255,255,255,0.95), rgba(226,232,240,0.9) 58%, rgba(203,213,225,0.95));
+      border: 1px solid rgba(15,23,42,0.08);
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .faculty-photo-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       display: block;
       transition: transform 0.35s ease;
     }
     .faculty-card:hover .faculty-photo-wrap img {
-      transform: scale(1.1);
+      transform: scale(1.03);
     }
 
 .faculty-info h3 {
@@ -429,8 +437,9 @@
     }
     .simple-slide-inner img {
       width: 100%;
-      height: 420px;
+      height: 390px;
       object-fit: cover;
+      object-position: center 45%;
       display: block;
     }
 
@@ -793,7 +802,7 @@
   min-height: 0;
 }
 .offer-side-panel h3 {
-  font-size: 0.82rem;
+  font-size: 1.22rem;
   text-transform: uppercase;
   letter-spacing: 1.6px;
   margin-bottom: 0.2rem;
@@ -828,7 +837,7 @@
   background: rgba(255,255,255,0.055);
   border-left: 3px solid #d4af37;
   padding: 0.58rem 0.7rem;
-  font-size: 0.82rem;
+  font-size: 0.9rem;
   line-height: 1.35;
   text-align: left;
 }
@@ -838,7 +847,7 @@
 .offer-side-panel li strong {
   display: block;
   color: #d4af37;
-  font-size: 0.84rem;
+  font-size: 1.18rem;
   font-weight: 700;
 }
 .offer-side-panel li:nth-child(even) strong {
@@ -847,7 +856,7 @@
 .offer-side-panel li span {
   display: block;
   color: rgba(255,255,255,0.86);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
   margin-top: 0.18rem;
 }
 @keyframes offerTextMove {
@@ -889,16 +898,22 @@
   }
   .offer-slider {
     order: 1;
-    height: min(58vh, 460px);
-    min-height: 310px;
+    height: min(42vh, 340px);
+    min-height: 230px;
   }
   .offer-side-panel {
     order: 2;
     padding: 0.8rem;
   }
+  .offer-popup-content > .offer-side-panel:nth-of-type(2) {
+    display: none;
+  }
+  .offer-side-panel h3 {
+    font-size: 0.95rem;
+  }
   .offer-marquee {
-    height: 130px;
-    min-height: 130px;
+    height: 185px;
+    min-height: 185px;
   }
   .offer-marquee-track {
     animation-duration: 18s;
@@ -907,27 +922,30 @@
     font-size: 0.78rem;
     padding: 0.5rem;
   }
+  .offer-side-panel li strong {
+    font-size: 0.95rem;
+  }
   .offer-side-panel li span {
     display: none;
   }
 }
 @media (max-width: 420px) {
   .offer-slider {
-    height: min(54vh, 390px);
-    min-height: 280px;
+    height: min(38vh, 300px);
+    min-height: 210px;
   }
   .offer-side-panel h3 {
-    font-size: 0.74rem;
+    font-size: 0.9rem;
   }
   .offer-marquee {
-    height: 112px;
-    min-height: 112px;
+    height: 165px;
+    min-height: 165px;
   }
 }
 </style>
 <link rel="stylesheet" href="responsive.css">
 </head>
-<body>
+<body class="faculty-page">
 
 <header>
   <div class="top-bar">
@@ -1002,7 +1020,7 @@
       <div class="slide">
         <div class="faculty-card">
           <div class="faculty-photo-wrap">
-            <img src="image/faculty/director.jpg" alt="Dr. Sujay Singh">
+            <img src="image/faculty/Sujay-Sir.jpg" alt="Dr. Sujay Singh">
           </div>
           <div class="faculty-info">
             <h3>Dr. Sujay Singh</h3>
@@ -1022,7 +1040,7 @@
       <div class="slide">
         <div class="faculty-card">
           <div class="faculty-photo-wrap">
-            <img src="image/faculty/amd.jpg" alt="Mrs. Nirmala Singh">
+            <img src="image/faculty/bhanu-mam.webp" alt="Mrs. Nirmala Singh">
           </div>
           <div class="faculty-info">
             <h3>Mrs. Nirmala Singh</h3>
@@ -1061,7 +1079,7 @@
       <div class="slide">
         <div class="faculty-card">
           <div class="faculty-photo-wrap">
-            <img src="image/faculty/academic-head.jpg" alt="Mrs. Rashmi Singh">
+            <img src="image/faculty/anupma-mam.webp" alt="Mrs. Rashmi Singh">
           </div>
           <div class="faculty-info">
             <h3>Mrs. Rashmi Singh</h3>
@@ -1309,7 +1327,7 @@
     let autoplayId = null;
 
     function updateSlider() {
-      track.style.transform = `translateX(-${index * 100}%)`;
+      track.style.transform = `translateX(-${slides[index].offsetLeft}px)`;
     }
 
     function goPrev() {
@@ -1346,6 +1364,7 @@
 
     track.addEventListener("mouseenter", stopAutoplay);
     track.addEventListener("mouseleave", startAutoplay);
+    window.addEventListener("resize", updateSlider);
 
     updateSlider();
     startAutoplay();
@@ -1450,7 +1469,7 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     showOfferPopup();
-  }, 2000);
+  }, 6000);
 
 });
 
