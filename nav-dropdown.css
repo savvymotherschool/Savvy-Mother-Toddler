@@ -1,0 +1,94 @@
+.nav-parent-menu {
+  position: relative;
+}
+
+.nav-icon-link {
+  width: 38px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248,250,252,0.96);
+  color: var(--muted);
+  cursor: pointer;
+  font: inherit;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.nav-icon-link:hover,
+.nav-parent-menu:focus-within .nav-icon-link,
+.nav-parent-menu:hover .nav-icon-link {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  transform: translateY(-1px);
+}
+
+.nav-parent-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  padding: 0.45rem;
+  margin: 0;
+  list-style: none;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(91,103,115,0.22);
+  box-shadow: 0 18px 35px rgba(15,23,42,0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1002;
+}
+
+.nav-parent-menu:hover .nav-parent-dropdown,
+.nav-parent-menu:focus-within .nav-parent-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-parent-dropdown a {
+  display: block;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav-parent-dropdown a:hover {
+  color: var(--primary);
+  background: rgba(29,78,216,0.10);
+}
+
+@media (max-width: 768px) {
+  .nav-icon-link {
+    width: 100%;
+    height: 38px;
+    margin-top: 0.2rem;
+  }
+
+  .nav-parent-dropdown {
+    position: static;
+    display: none;
+    min-width: 0;
+    width: 100%;
+    margin-top: 0.25rem;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .nav-menu.open .nav-parent-menu:focus-within .nav-parent-dropdown,
+  .nav-menu.open .nav-parent-menu:hover .nav-parent-dropdown {
+    display: block;
+  }
+}
