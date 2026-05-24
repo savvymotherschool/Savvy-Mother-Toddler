@@ -8,15 +8,22 @@ function searchSite() {
 const menuToggle = document.getElementById("menuToggle");
 const navMenu = document.getElementById("navMenu");
 
+function setMobileMenuOpen(isOpen) {
+  navMenu?.classList.toggle("open", isOpen);
+  menuToggle?.classList.toggle("active", isOpen);
+  menuToggle?.setAttribute("aria-expanded", String(isOpen));
+}
+
+menuToggle?.setAttribute("aria-expanded", "false");
+menuToggle?.setAttribute("aria-controls", "navMenu");
+
 menuToggle?.addEventListener("click", () => {
-  navMenu?.classList.toggle("open");
-  menuToggle.classList.toggle("active");
+  setMobileMenuOpen(!navMenu?.classList.contains("open"));
 });
 
-navMenu?.querySelectorAll(".nav-link").forEach((link) => {
+navMenu?.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
-    navMenu.classList.remove("open");
-    menuToggle?.classList.remove("active");
+    setMobileMenuOpen(false);
   });
 });
 

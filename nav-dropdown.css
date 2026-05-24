@@ -71,16 +71,35 @@
 @media (max-width: 768px) {
   .nav-icon-link {
     width: 100%;
-    height: 38px;
-    margin-top: 0.2rem;
+    height: 42px;
+    justify-content: flex-start;
+    gap: 0.65rem;
+    margin-top: 0.35rem;
+    padding: 0 0.95rem;
+    border-radius: 8px;
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(29,78,216,0.10);
+  }
+
+  .nav-icon-link::after {
+    content: "Parents & Students";
+    color: inherit;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   .nav-parent-dropdown {
     position: static;
-    display: none;
+    display: block;
     min-width: 0;
     width: 100%;
-    margin-top: 0.25rem;
+    margin-top: 0.35rem;
+    padding: 0.25rem 0 0 0.55rem;
+    border: 0;
+    border-left: 2px solid rgba(29,78,216,0.16);
+    border-radius: 0;
     box-shadow: none;
     opacity: 1;
     visibility: visible;
@@ -90,5 +109,11 @@
   .nav-menu.open .nav-parent-menu:focus-within .nav-parent-dropdown,
   .nav-menu.open .nav-parent-menu:hover .nav-parent-dropdown {
     display: block;
+  }
+
+  .nav-parent-dropdown a {
+    white-space: normal;
+    border-radius: 8px;
+    padding: 0.62rem 0.75rem;
   }
 }
