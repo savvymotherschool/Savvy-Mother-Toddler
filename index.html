@@ -1992,10 +1992,10 @@ function showOfferPopup() {
 function hideOfferPopup() {
   offerPopup.classList.remove("show");
 
-  /* SHOW AGAIN AFTER 30 SECONDS */
+  /* SHOW AGAIN AFTER 10 MINUTES */
   setTimeout(() => {
     showOfferPopup();
-  }, 100000);
+  }, 600000);
 }
 
 /* ===== FIRST POPUP AFTER PAGE LOAD ===== */
@@ -2004,7 +2004,7 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     showOfferPopup();
-  }, 8000);
+  }, 10000);
 
 });
 

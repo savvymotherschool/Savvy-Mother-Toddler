@@ -375,6 +375,37 @@
       transform: scale(1.03);
     }
 
+    .faculty-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(255,255,255,0.96), rgba(219,234,254,0.9) 58%, rgba(203,213,225,0.9));
+      color: var(--primary);
+    }
+    .faculty-photo-placeholder i {
+      font-size: 4rem;
+      color: var(--accent);
+      transition: transform 0.35s ease, color 0.35s ease;
+    }
+    .faculty-photo-placeholder span {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .faculty-card:hover .faculty-photo-placeholder i {
+      color: #dc143c;
+      transform: scale(1.06);
+    }
+
 .faculty-info h3 {
       font-size: 1.4rem;
       color: var(--primary);
@@ -1109,6 +1140,120 @@
         </div>
       </div>
 
+      <div class="slide">
+        <div class="faculty-card">
+          <div class="faculty-photo-wrap">
+            <div class="faculty-photo-placeholder" aria-label="Early Years Coordinator">
+              <i class="fa-solid fa-child-reaching"></i>
+              <span>Early Years</span>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>Early Years Coordinator</h3>
+            <div class="faculty-role">Pre-Primary Learning Lead</div>
+            <div class="faculty-meta">
+              Guides toddler, playgroup and kindergarten classroom readiness.
+            </div>
+            <p class="faculty-bio">
+              The Early Years Coordinator supports teachers in planning warm routines,
+              child-friendly activities and smooth transitions so young learners feel
+              confident, settled and ready to participate.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="faculty-card">
+          <div class="faculty-photo-wrap">
+            <div class="faculty-photo-placeholder" aria-label="Curriculum and Teacher Training Lead">
+              <i class="fa-solid fa-book-open"></i>
+              <span>Curriculum</span>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>Curriculum &amp; Teacher Training Lead</h3>
+            <div class="faculty-role">Academic Quality Support</div>
+            <div class="faculty-meta">
+              Strengthens lesson planning, classroom methods and teacher development.
+            </div>
+            <p class="faculty-bio">
+              This leadership role helps keep classroom teaching structured, creative and
+              age-appropriate through regular planning support, resource guidance and
+              teacher mentoring.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="faculty-card">
+          <div class="faculty-photo-wrap">
+            <div class="faculty-photo-placeholder" aria-label="Activity and Wellness Coordinator">
+              <i class="fa-solid fa-person-running"></i>
+              <span>Wellness</span>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>Activity &amp; Wellness Coordinator</h3>
+            <div class="faculty-role">Co-Curricular Development Lead</div>
+            <div class="faculty-meta">
+              Plans yoga, sports, celebrations and creative activity schedules.
+            </div>
+            <p class="faculty-bio">
+              The Activity &amp; Wellness Coordinator brings movement, music, art, yoga and
+              celebration-based learning into the school routine to support confidence,
+              expression and healthy habits.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="faculty-card">
+          <div class="faculty-photo-wrap">
+            <div class="faculty-photo-placeholder" aria-label="Parent Relations and Admissions Lead">
+              <i class="fa-solid fa-comments"></i>
+              <span>Parent Connect</span>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>Parent Relations &amp; Admissions Lead</h3>
+            <div class="faculty-role">Family Support &amp; Communication</div>
+            <div class="faculty-meta">
+              Helps parents with admissions, updates and school communication.
+            </div>
+            <p class="faculty-bio">
+              This team member supports families from enquiry to admission and keeps parent
+              communication clear, responsive and friendly throughout the school year.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="faculty-card">
+          <div class="faculty-photo-wrap">
+            <div class="faculty-photo-placeholder" aria-label="Campus Safety and Transport Lead">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Safety</span>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>Campus Safety &amp; Transport Lead</h3>
+            <div class="faculty-role">Operations &amp; Child Safety</div>
+            <div class="faculty-meta">
+              Oversees safe routines, movement, transport coordination and campus checks.
+            </div>
+            <p class="faculty-bio">
+              The safety lead coordinates daily supervision, arrival and dispersal support,
+              transport communication and routine campus checks to keep children protected
+              through every part of the day.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1474,10 +1619,10 @@ function showOfferPopup() {
 function hideOfferPopup() {
   offerPopup.classList.remove("show");
 
-  /* SHOW AGAIN AFTER 30 SECONDS */
+  /* SHOW AGAIN AFTER 10 MINUTES */
   setTimeout(() => {
     showOfferPopup();
-  }, 100000);
+  }, 600000);
 }
 
 /* ===== FIRST POPUP AFTER PAGE LOAD ===== */
@@ -1486,7 +1631,7 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     showOfferPopup();
-  }, 10000);
+  }, 25000);
 
 });
 
