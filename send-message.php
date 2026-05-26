@@ -62,6 +62,60 @@ function send_site_mail($to, $subject, $body, $email = "", $attachments = []) {
     return mail($to, $subject, $message, $headers);
 }
 
+function school_management_leads_url() {
+    $baseUrl = getenv("SCHOOL_MANAGEMENT_API_URL");
+
+    if ($baseUrl === false || trim($baseUrl) === "") {
+        $baseUrl = "http://localhost:5000/api";
+    }
+
+    return rtrim($baseUrl, "/") . "/website-leads";
+}
+
+function forward_to_school_management($payload) {
+    if (!isset($payload["source"])) {
+        $payload["source"] = "savvy-mother-toddler";
+    }
+
+    $json = json_encode($payload);
+    if ($json === false) {
+        return false;
+    }
+
+    $url = school_management_leads_url();
+
+    if (function_exists("curl_init")) {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+
+        $response = curl_exec($ch);
+        $statusCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        return $response !== false && $statusCode >= 200 && $statusCode < 300;
+    }
+
+    $context = stream_context_create([
+        "http" => [
+            "method" => "POST",
+            "header" => "Content-Type: application/json\r\n",
+            "content" => $json,
+            "timeout" => 5,
+            "ignore_errors" => true,
+        ],
+    ]);
+
+    $response = @file_get_contents($url, false, $context);
+    $statusLine = $http_response_header[0] ?? "";
+
+    return $response !== false && preg_match("/\\s2\\d\\d\\s/", $statusLine);
+}
+
 function collect_photo_uploads($photoFields) {
     $allowedTypes = [
         "image/jpeg" => "jpg",
@@ -308,7 +362,76 @@ if ($formType === "admission") {
     $body .= body_line("Documents Attached", $documents);
     $body .= body_line("Photo Uploads Attached", $uploadedPhotos);
 
-    if (send_site_mail($to, $emailSubject, $body, $replyEmail, $photoAttachments)) {
+    $savedToManagement = forward_to_school_management([
+        "formType" => "admission",
+        "childName" => $childName,
+        "parentName" => $parentGuardianName ?: ($fatherName ?: $motherName),
+        "className" => $admittedClass,
+        "phone" => $primaryPhone,
+        "email" => $replyEmail,
+        "subject" => $emailSubject,
+        "message" => $body,
+        "priority" => "high",
+        "payload" => [
+            "academicSession" => $academicSession,
+            "admissionNo" => $admissionNo,
+            "registrationNo" => $registrationNo,
+            "dateOfAdmission" => $dateOfAdmission,
+            "admittedClass" => $admittedClass,
+            "admissionIncharge" => $admissionIncharge,
+            "centreHead" => $centreHead,
+            "childName" => $childName,
+            "childFirstName" => $childFirstName,
+            "childMiddleName" => $childMiddleName,
+            "childLastName" => $childLastName,
+            "childDob" => $childDob,
+            "dobWords" => $dobWords,
+            "childGender" => $childGender,
+            "religion" => $religion,
+            "nationality" => $nationality,
+            "bloodGroup" => $bloodGroup,
+            "allergies" => $allergies,
+            "chronicAilment" => $chronicAilment,
+            "physicalDisability" => $physicalDisability,
+            "surgeryUndergone" => $surgeryUndergone,
+            "specificInstruction" => $specificInstruction,
+            "residentialAddress" => $residentialAddress,
+            "residencePhone" => $residencePhone,
+            "fatherContact" => $fatherContact,
+            "motherContact" => $motherContact,
+            "guardianContact" => $guardianContact,
+            "motherName" => $motherName,
+            "motherAge" => $motherAge,
+            "motherQualification" => $motherQualification,
+            "motherOccupation" => $motherOccupation,
+            "motherDesignation" => $motherDesignation,
+            "motherOrganisation" => $motherOrganisation,
+            "motherOfficeAddress" => $motherOfficeAddress,
+            "motherTel" => $motherTel,
+            "motherEmail" => $motherEmail,
+            "motherMobile" => $motherMobile,
+            "fatherName" => $fatherName,
+            "fatherAge" => $fatherAge,
+            "fatherQualification" => $fatherQualification,
+            "fatherOccupation" => $fatherOccupation,
+            "fatherDesignation" => $fatherDesignation,
+            "fatherOrganisation" => $fatherOrganisation,
+            "fatherOfficeAddress" => $fatherOfficeAddress,
+            "fatherTel" => $fatherTel,
+            "fatherEmail" => $fatherEmail,
+            "fatherMobile" => $fatherMobile,
+            "emergencyName" => $emergencyName,
+            "emergencyPhone" => $emergencyPhone,
+            "parentGuardianName" => $parentGuardianName,
+            "undertakingDate" => $undertakingDate,
+            "undertakingAccepted" => $undertakingAccepted,
+            "documents" => $documents,
+            "uploadedPhotos" => $uploadedPhotos,
+            "emailBody" => $body,
+        ],
+    ]);
+
+    if (send_site_mail($to, $emailSubject, $body, $replyEmail, $photoAttachments) || $savedToManagement) {
         redirect_status("admissions.html", "success", "#admission-form");
     }
 
@@ -363,7 +486,37 @@ if ($formType === "enquiry") {
     $body .= "How Did You Hear About Us?: " . $heardAbout . "\n";
     $body .= "Other Source: " . ($otherSource ?: "-") . "\n";
 
-    if (mail($to, $emailSubject, $body, mail_headers($email))) {
+    $savedToManagement = forward_to_school_management([
+        "formType" => "enquiry",
+        "childName" => $childName,
+        "parentName" => $parentName,
+        "className" => $classAppliedFor,
+        "phone" => $phone,
+        "email" => $email,
+        "subject" => $emailSubject,
+        "message" => $enquiryMessage,
+        "priority" => "medium",
+        "payload" => [
+            "classAppliedFor" => $classAppliedFor,
+            "childName" => $childName,
+            "dob" => $dob,
+            "age" => $age,
+            "childGender" => $childGender,
+            "parentName" => $parentName,
+            "parentGender" => $parentGender,
+            "address" => $address,
+            "city" => $city,
+            "state" => $state,
+            "phone" => $phone,
+            "email" => $email,
+            "enquiryMessage" => $enquiryMessage,
+            "heardAbout" => $heardAbout,
+            "otherSource" => $otherSource,
+            "emailBody" => $body,
+        ],
+    ]);
+
+    if (mail($to, $emailSubject, $body, mail_headers($email)) || $savedToManagement) {
         redirect_status("downloads.html", "success", "#enquiry-form");
     }
 
@@ -391,7 +544,27 @@ $body .= "Email: " . ($email ?: "-") . "\n";
 $body .= "Subject: " . $subject . "\n\n";
 $body .= "Message:\n" . $message . "\n";
 
-if (mail($to, $emailSubject, $body, mail_headers($email))) {
+$savedToManagement = forward_to_school_management([
+    "formType" => "contact",
+    "childName" => $childName,
+    "parentName" => $parentName,
+    "phone" => $phone,
+    "email" => $email,
+    "subject" => $subject,
+    "message" => $message,
+    "priority" => "medium",
+    "payload" => [
+        "parentName" => $parentName,
+        "childName" => $childName,
+        "phone" => $phone,
+        "email" => $email,
+        "subject" => $subject,
+        "message" => $message,
+        "emailBody" => $body,
+    ],
+]);
+
+if (mail($to, $emailSubject, $body, mail_headers($email)) || $savedToManagement) {
     redirect_status("contact.html", "success");
 }
 
