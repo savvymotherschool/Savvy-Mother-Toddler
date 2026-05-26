@@ -741,6 +741,192 @@ header {
   font-size: 0.88rem;
 }
 
+.card-action-btn {
+  text-decoration: none;
+}
+
+.admission-card {
+  overflow: hidden;
+}
+
+.admission-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(91,103,115,0.14);
+}
+
+.admission-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.admission-brand img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
+.admission-brand h2 {
+  margin-bottom: 0.2rem;
+}
+
+.admission-brand p,
+.admission-helper {
+  color: var(--slate);
+  font-size: 0.92rem;
+}
+
+.admission-helper {
+  margin: -0.3rem 0 0.85rem;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admission-office-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.caps-input {
+  text-transform: uppercase;
+}
+
+.sibling-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+  border: 1px solid rgba(91,103,115,0.16);
+  border-radius: 8px;
+}
+
+.sibling-table {
+  min-width: 760px;
+}
+
+.sibling-table td {
+  padding: 0.45rem;
+}
+
+.sibling-table td:last-child {
+  font-weight: 400;
+  color: var(--slate);
+}
+
+.table-input {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid rgba(91,103,115,0.22);
+  border-radius: 6px;
+  background: #f8fafc;
+  color: var(--dark);
+  font: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  padding: 0.55rem 0.65rem;
+}
+
+.table-input:focus {
+  border-color: rgba(29,78,216,0.55);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(29,78,216,0.12);
+}
+
+.terms-list {
+  margin: 0 0 1rem 1.25rem;
+  color: var(--slate);
+  font-size: 0.94rem;
+}
+
+.terms-list li {
+  padding: 0.35rem 0;
+  border-bottom: 0;
+}
+
+.undertaking-confirm,
+.document-checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: var(--slate);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.undertaking-confirm {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(91,103,115,0.18);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.document-checklist {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.document-checklist label {
+  min-height: 48px;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(91,103,115,0.18);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.photo-upload-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.photo-upload-field {
+  min-width: 0;
+  padding: 0.9rem;
+  border: 1px solid rgba(91,103,115,0.18);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.photo-input {
+  width: 100%;
+  color: var(--slate);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.photo-input::file-selector-button {
+  min-height: 38px;
+  margin-right: 0.7rem;
+  padding: 0.5rem 0.8rem;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.photo-upload-note {
+  margin-top: 0.75rem;
+  color: var(--slate);
+  font-size: 0.88rem;
+}
+
+.undertaking-confirm input,
+.document-checklist input {
+  margin-top: 0.2rem;
+  accent-color: var(--accent);
+  flex: 0 0 auto;
+}
+
 .notice {
   background: #fff7ed;
   border-color: rgba(234,88,12,0.20);
@@ -1019,6 +1205,19 @@ header {
     align-items: stretch;
   }
   .enquiry-grid {
+    grid-template-columns: 1fr;
+  }
+  .admission-form-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .admission-brand {
+    align-items: flex-start;
+    width: 100%;
+  }
+  .admission-office-grid,
+  .document-checklist,
+  .photo-upload-grid {
     grid-template-columns: 1fr;
   }
   .enquiry-section-title {
