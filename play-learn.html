@@ -432,6 +432,401 @@ body {
   box-shadow: 0 11px 24px rgba(6,43,95,0.28);
 }
 
+/* CLICK-OPEN PLAY ACTIVITY CARDS */
+.play-activity-card {
+  padding: 1rem;
+  text-align: left;
+}
+.play-activity-toggle {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  color: inherit;
+  cursor: pointer;
+  padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font: inherit;
+  text-align: left;
+}
+.play-activity-toggle:hover,
+.play-activity-card.open .play-activity-toggle {
+  box-shadow: inset 0 0 0 1px rgba(29,78,216,0.2);
+}
+.play-activity-toggle:focus-visible {
+  outline: 3px solid rgba(29,78,216,0.28);
+  outline-offset: 3px;
+}
+.play-activity-title {
+  display: block;
+  color: var(--primary);
+  font-size: 1.18rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.play-activity-summary {
+  display: block;
+  margin-top: 0.3rem;
+  color: #5b6773;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.play-activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+  font-weight: 800;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.play-activity-card.open .play-activity-icon {
+  transform: rotate(45deg);
+}
+.play-activity-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0.35rem 0.35rem;
+  text-align: center;
+}
+.play-activity-panel[hidden] {
+  display: none;
+}
+
+/* LIGHTWEIGHT PLAY GAMES */
+.mini-games-section {
+  padding-top: 0;
+}
+.games-container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+.games-intro {
+  max-width: 760px;
+  margin: 0 auto 2.3rem;
+  text-align: center;
+  color: #4b5563;
+  font-size: 1rem;
+}
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.game-card {
+  background: #ffffff;
+  border: 1px solid rgba(91,103,115,0.18);
+  border-radius: 18px;
+  padding: 1.4rem;
+  box-shadow: 0 16px 36px rgba(15,23,42,0.14);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.game-card h3 {
+  color: var(--primary);
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+.game-kicker {
+  width: fit-content;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(29,78,216,0.12);
+  color: var(--primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+.game-prompt {
+  min-height: 52px;
+  padding: 0.7rem 0.85rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  color: #172033;
+  border: 1px solid rgba(91,103,115,0.14);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.game-stage {
+  min-height: 112px;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.95), rgba(239,246,255,0.92)),
+    #ffffff;
+  border: 1px dashed rgba(29,78,216,0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.color-word {
+  min-width: 150px;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 2px solid currentColor;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.dots-board {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  gap: 0.65rem;
+  align-content: center;
+  justify-content: center;
+}
+.dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f97316, #facc15);
+  box-shadow: inset 0 -4px 0 rgba(15,23,42,0.12);
+}
+.shape-display,
+.shape-icon {
+  display: block;
+}
+.shape-display.shape-circle,
+.shape-icon.shape-circle {
+  border-radius: 999px;
+  background: #14b8a6;
+}
+.shape-display.shape-square,
+.shape-icon.shape-square {
+  border-radius: 8px;
+  background: #8b5cf6;
+}
+.shape-display.shape-triangle,
+.shape-icon.shape-triangle {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
+  border-bottom: 58px solid #f43f5e;
+}
+.shape-display {
+  width: 76px;
+  height: 76px;
+}
+.shape-icon {
+  width: 34px;
+  height: 34px;
+}
+.shape-button .shape-icon.shape-triangle {
+  border-left-width: 17px;
+  border-right-width: 17px;
+  border-bottom-width: 31px;
+}
+.letter-tile,
+.number-sequence {
+  min-width: 150px;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 2px solid rgba(29,78,216,0.22);
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 900;
+}
+.number-sequence {
+  font-size: 1.55rem;
+  letter-spacing: 0;
+}
+.pattern-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+.pattern-token {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  box-shadow: inset 0 -4px 0 rgba(15,23,42,0.14);
+}
+.pattern-token.question {
+  background: #ffffff;
+  border: 2px dashed rgba(29,78,216,0.32);
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+.game-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+.game-btn,
+.game-swatch,
+.game-next {
+  border: none;
+  cursor: pointer;
+  min-height: 48px;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 800;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.game-btn {
+  background: #eef2ff;
+  color: var(--primary);
+}
+.game-swatch {
+  box-shadow: inset 0 -5px 0 rgba(0,0,0,0.12);
+  color: #ffffff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.28);
+}
+.shape-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border: 1px solid rgba(91,103,115,0.14);
+}
+.game-btn:hover,
+.game-swatch:hover,
+.game-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15,23,42,0.18);
+  filter: brightness(1.03);
+}
+.game-btn:focus-visible,
+.game-swatch:focus-visible,
+.game-next:focus-visible {
+  outline: 3px solid rgba(29,78,216,0.28);
+  outline-offset: 3px;
+}
+.game-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.game-score {
+  color: #4b5563;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.game-next {
+  padding: 0.65rem 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  min-width: 86px;
+}
+.game-feedback {
+  min-height: 26px;
+  color: #b91c1c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.game-feedback.good {
+  color: #047857;
+}
+.game-admission-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 43, 95, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.game-admission-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+.game-admission-card {
+  width: min(92vw, 460px);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 26px 60px rgba(15,23,42,0.35);
+  border: 1px solid rgba(255,255,255,0.76);
+  transform: translateY(12px) scale(0.96);
+  transition: transform 0.25s ease;
+}
+.game-admission-popup.show .game-admission-card {
+  transform: translateY(0) scale(1);
+}
+.game-admission-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(29,78,216,0.12);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.game-admission-card h3 {
+  color: var(--primary);
+  font-size: 1.55rem;
+  margin: 0.8rem 0 0.55rem;
+}
+.game-admission-card p {
+  color: #4b5563;
+  font-size: 0.96rem;
+}
+.game-admission-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+.game-admission-actions a,
+.game-admission-actions button {
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+}
+.game-admission-actions a {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+}
+.game-admission-actions button {
+  background: #eef2ff;
+  color: var(--primary);
+}
+
 /* FOOTER */
 .site-footer {
   background: var(--primary);
@@ -653,6 +1048,9 @@ body {
   .search-box input {
     width: 120px;
   }
+  .games-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -700,6 +1098,19 @@ body {
   }
   .offer-slider {
     height: 320px;
+  }
+  .games-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .games-grid {
+    grid-template-columns: 1fr;
+  }
+  .game-card {
+    min-height: 390px;
+  }
+  .game-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -958,78 +1369,126 @@ body {
       so that children learn through joyful experiences every day.
     </p>
 
-    <div class="grid-3">
-      <a href="gallery.html" class="card reveal" style="text-decoration:none; color:inherit;">
-        <div class="play-card-image-wrapper">
-          <img src="image/play/toy-train-1.jpg" alt="Toy Train Play Area" class="play-card-image">
+    <div class="grid-3 play-activity-grid" id="playActivityCards">
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="toyTrainPanel">
+          <span>
+            <span class="play-activity-title">Toy Train</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="toyTrainPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/play/toy-train-1.jpg" alt="Toy Train Play Area" class="play-card-image">
+          </div>
+          <p>
+            A colourful toy train ride that builds hand-eye coordination, balance and curiosity as children
+            explore movement in a playful way.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
-        <h3>Toy Train</h3>
-        <p>
-          A colourful toy train ride that builds hand-eye coordination, balance and curiosity as children
-          explore movement in a playful way.
-        </p>
-        <span class="play-card-link-text">Open Gallery</span>
-      </a>
+      </article>
 
-      <a href="gallery.html" class="card reveal" style="text-decoration:none; color:inherit;">
-        <div class="play-card-image-wrapper">
-          <img src="image/play/multiplay-1.jpg" alt="Multiplay Station" class="play-card-image">
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="multiplayPanel">
+          <span>
+            <span class="play-activity-title">Multiplay Station</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="multiplayPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/play/multiplay-1.jpg" alt="Multiplay Station" class="play-card-image">
+          </div>
+          <p>
+            Slides, swings, climbing frames and bridges designed to strengthen gross motor skills and
+            encourage teamwork in a safe environment.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
-        <h3>Multiplay Station</h3>
-        <p>
-          Slides, swings, climbing frames and bridges designed to strengthen gross motor skills and
-          encourage teamwork in a safe environment.
-        </p>
-        <span class="play-card-link-text">Open Gallery</span>
-      </a>
+      </article>
 
-      <a href="gallery.html" class="card reveal" style="text-decoration:none; color:inherit;">
-        <div class="play-card-image-wrapper">
-          <img src="image/play/rock-1.jpg" alt="Rock Climbing Zone" class="play-card-image">
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="rockClimbingPanel">
+          <span>
+            <span class="play-activity-title">Rock-Climbing</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="rockClimbingPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/play/rock-1.jpg" alt="Rock Climbing Zone" class="play-card-image">
+          </div>
+          <p>
+            Age-appropriate rock walls that develop strength, focus, confidence and problem-solving
+            as children plan every step upwards.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
-        <h3>Rock-Climbing</h3>
-        <p>
-          Age-appropriate rock walls that develop strength, focus, confidence and problem-solving
-          as children plan every step upwards.
-        </p>
-        <span class="play-card-link-text">Open Gallery</span>
-      </a>
+      </article>
 
-      <a href="gallery.html" class="card reveal" style="text-decoration:none; color:inherit;">
-        <div class="play-card-image-wrapper">
-          <img src="image/play/water-1.jpg" alt="Kids Water Park" class="play-card-image">
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="waterParkPanel">
+          <span>
+            <span class="play-activity-title">Water Park</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="waterParkPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/play/water-1.jpg" alt="Kids Water Park" class="play-card-image">
+          </div>
+          <p>
+            Safe splash pools and water activities that help children stay active, relaxed and
+            comfortable with water under teacher supervision.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
-        <h3>Water Park</h3>
-        <p>
-          Safe splash pools and water activities that help children stay active, relaxed and
-          comfortable with water under teacher supervision.
-        </p>
-        <span class="play-card-link-text">Open Gallery</span>
-      </a>
+      </article>
 
-      <a href="gallery.html" class="card reveal" style="text-decoration:none; color:inherit;">
-        <div class="play-card-image-wrapper">
-          <img src="image/play/cycling-1.jpg" alt="Cycling Track" class="play-card-image">
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="cyclingPanel">
+          <span>
+            <span class="play-activity-title">Cycling Track</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="cyclingPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/play/cycling-1.jpg" alt="Cycling Track" class="play-card-image">
+          </div>
+          <p>
+            Dedicated cycling track that improves stamina, balance and road-sense in a completely
+            controlled and child-friendly zone.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
-        <h3>Cycling Track</h3>
-        <p>
-          Dedicated cycling track that improves stamina, balance and road-sense in a completely
-          controlled and child-friendly zone.
-        </p>
-        <span class="play-card-link-text">Open Gallery</span>
-      </a>
+      </article>
 
-      <a href="gallery.html" class="card reveal" style="text-decoration:none; color:inherit;">
-        <div class="play-card-image-wrapper">
-          <img src="image/play/skating-1.jpg" alt="Skating Arena" class="play-card-image">
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="skatingPanel">
+          <span>
+            <span class="play-activity-title">Skating Arena</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="skatingPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/play/skating-1.jpg" alt="Skating Arena" class="play-card-image">
+          </div>
+          <p>
+            Guided skating sessions that build core strength, rhythm and confidence as children glide,
+            play and enjoy healthy exercise.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
-        <h3>Skating Arena</h3>
-        <p>
-          Guided skating sessions that build core strength, rhythm and confidence as children glide,
-          play and enjoy healthy exercise.
-        </p>
-        <span class="play-card-link-text">Open Gallery</span>
-      </a>
+      </article>
     </div>
 
     <p class="play-note">
@@ -1038,6 +1497,124 @@ body {
     </p>
   </div>
 </section>
+
+<section id="play-games" class="section mini-games-section">
+  <div class="play-container games-container">
+    <h2>PLAY GAMES</h2>
+    <p class="games-intro">
+      Quick learning games for colors, counting, shapes, letters, numbers and patterns. They run
+      directly in the browser and do not add extra images or heavy files to the page.
+    </p>
+
+    <div class="games-grid" id="playGames">
+      <article class="game-card reveal" aria-labelledby="colorGameTitle">
+        <span class="game-kicker">Color Game</span>
+        <h3 id="colorGameTitle">Color Match</h3>
+        <p class="game-prompt" id="colorPrompt">Find the color</p>
+        <div class="game-stage">
+          <div class="color-word" id="colorWord">BLUE</div>
+        </div>
+        <div class="game-actions color-options" id="colorOptions" aria-label="Color choices"></div>
+        <p class="game-feedback" id="colorFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="colorScore">Score: 0</span>
+          <button type="button" class="game-next" id="colorNext">Next</button>
+        </div>
+      </article>
+
+      <article class="game-card reveal" aria-labelledby="countGameTitle">
+        <span class="game-kicker">Counting Game</span>
+        <h3 id="countGameTitle">Count the Dots</h3>
+        <p class="game-prompt" id="countPrompt">How many dots?</p>
+        <div class="game-stage">
+          <div class="dots-board" id="dotsBoard" aria-label="Dots to count"></div>
+        </div>
+        <div class="game-actions" id="countOptions" aria-label="Number choices"></div>
+        <p class="game-feedback" id="countFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="countScore">Score: 0</span>
+          <button type="button" class="game-next" id="countNext">Next</button>
+        </div>
+      </article>
+
+      <article class="game-card reveal" aria-labelledby="shapeGameTitle">
+        <span class="game-kicker">Shape Game</span>
+        <h3 id="shapeGameTitle">Shape Tap</h3>
+        <p class="game-prompt" id="shapePrompt">Tap the shape</p>
+        <div class="game-stage">
+          <span class="shape-display shape-circle" id="shapeDisplay" aria-hidden="true"></span>
+        </div>
+        <div class="game-actions" id="shapeOptions" aria-label="Shape choices"></div>
+        <p class="game-feedback" id="shapeFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="shapeScore">Score: 0</span>
+          <button type="button" class="game-next" id="shapeNext">Next</button>
+        </div>
+      </article>
+
+      <article class="game-card reveal" aria-labelledby="letterGameTitle">
+        <span class="game-kicker">Letter Game</span>
+        <h3 id="letterGameTitle">Letter Match</h3>
+        <p class="game-prompt" id="letterPrompt">Find the small letter</p>
+        <div class="game-stage">
+          <div class="letter-tile" id="letterTile">A</div>
+        </div>
+        <div class="game-actions" id="letterOptions" aria-label="Letter choices"></div>
+        <p class="game-feedback" id="letterFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="letterScore">Score: 0</span>
+          <button type="button" class="game-next" id="letterNext">Next</button>
+        </div>
+      </article>
+
+      <article class="game-card reveal" aria-labelledby="missingGameTitle">
+        <span class="game-kicker">Number Game</span>
+        <h3 id="missingGameTitle">Missing Number</h3>
+        <p class="game-prompt" id="missingPrompt">Which number is missing?</p>
+        <div class="game-stage">
+          <div class="number-sequence" id="missingSequence">1, ?, 3</div>
+        </div>
+        <div class="game-actions" id="missingOptions" aria-label="Missing number choices"></div>
+        <p class="game-feedback" id="missingFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="missingScore">Score: 0</span>
+          <button type="button" class="game-next" id="missingNext">Next</button>
+        </div>
+      </article>
+
+      <article class="game-card reveal" aria-labelledby="patternGameTitle">
+        <span class="game-kicker">Pattern Game</span>
+        <h3 id="patternGameTitle">Next Color</h3>
+        <p class="game-prompt" id="patternPrompt">What comes next?</p>
+        <div class="game-stage">
+          <div class="pattern-row" id="patternRow" aria-label="Color pattern"></div>
+        </div>
+        <div class="game-actions" id="patternOptions" aria-label="Pattern choices"></div>
+        <p class="game-feedback" id="patternFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="patternScore">Score: 0</span>
+          <button type="button" class="game-next" id="patternNext">Next</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="game-admission-popup" id="gameAdmissionPopup" aria-hidden="true">
+  <div class="game-admission-card" role="dialog" aria-modal="true" aria-labelledby="gameAdmissionTitle">
+    <span class="game-admission-badge">Learning Star</span>
+    <h3 id="gameAdmissionTitle">Your child is ready for more!</h3>
+    <p>
+      Wonderful score! Savvy Mother Toddler School turns playful curiosity into confident learning
+      through caring teachers, safe classrooms and activity-based education.
+    </p>
+    <div class="game-admission-actions">
+      <a href="admissions.html">Admission Form</a>
+      <a href="tel:+919329517009">Call School</a>
+      <button type="button" id="gameAdmissionContinue">Continue Playing</button>
+    </div>
+  </div>
+</div>
 
 <footer class="site-footer" id="contact">
   <div class="footer-container">
@@ -1210,14 +1787,17 @@ body {
 
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  window.addEventListener('scroll', () => {
+  function activateReveals() {
     document.querySelectorAll('.reveal').forEach(el => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 80) {
         el.classList.add('active');
       }
     });
-  });
+  }
+
+  window.addEventListener('scroll', activateReveals);
+  activateReveals();
 
   const navMenu = document.getElementById("navMenu");
   const navIndicator = document.getElementById("navIndicator");
@@ -1267,6 +1847,349 @@ body {
       if (currentActive) moveIndicator(currentActive);
     }
   });
+
+  (() => {
+    const activityRoot = document.getElementById("playActivityCards");
+    if (!activityRoot) return;
+
+    activityRoot.querySelectorAll(".play-activity-toggle").forEach(toggle => {
+      const panel = document.getElementById(toggle.getAttribute("aria-controls"));
+      const card = toggle.closest(".play-activity-card");
+
+      toggle.addEventListener("click", () => {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+        activityRoot.querySelectorAll(".play-activity-toggle").forEach(otherToggle => {
+          const otherPanel = document.getElementById(otherToggle.getAttribute("aria-controls"));
+          otherToggle.setAttribute("aria-expanded", "false");
+          otherToggle.closest(".play-activity-card").classList.remove("open");
+          otherPanel.hidden = true;
+        });
+
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+        card.classList.toggle("open", !isOpen);
+        panel.hidden = isOpen;
+      });
+    });
+  })();
+
+  (() => {
+    const gamesRoot = document.getElementById("playGames");
+    if (!gamesRoot) return;
+    const admissionPopup = document.getElementById("gameAdmissionPopup");
+    const admissionContinue = document.getElementById("gameAdmissionContinue");
+    const scoreTarget = 5;
+    let admissionPopupShown = false;
+
+    function showGameAdmissionPopup() {
+      if (!admissionPopup || admissionPopupShown) return;
+      admissionPopupShown = true;
+      admissionPopup.classList.add("show");
+      admissionPopup.setAttribute("aria-hidden", "false");
+    }
+
+    function hideGameAdmissionPopup() {
+      if (!admissionPopup) return;
+      admissionPopup.classList.remove("show");
+      admissionPopup.setAttribute("aria-hidden", "true");
+    }
+
+    admissionContinue?.addEventListener("click", hideGameAdmissionPopup);
+    admissionPopup?.addEventListener("click", event => {
+      if (event.target === admissionPopup) hideGameAdmissionPopup();
+    });
+
+    const colors = [
+      { name: "Red", value: "#ef4444" },
+      { name: "Blue", value: "#2563eb" },
+      { name: "Green", value: "#16a34a" },
+      { name: "Yellow", value: "#eab308" },
+      { name: "Pink", value: "#db2777" },
+      { name: "Orange", value: "#f97316" }
+    ];
+
+    const shapes = [
+      { name: "Circle", className: "shape-circle" },
+      { name: "Square", className: "shape-square" },
+      { name: "Triangle", className: "shape-triangle" }
+    ];
+
+    const letters = ["A", "B", "C", "D", "E", "F"];
+
+    const scores = {
+      color: 0,
+      count: 0,
+      shape: 0,
+      letter: 0,
+      missing: 0,
+      pattern: 0
+    };
+
+    let currentColor = colors[0];
+    let currentCount = 1;
+    let currentShape = shapes[0];
+    let currentLetter = letters[0];
+    let currentMissing = 2;
+    let currentPatternAnswer = colors[0];
+    let colorSolved = false;
+    let countSolved = false;
+    let shapeSolved = false;
+    let letterSolved = false;
+    let missingSolved = false;
+    let patternSolved = false;
+
+    function pick(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function shuffle(items) {
+      return [...items].sort(() => Math.random() - 0.5);
+    }
+
+    function setFeedback(id, text, isGood) {
+      const feedback = document.getElementById(id);
+      feedback.textContent = text;
+      feedback.classList.toggle("good", isGood);
+    }
+
+    function updateScore(id, value) {
+      document.getElementById(id).textContent = "Score: " + value;
+    }
+
+    function awardPoint(gameKey, scoreId) {
+      scores[gameKey] += 1;
+      updateScore(scoreId, scores[gameKey]);
+      if (scores[gameKey] >= scoreTarget) showGameAdmissionPopup();
+    }
+
+    function renderColorGame() {
+      currentColor = pick(colors);
+      colorSolved = false;
+      document.getElementById("colorPrompt").textContent = "Find " + currentColor.name;
+
+      const colorWord = document.getElementById("colorWord");
+      colorWord.textContent = currentColor.name.toUpperCase();
+      colorWord.style.color = currentColor.value;
+
+      const colorOptions = document.getElementById("colorOptions");
+      colorOptions.innerHTML = "";
+      shuffle(colors).slice(0, 6).forEach(color => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "game-swatch";
+        button.style.background = color.value;
+        button.textContent = color.name;
+        button.setAttribute("aria-label", color.name);
+        button.addEventListener("click", () => {
+          const isCorrect = color.name === currentColor.name;
+          if (isCorrect && !colorSolved) {
+            colorSolved = true;
+            awardPoint("color", "colorScore");
+          }
+          setFeedback("colorFeedback", isCorrect ? "Correct color!" : "Try another color.", isCorrect);
+        });
+        colorOptions.appendChild(button);
+      });
+      setFeedback("colorFeedback", "", false);
+    }
+
+    function renderCountGame() {
+      currentCount = Math.floor(Math.random() * 6) + 1;
+      countSolved = false;
+      document.getElementById("countPrompt").textContent = "How many dots?";
+
+      const dotsBoard = document.getElementById("dotsBoard");
+      dotsBoard.innerHTML = "";
+      for (let index = 0; index < currentCount; index += 1) {
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dotsBoard.appendChild(dot);
+      }
+
+      const choices = new Set([currentCount]);
+      while (choices.size < 3) {
+        choices.add(Math.floor(Math.random() * 6) + 1);
+      }
+
+      const countOptions = document.getElementById("countOptions");
+      countOptions.innerHTML = "";
+      shuffle([...choices]).forEach(number => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "game-btn";
+        button.textContent = number;
+        button.addEventListener("click", () => {
+          const isCorrect = number === currentCount;
+          if (isCorrect && !countSolved) {
+            countSolved = true;
+            awardPoint("count", "countScore");
+          }
+          setFeedback("countFeedback", isCorrect ? "Nice counting!" : "Count once more.", isCorrect);
+        });
+        countOptions.appendChild(button);
+      });
+      setFeedback("countFeedback", "", false);
+    }
+
+    function renderShapeGame() {
+      currentShape = pick(shapes);
+      shapeSolved = false;
+      document.getElementById("shapePrompt").textContent = "Tap the " + currentShape.name;
+
+      const shapeDisplay = document.getElementById("shapeDisplay");
+      shapeDisplay.className = "shape-display " + currentShape.className;
+
+      const shapeOptions = document.getElementById("shapeOptions");
+      shapeOptions.innerHTML = "";
+      shuffle(shapes).forEach(shape => {
+        const button = document.createElement("button");
+        const icon = document.createElement("span");
+        button.type = "button";
+        button.className = "game-btn shape-button";
+        button.setAttribute("aria-label", shape.name);
+        icon.className = "shape-icon " + shape.className;
+        button.appendChild(icon);
+        button.addEventListener("click", () => {
+          const isCorrect = shape.name === currentShape.name;
+          if (isCorrect && !shapeSolved) {
+            shapeSolved = true;
+            awardPoint("shape", "shapeScore");
+          }
+          setFeedback("shapeFeedback", isCorrect ? "Great shape!" : "Try another shape.", isCorrect);
+        });
+        shapeOptions.appendChild(button);
+      });
+      setFeedback("shapeFeedback", "", false);
+    }
+
+    function renderLetterGame() {
+      currentLetter = pick(letters);
+      letterSolved = false;
+      document.getElementById("letterPrompt").textContent = "Find small " + currentLetter.toLowerCase();
+      document.getElementById("letterTile").textContent = currentLetter;
+
+      const choices = new Set([currentLetter.toLowerCase()]);
+      while (choices.size < 3) {
+        choices.add(pick(letters).toLowerCase());
+      }
+
+      const letterOptions = document.getElementById("letterOptions");
+      letterOptions.innerHTML = "";
+      shuffle([...choices]).forEach(letter => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "game-btn";
+        button.textContent = letter;
+        button.addEventListener("click", () => {
+          const isCorrect = letter === currentLetter.toLowerCase();
+          if (isCorrect && !letterSolved) {
+            letterSolved = true;
+            awardPoint("letter", "letterScore");
+          }
+          setFeedback("letterFeedback", isCorrect ? "Lovely letter!" : "Try another letter.", isCorrect);
+        });
+        letterOptions.appendChild(button);
+      });
+      setFeedback("letterFeedback", "", false);
+    }
+
+    function renderMissingGame() {
+      const start = Math.floor(Math.random() * 6) + 1;
+      currentMissing = start + 1;
+      missingSolved = false;
+      document.getElementById("missingPrompt").textContent = "Which number is missing?";
+      document.getElementById("missingSequence").textContent = start + ", ?, " + (start + 2);
+
+      const choices = new Set([currentMissing]);
+      while (choices.size < 3) {
+        choices.add(Math.floor(Math.random() * 8) + 1);
+      }
+
+      const missingOptions = document.getElementById("missingOptions");
+      missingOptions.innerHTML = "";
+      shuffle([...choices]).forEach(number => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "game-btn";
+        button.textContent = number;
+        button.addEventListener("click", () => {
+          const isCorrect = number === currentMissing;
+          if (isCorrect && !missingSolved) {
+            missingSolved = true;
+            awardPoint("missing", "missingScore");
+          }
+          setFeedback("missingFeedback", isCorrect ? "Right number!" : "Try the middle number.", isCorrect);
+        });
+        missingOptions.appendChild(button);
+      });
+      setFeedback("missingFeedback", "", false);
+    }
+
+    function renderPatternGame() {
+      const first = pick(colors);
+      let second = pick(colors);
+      while (second.name === first.name) {
+        second = pick(colors);
+      }
+      currentPatternAnswer = first;
+      patternSolved = false;
+
+      const patternRow = document.getElementById("patternRow");
+      patternRow.innerHTML = "";
+      [first, second, first, second].forEach(color => {
+        const token = document.createElement("span");
+        token.className = "pattern-token";
+        token.style.background = color.value;
+        patternRow.appendChild(token);
+      });
+      const question = document.createElement("span");
+      question.className = "pattern-token question";
+      question.textContent = "?";
+      patternRow.appendChild(question);
+
+      const patternOptions = document.getElementById("patternOptions");
+      patternOptions.innerHTML = "";
+      const choices = [first, second, pick(colors)].filter((color, index, list) => {
+        return list.findIndex(item => item.name === color.name) === index;
+      });
+      while (choices.length < 3) {
+        const color = pick(colors);
+        if (!choices.some(item => item.name === color.name)) choices.push(color);
+      }
+
+      shuffle(choices).forEach(color => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "game-swatch";
+        button.style.background = color.value;
+        button.textContent = color.name;
+        button.addEventListener("click", () => {
+          const isCorrect = color.name === currentPatternAnswer.name;
+          if (isCorrect && !patternSolved) {
+            patternSolved = true;
+            awardPoint("pattern", "patternScore");
+          }
+          setFeedback("patternFeedback", isCorrect ? "Perfect pattern!" : "Look at the order again.", isCorrect);
+        });
+        patternOptions.appendChild(button);
+      });
+      setFeedback("patternFeedback", "", false);
+    }
+
+    document.getElementById("colorNext").addEventListener("click", renderColorGame);
+    document.getElementById("countNext").addEventListener("click", renderCountGame);
+    document.getElementById("shapeNext").addEventListener("click", renderShapeGame);
+    document.getElementById("letterNext").addEventListener("click", renderLetterGame);
+    document.getElementById("missingNext").addEventListener("click", renderMissingGame);
+    document.getElementById("patternNext").addEventListener("click", renderPatternGame);
+
+    renderColorGame();
+    renderCountGame();
+    renderShapeGame();
+    renderLetterGame();
+    renderMissingGame();
+    renderPatternGame();
+  })();
 
     /* ================= OFFER POPUP ================= */
 

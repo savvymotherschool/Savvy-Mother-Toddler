@@ -1,5 +1,5 @@
 (function () {
-  const loginUrl = window.SCHOOL_MANAGEMENT_LOGIN_URL || "http://127.0.0.1:3000/login";
+  const loginUrl = window.SCHOOL_MANAGEMENT_LOGIN_URL || "http://localhost:3000/login";
   const homeHero = document.querySelector("#home.hero");
   const parentDropdown = document.querySelector(".nav-parent-dropdown");
   const isHomePage = Boolean(homeHero);

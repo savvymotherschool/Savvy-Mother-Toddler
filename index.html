@@ -1126,6 +1126,190 @@ body {
   filter: brightness(1.04);
 }
 
+/* QUICK HOME GAME */
+.home-game-section {
+  padding-top: 2rem;
+}
+.home-game-container {
+  padding-top: 2.6rem;
+  padding-bottom: 2.6rem;
+}
+.home-game-shell {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 1.1rem;
+}
+.home-game-shell h2 {
+  color: var(--primary);
+  margin-bottom: 0;
+}
+.home-game-shell p {
+  color: #4b5563;
+}
+.quick-game-box {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(91,103,115,0.18);
+  box-shadow: 0 16px 36px rgba(15,23,42,0.14);
+  padding: 1.3rem;
+  display: grid;
+  gap: 1rem;
+}
+.quick-game-prompt {
+  min-height: 48px;
+  padding: 0.65rem 0.9rem;
+  border-radius: 14px;
+  background: #f8fafc;
+  color: var(--primary);
+  font-weight: 800;
+}
+.quick-dots-board {
+  min-height: 120px;
+  border-radius: 16px;
+  border: 1px dashed rgba(29,78,216,0.24);
+  background: linear-gradient(135deg, rgba(239,246,255,0.92), #ffffff);
+  display: grid;
+  grid-template-columns: repeat(3, 38px);
+  justify-content: center;
+  align-content: center;
+  gap: 0.7rem;
+}
+.quick-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f97316, #facc15);
+  box-shadow: inset 0 -5px 0 rgba(15,23,42,0.12);
+}
+.quick-game-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+.quick-game-options button,
+.quick-game-next {
+  min-height: 46px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.quick-game-options button {
+  background: #eef2ff;
+  color: var(--primary);
+}
+.quick-game-next {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  padding: 0.7rem 1.1rem;
+}
+.quick-game-options button:hover,
+.quick-game-next:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(15,23,42,0.18);
+  filter: brightness(1.04);
+}
+.quick-game-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.quick-game-feedback,
+.quick-game-score {
+  font-weight: 800;
+  color: #4b5563;
+}
+.quick-game-feedback.good {
+  color: #047857;
+}
+.quick-game-feedback.bad {
+  color: #b91c1c;
+}
+.play-more-wrap {
+  text-align: center;
+  margin-top: 0.25rem;
+}
+.score-admission-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,43,95,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.score-admission-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+.score-admission-card {
+  width: min(92vw, 460px);
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 26px 60px rgba(15,23,42,0.35);
+}
+.score-admission-badge {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(29,78,216,0.12);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.score-admission-card h3 {
+  color: var(--primary);
+  font-size: 1.55rem;
+  margin: 0.8rem 0 0.55rem;
+}
+.score-admission-card p {
+  color: #4b5563;
+}
+.score-admission-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-top: 1.2rem;
+}
+.score-admission-actions a,
+.score-admission-actions button {
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: none;
+}
+.score-admission-actions a {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+}
+.score-admission-actions button {
+  background: #eef2ff;
+  color: var(--primary);
+}
+
 /* OFFER POPUP */
 .offer-popup{
   position: fixed;
@@ -1349,6 +1533,15 @@ body {
   .offer-side-panel li span {
     display: none;
   }
+  .quick-game-box {
+    padding: 1rem;
+  }
+  .quick-game-options {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .quick-game-meta {
+    justify-content: center;
+  }
 }
 @media (max-width: 420px) {
   .offer-slider {
@@ -1509,6 +1702,49 @@ body {
   </div>
 </section>
 
+<section id="quick-play-game" class="section home-game-section">
+  <div class="play-container home-game-container">
+    <div class="home-game-shell reveal">
+      <h2>PLAY A QUICK GAME</h2>
+      <p>Count the dots and choose the right number.</p>
+
+      <div class="quick-game-box" aria-labelledby="homeGameTitle">
+        <h3 id="homeGameTitle">Count the Dots</h3>
+        <div class="quick-game-prompt" id="homeCountPrompt">How many dots?</div>
+        <div class="quick-dots-board" id="homeDotsBoard" aria-label="Dots to count"></div>
+        <div class="quick-game-options" id="homeCountOptions" aria-label="Number choices"></div>
+        <div class="quick-game-meta">
+          <span class="quick-game-score" id="homeCountScore">Score: 0</span>
+          <span class="quick-game-feedback" id="homeCountFeedback" aria-live="polite"></span>
+          <button type="button" class="quick-game-next" id="homeCountNext">Next</button>
+        </div>
+      </div>
+
+      <div class="play-more-wrap">
+        <button class="play-explore-btn" onclick="window.location.href='play-learn.html#play-games'">
+          Play More
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="score-admission-popup" id="homeAdmissionPopup" aria-hidden="true">
+  <div class="score-admission-card" role="dialog" aria-modal="true" aria-labelledby="homeAdmissionTitle">
+    <span class="score-admission-badge">Learning Star</span>
+    <h3 id="homeAdmissionTitle">Your child is ready for more!</h3>
+    <p>
+      Great score! At Savvy Mother Toddler School, children learn through play, caring guidance and
+      safe activity-based classrooms.
+    </p>
+    <div class="score-admission-actions">
+      <a href="admissions.html">Admission Form</a>
+      <a href="tel:+919329517009">Call School</a>
+      <button type="button" id="homeAdmissionContinue">Continue Playing</button>
+    </div>
+  </div>
+</div>
+
 <section class="timeline-section">
         <div class="section-header">
             <h2>Why Choose Us</h2>
@@ -1626,24 +1862,24 @@ body {
       </div>
       <div class="card reveal">
         <div style="background:linear-gradient(135deg,var(--primary),var(--accent));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <img alt="Nirmala Singh image" src="">
+          <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
         </div>
-        <h3>Mrs. Nirmala Singh</h3>
-        <p>Asst. Managing Director</p>
+        <h3>Smt. Smriti Pawar</h3>
+        <p>Academic Coordinator</p>
       </div>
       <div class="card reveal">
         <div style="background:linear-gradient(135deg,var(--accent-2),var(--primary));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <img alt="Ajeet Singh image" src="">
+          <img alt="Bhanu Mam image" src="image/faculty/bhanu-mam.webp">
         </div>
-        <h3>Ajeet Singh</h3>
-        <p>Principal</p>
+        <h3>Bhanu Mam</h3>
+        <p>Center Head</p>
       </div>
       <div class="card reveal">
         <div style="background:linear-gradient(135deg,var(--slate),var(--primary));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <img alt="Rashmi Singh image" src="">
+          <img alt="Anupma Mishra image" src="image/faculty/anupma-mam.webp">
         </div>
-        <h3>Mrs. Rashmi Singh</h3>
-        <p>Academic Head</p>
+        <h3>Anupma Mishra</h3>
+        <p>Head Mistress</p>
       </div>
     </div>
     <div style="text-align:center; margin-top: 2rem;">
@@ -1905,14 +2141,17 @@ body {
   },4000);
 
   // Scroll reveal
-  window.addEventListener('scroll', () => {
+  function activateReveals() {
     document.querySelectorAll('.reveal').forEach(el => {
       const rect = el.getBoundingClientRect();
       if (rect.top < window.innerHeight - 80) {
         el.classList.add('active');
       }
     });
-  });
+  }
+
+  window.addEventListener('scroll', activateReveals);
+  activateReveals();
 
   // ===== NAVBAR FLOATING INDICATOR + MOBILE TOGGLE =====
   const navMenu = document.getElementById("navMenu");
@@ -1972,6 +2211,91 @@ body {
       behavior: "smooth"
     });
   }
+
+  (() => {
+    const dotsBoard = document.getElementById("homeDotsBoard");
+    const options = document.getElementById("homeCountOptions");
+    const nextButton = document.getElementById("homeCountNext");
+    const scoreText = document.getElementById("homeCountScore");
+    const feedback = document.getElementById("homeCountFeedback");
+    const admissionPopup = document.getElementById("homeAdmissionPopup");
+    const admissionContinue = document.getElementById("homeAdmissionContinue");
+    if (!dotsBoard || !options || !nextButton) return;
+
+    let answer = 1;
+    let score = 0;
+    let solved = false;
+    let admissionPopupShown = false;
+    const scoreTarget = 5;
+
+    function showAdmissionPopup() {
+      if (!admissionPopup || admissionPopupShown) return;
+      admissionPopupShown = true;
+      admissionPopup.classList.add("show");
+      admissionPopup.setAttribute("aria-hidden", "false");
+    }
+
+    function hideAdmissionPopup() {
+      if (!admissionPopup) return;
+      admissionPopup.classList.remove("show");
+      admissionPopup.setAttribute("aria-hidden", "true");
+    }
+
+    admissionContinue?.addEventListener("click", hideAdmissionPopup);
+    admissionPopup?.addEventListener("click", event => {
+      if (event.target === admissionPopup) hideAdmissionPopup();
+    });
+
+    function shuffle(items) {
+      return [...items].sort(() => Math.random() - 0.5);
+    }
+
+    function setFeedback(text, state) {
+      feedback.textContent = text;
+      feedback.classList.toggle("good", state === "good");
+      feedback.classList.toggle("bad", state === "bad");
+    }
+
+    function renderHomeCountGame() {
+      answer = Math.floor(Math.random() * 6) + 1;
+      solved = false;
+      dotsBoard.innerHTML = "";
+      options.innerHTML = "";
+
+      for (let index = 0; index < answer; index += 1) {
+        const dot = document.createElement("span");
+        dot.className = "quick-dot";
+        dotsBoard.appendChild(dot);
+      }
+
+      const choices = new Set([answer]);
+      while (choices.size < 3) {
+        choices.add(Math.floor(Math.random() * 6) + 1);
+      }
+
+      shuffle([...choices]).forEach(choice => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = choice;
+        button.addEventListener("click", () => {
+          const isCorrect = choice === answer;
+          if (isCorrect && !solved) {
+            solved = true;
+            score += 1;
+            scoreText.textContent = "Score: " + score;
+            if (score >= scoreTarget) showAdmissionPopup();
+          }
+          setFeedback(isCorrect ? "Correct!" : "Try again.", isCorrect ? "good" : "bad");
+        });
+        options.appendChild(button);
+      });
+
+      setFeedback("", "");
+    }
+
+    nextButton.addEventListener("click", renderHomeCountGame);
+    renderHomeCountGame();
+  })();
 
   /* ================= OFFER POPUP ================= */
 
