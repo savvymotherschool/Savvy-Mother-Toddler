@@ -37,13 +37,21 @@
   },3000);
 
   /* HERO SLIDER IMAGES */
-  const heroSlides=document.querySelectorAll(".hero-slider .hero-slide");
+  const heroSlides=Array.from(document.querySelectorAll(".hero-slider .hero-slide"));
+  for (let i=heroSlides.length-1; i>0; i--) {
+    const j=Math.floor(Math.random()*(i+1));
+    [heroSlides[i], heroSlides[j]]=[heroSlides[j], heroSlides[i]];
+  }
   let heroIndex=0;
-  setInterval(()=>{
-    heroSlides.forEach(s=>s.classList.remove("active"));
-    heroIndex=(heroIndex+1)%heroSlides.length;
+  heroSlides.forEach(s=>s.classList.remove("active"));
+  if (heroSlides.length) {
     heroSlides[heroIndex].classList.add("active");
-  },4000);
+    setInterval(()=>{
+      heroSlides[heroIndex].classList.remove("active");
+      heroIndex=(heroIndex+1)%heroSlides.length;
+      heroSlides[heroIndex].classList.add("active");
+    },4000);
+  }
 
   // Scroll reveal
   function activateReveals() {
