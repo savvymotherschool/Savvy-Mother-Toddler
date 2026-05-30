@@ -673,6 +673,81 @@ body {
   justify-content: center;
   font-weight: 900;
 }
+.memory-game .game-stage {
+  min-height: 250px;
+}
+.memory-board {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, clamp(54px, 17vw, 66px));
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: center;
+}
+.memory-card {
+  position: relative;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #eef6ff, #ffffff);
+  color: var(--primary);
+  cursor: pointer;
+  box-shadow:
+    inset 0 -5px 0 rgba(15,23,42,0.10),
+    0 10px 18px rgba(15,23,42,0.12);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+.memory-card::before {
+  content: "?";
+  color: rgba(6,43,95,0.42);
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+.memory-card-face {
+  position: absolute;
+  inset: 8px;
+  border-radius: 11px;
+  background: var(--memory-color, var(--accent));
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  opacity: 0;
+  transform: scale(0.78);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.memory-card:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 -5px 0 rgba(15,23,42,0.10),
+    0 14px 24px rgba(15,23,42,0.18);
+}
+.memory-card:focus-visible {
+  outline: 3px solid rgba(29,78,216,0.28);
+  outline-offset: 3px;
+}
+.memory-card.is-flipped::before {
+  opacity: 0;
+}
+.memory-card.is-flipped .memory-card-face {
+  opacity: 1;
+  transform: scale(1);
+}
+.memory-card.is-disabled {
+  opacity: 0.78;
+  cursor: default;
+}
+.memory-card.is-found {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.72);
+}
+.memory-card.is-missed {
+  animation: memoryShake 0.28s ease;
+  background: #fff1f2;
+}
 .game-actions {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -735,6 +810,13 @@ body {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #ffffff;
   min-width: 86px;
+}
+.game-next:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+  box-shadow: none;
+  filter: none;
 }
 .game-feedback {
   min-height: 26px;
@@ -825,6 +907,19 @@ body {
 .game-admission-actions button {
   background: #eef2ff;
   color: var(--primary);
+}
+
+@keyframes memoryShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  35% {
+    transform: translateX(-5px);
+  }
+  70% {
+    transform: translateX(5px);
+  }
 }
 
 /* FOOTER */
@@ -1316,7 +1411,7 @@ body {
 
         <ul class="nav-menu" id="navMenu">
           <div class="nav-indicator" id="navIndicator"></div>
-          <li><a href="index.html" class="nav-link ">Home</a></li>
+          <li><a href="index.html" class="nav-link ">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="play-learn.html" class="nav-link active">Play &amp; Learn</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery</a></li>
           <li><a href="faculty.html" class="nav-link ">Faculty</a></li>
@@ -1328,6 +1423,7 @@ body {
             </button>
             <ul class="nav-parent-dropdown">
               <li><a href="calendar.html">Academic Calendar</a></li>
+              <li><a href="curriculum.html">CBSE Curriculum</a></li>
               <li><a href="fees.html">Fee Structure</a></li>
               <li><a href="transport.html">Transport</a></li>
               <li><a href="admissions.html">Admission Form</a></li>
@@ -1391,20 +1487,60 @@ body {
       </article>
 
       <article class="card reveal play-activity-card">
-        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="multiplayPanel">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="outdoorMultiplayPanel">
           <span>
-            <span class="play-activity-title">Multiplay Station</span>
+            <span class="play-activity-title">Outdoor Multiplay</span>
             <span class="play-activity-summary">Tap to view details</span>
           </span>
           <span class="play-activity-icon" aria-hidden="true">+</span>
         </button>
-        <div class="play-activity-panel" id="multiplayPanel" hidden>
+        <div class="play-activity-panel" id="outdoorMultiplayPanel" hidden>
           <div class="play-card-image-wrapper">
-            <img src="image/play/multiplay-1.jpg" alt="Multiplay Station" class="play-card-image">
+            <img src="image/11.png" alt="Outdoor Multiplay" class="play-card-image">
           </div>
           <p>
             Slides, swings, climbing frames and bridges designed to strengthen gross motor skills and
             encourage teamwork in a safe environment.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
+        </div>
+      </article>
+
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="indoorMultiplayPanel">
+          <span>
+            <span class="play-activity-title">Indoor Multiplay</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="indoorMultiplayPanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/10.png" alt="Indoor Multiplay" class="play-card-image">
+          </div>
+          <p>
+            Soft indoor play zones help children climb, crawl, balance and pretend-play while staying
+            comfortable, supervised and safe indoors.
+          </p>
+          <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
+        </div>
+      </article>
+
+      <article class="card reveal play-activity-card">
+        <button type="button" class="play-activity-toggle" aria-expanded="false" aria-controls="trampolinePanel">
+          <span>
+            <span class="play-activity-title">Trampoline</span>
+            <span class="play-activity-summary">Tap to view details</span>
+          </span>
+          <span class="play-activity-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="play-activity-panel" id="trampolinePanel" hidden>
+          <div class="play-card-image-wrapper">
+            <img src="image/9.png" alt="Children using trampoline" class="play-card-image">
+          </div>
+          <p>
+            Trampoline time builds balance, coordination and body control through short, guided and
+            cheerful movement sessions.
           </p>
           <a href="gallery.html" class="play-card-link-text">Open Gallery</a>
         </div>
@@ -1502,7 +1638,7 @@ body {
   <div class="play-container games-container">
     <h2>PLAY GAMES</h2>
     <p class="games-intro">
-      Quick learning games for colors, counting, shapes, letters, numbers and patterns. They run
+      Quick learning games for colors, counting, shapes, letters, numbers, patterns and memory. They run
       directly in the browser and do not add extra images or heavy files to the page.
     </p>
 
@@ -1596,6 +1732,20 @@ body {
           <button type="button" class="game-next" id="patternNext">Next</button>
         </div>
       </article>
+
+      <article class="game-card memory-game reveal" aria-labelledby="memoryGameTitle">
+        <span class="game-kicker">Memory Game</span>
+        <h3 id="memoryGameTitle">Memory Cards</h3>
+        <p class="game-prompt" id="memoryPrompt">Turn two cards and match the pictures.</p>
+        <div class="game-stage">
+          <div class="memory-board" id="memoryBoard" aria-label="Nine memory matching cards"></div>
+        </div>
+        <p class="game-feedback" id="memoryFeedback" aria-live="polite"></p>
+        <div class="game-footer">
+          <span class="game-score" id="memoryScore">Pairs: 0/4</span>
+          <button type="button" class="game-next" id="memoryNext">Shuffle</button>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -1646,6 +1796,7 @@ body {
       <h4>For Parents & Students</h4>
       <ul class="footer-links">
         <li><a href="calendar.html">Academic Calendar</a></li>
+        <li><a href="curriculum.html">CBSE Curriculum</a></li>
         <li><a href="fees.html">Fee Structure</a></li>
         <li><a href="transport.html">Transport</a></li>
         <li><a href="admissions.html">Admission Form</a></li>
@@ -1759,7 +1910,22 @@ body {
             <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
             <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
             <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Computer Lab / ICT Lab</strong><span>Technology-enabled learning with supervised digital activities.</span></li>
+            <li><strong>Science Lab / Composite Science Lab</strong><span>Hands-on observation and experiment support for concept clarity.</span></li>
+            <li><strong>Mathematics Lab</strong><span>Activity-based number, shape and measurement learning.</span></li>
+            <li><strong>Multipurpose Hall</strong><span>Space for assemblies, events, arts and group activities.</span></li>
+            <li><strong>Child-Friendly Separate Toilets</strong><span>Separate, hygienic toilet facilities for children and staff.</span></li>
+            <li><strong>Barrier-Free Campus Access</strong><span>Ramps and accessible movement support for inclusive campus use.</span></li>
+            <li><strong>Sports Ground / Multipurpose Court</strong><span>Structured outdoor games, fitness and team play.</span></li>
+            <li><strong>Infirmary / Medical Room</strong><span>Dedicated medical support for first aid and health observation.</span></li>
+            <li><strong>Child Counsellor / Wellness Support</strong><span>Guidance for emotional well-being and positive adjustment.</span></li>
+            <li><strong>Transport Safety System</strong><span>GPS, attendants, first-aid kit and verified route supervision.</span></li>
+            <li><strong>Library / Reading Room</strong><span>Age-appropriate books and storytelling for reading habits and imagination.</span></li>
+            <li><strong>Fire Safety &amp; Evacuation Plan</strong><span>Fire equipment, evacuation routes and emergency response readiness.</span></li>
             <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
+            <li><strong>Outdoor Multiplay</strong><span>Slides, swings and climbing activities for confident active play.</span></li>
+            <li><strong>Indoor Multiplay</strong><span>Soft indoor activity zones for safe movement in all weather.</span></li>
+            <li><strong>Trampoline</strong><span>Guided bouncing activity for balance, coordination and joyful exercise.</span></li>
           </ul>
           <ul aria-hidden="true">
             <li><strong>Open-Space Classrooms</strong><span>Bright rooms planned for comfort, movement and active participation.</span></li>
@@ -1769,7 +1935,22 @@ body {
             <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
             <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
             <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Computer Lab / ICT Lab</strong><span>Technology-enabled learning with supervised digital activities.</span></li>
+            <li><strong>Science Lab / Composite Science Lab</strong><span>Hands-on observation and experiment support for concept clarity.</span></li>
+            <li><strong>Mathematics Lab</strong><span>Activity-based number, shape and measurement learning.</span></li>
+            <li><strong>Multipurpose Hall</strong><span>Space for assemblies, events, arts and group activities.</span></li>
+            <li><strong>Child-Friendly Separate Toilets</strong><span>Separate, hygienic toilet facilities for children and staff.</span></li>
+            <li><strong>Barrier-Free Campus Access</strong><span>Ramps and accessible movement support for inclusive campus use.</span></li>
+            <li><strong>Sports Ground / Multipurpose Court</strong><span>Structured outdoor games, fitness and team play.</span></li>
+            <li><strong>Infirmary / Medical Room</strong><span>Dedicated medical support for first aid and health observation.</span></li>
+            <li><strong>Child Counsellor / Wellness Support</strong><span>Guidance for emotional well-being and positive adjustment.</span></li>
+            <li><strong>Transport Safety System</strong><span>GPS, attendants, first-aid kit and verified route supervision.</span></li>
+            <li><strong>Library / Reading Room</strong><span>Age-appropriate books and storytelling for reading habits and imagination.</span></li>
+            <li><strong>Fire Safety &amp; Evacuation Plan</strong><span>Fire equipment, evacuation routes and emergency response readiness.</span></li>
             <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
+            <li><strong>Outdoor Multiplay</strong><span>Slides, swings and climbing activities for confident active play.</span></li>
+            <li><strong>Indoor Multiplay</strong><span>Soft indoor activity zones for safe movement in all weather.</span></li>
+            <li><strong>Trampoline</strong><span>Guided bouncing activity for balance, coordination and joyful exercise.</span></li>
           </ul>
         </div>
       </div>
@@ -1916,13 +2097,26 @@ body {
 
     const letters = ["A", "B", "C", "D", "E", "F"];
 
+    const memoryCards = [
+      { label: "Sun", icon: "fa-solid fa-sun", color: "#f59e0b" },
+      { label: "Star", icon: "fa-solid fa-star", color: "#eab308" },
+      { label: "Heart", icon: "fa-solid fa-heart", color: "#e11d48" },
+      { label: "Leaf", icon: "fa-solid fa-leaf", color: "#16a34a" },
+      { label: "Moon", icon: "fa-solid fa-moon", color: "#6366f1" },
+      { label: "House", icon: "fa-solid fa-house", color: "#2563eb" },
+      { label: "Car", icon: "fa-solid fa-car", color: "#f97316" },
+      { label: "Music", icon: "fa-solid fa-music", color: "#8b5cf6" },
+      { label: "Gift", icon: "fa-solid fa-gift", color: "#0f766e" }
+    ];
+
     const scores = {
       color: 0,
       count: 0,
       shape: 0,
       letter: 0,
       missing: 0,
-      pattern: 0
+      pattern: 0,
+      memory: 0
     };
 
     let currentColor = colors[0];
@@ -1931,6 +2125,11 @@ body {
     let currentLetter = letters[0];
     let currentMissing = 2;
     let currentPatternAnswer = colors[0];
+    let memoryDeck = [];
+    let flippedMemoryCards = [];
+    let memoryLocked = false;
+    let memoryMatchedPairs = 0;
+    const memoryPairTarget = 4;
     let colorSolved = false;
     let countSolved = false;
     let shapeSolved = false;
@@ -2176,12 +2375,180 @@ body {
       setFeedback("patternFeedback", "", false);
     }
 
+    function getMemoryButtons() {
+      return [...document.querySelectorAll(".memory-card")];
+    }
+
+    function setMemoryBoardEnabled(isEnabled) {
+      getMemoryButtons().forEach(card => {
+        if (card.classList.contains("is-found")) {
+          card.disabled = true;
+          card.classList.remove("is-disabled");
+          return;
+        }
+
+        if (card.classList.contains("is-flipped")) {
+          card.disabled = true;
+          card.classList.remove("is-disabled");
+          return;
+        }
+
+        card.disabled = !isEnabled;
+        card.classList.toggle("is-disabled", !isEnabled);
+      });
+    }
+
+    function updateMemoryProgress() {
+      document.getElementById("memoryScore").textContent = "Pairs: " + memoryMatchedPairs + "/" + memoryPairTarget;
+    }
+
+    function setMemoryShuffleEnabled(isEnabled) {
+      document.getElementById("memoryNext").disabled = !isEnabled;
+    }
+
+    function buildMemoryDeck() {
+      const pairCards = shuffle(memoryCards).slice(0, memoryPairTarget);
+      const pairLabels = new Set(pairCards.map(card => card.label));
+      const bonusCard = shuffle(memoryCards.filter(card => !pairLabels.has(card.label)))[0];
+      const pairedCards = pairCards.flatMap(card => [
+        { ...card, pairId: card.label, found: false },
+        { ...card, pairId: card.label, found: false }
+      ]);
+
+      return shuffle([
+        ...pairedCards,
+        { ...bonusCard, pairId: "bonus", found: false, isBonus: true }
+      ]);
+    }
+
+    function resetMemoryTurn() {
+      flippedMemoryCards = [];
+      memoryLocked = false;
+      document.getElementById("memoryPrompt").textContent = "Turn two cards and match the pictures.";
+      setMemoryBoardEnabled(true);
+      setMemoryShuffleEnabled(true);
+    }
+
+    function finishMemoryRound() {
+      memoryLocked = true;
+      setMemoryBoardEnabled(false);
+      setMemoryShuffleEnabled(false);
+      document.getElementById("memoryPrompt").textContent = "All pairs found!";
+      setFeedback("memoryFeedback", "Shuffling again...", true);
+
+      getMemoryButtons().forEach((button, index) => {
+        if (!memoryDeck[index].found) {
+          memoryDeck[index].found = true;
+          button.classList.add("is-flipped");
+          setTimeout(() => button.classList.add("is-found"), 260);
+        }
+      });
+
+      setTimeout(renderMemoryGame, 1300);
+    }
+
+    function finishMemoryMatch(first, second) {
+      first.card.found = true;
+      second.card.found = true;
+      memoryMatchedPairs += 1;
+      scores.memory = memoryMatchedPairs;
+      updateMemoryProgress();
+      setFeedback("memoryFeedback", "Matched pair!", true);
+
+      setTimeout(() => {
+        first.button.classList.add("is-found");
+        second.button.classList.add("is-found");
+        flippedMemoryCards = [];
+
+        if (memoryMatchedPairs === memoryPairTarget) {
+          setTimeout(finishMemoryRound, 420);
+          return;
+        }
+
+        resetMemoryTurn();
+      }, 360);
+    }
+
+    function finishMemoryMiss() {
+      const [first, second] = flippedMemoryCards;
+      first.button.classList.add("is-missed");
+      second.button.classList.add("is-missed");
+      setFeedback("memoryFeedback", "Not a match. Try again.", false);
+
+      setTimeout(() => {
+        first.button.classList.remove("is-flipped", "is-missed");
+        second.button.classList.remove("is-flipped", "is-missed");
+        resetMemoryTurn();
+      }, 850);
+    }
+
+    function checkMemoryCard(button, card) {
+      if (memoryLocked || card.found || button.classList.contains("is-flipped")) return;
+
+      button.classList.add("is-flipped");
+      flippedMemoryCards.push({ button, card });
+      setFeedback("memoryFeedback", flippedMemoryCards.length === 1 ? "Choose one more card." : "", false);
+
+      if (flippedMemoryCards.length < 2) return;
+
+      const [first, second] = flippedMemoryCards;
+      const isMatch = first.card.pairId === second.card.pairId && !first.card.isBonus && !second.card.isBonus;
+      memoryLocked = true;
+      setMemoryBoardEnabled(false);
+      setMemoryShuffleEnabled(false);
+
+      if (isMatch) {
+        finishMemoryMatch(first, second);
+      } else {
+        finishMemoryMiss();
+      }
+    }
+
+    function renderMemoryBoard() {
+      const memoryBoard = document.getElementById("memoryBoard");
+      memoryBoard.innerHTML = "";
+
+      memoryDeck.forEach((card, index) => {
+        const button = document.createElement("button");
+        const face = document.createElement("span");
+        const icon = document.createElement("i");
+
+        button.type = "button";
+        button.className = "memory-card";
+        button.style.setProperty("--memory-color", card.color);
+        button.setAttribute("aria-label", "Turn memory card " + (index + 1));
+
+        face.className = "memory-card-face";
+        icon.className = card.icon;
+        icon.setAttribute("aria-hidden", "true");
+
+        face.appendChild(icon);
+        button.appendChild(face);
+        button.addEventListener("click", () => checkMemoryCard(button, card));
+        memoryBoard.appendChild(button);
+      });
+    }
+
+    function renderMemoryGame() {
+      memoryDeck = buildMemoryDeck();
+      flippedMemoryCards = [];
+      memoryLocked = false;
+      memoryMatchedPairs = 0;
+      scores.memory = 0;
+      setMemoryShuffleEnabled(false);
+      renderMemoryBoard();
+      updateMemoryProgress();
+      setFeedback("memoryFeedback", "", false);
+      resetMemoryTurn();
+    }
+
     document.getElementById("colorNext").addEventListener("click", renderColorGame);
     document.getElementById("countNext").addEventListener("click", renderCountGame);
     document.getElementById("shapeNext").addEventListener("click", renderShapeGame);
     document.getElementById("letterNext").addEventListener("click", renderLetterGame);
     document.getElementById("missingNext").addEventListener("click", renderMissingGame);
     document.getElementById("patternNext").addEventListener("click", renderPatternGame);
+    document.getElementById("memoryNext").addEventListener("click", renderMemoryGame);
 
     renderColorGame();
     renderCountGame();
@@ -2189,6 +2556,7 @@ body {
     renderLetterGame();
     renderMissingGame();
     renderPatternGame();
+    renderMemoryGame();
   })();
 
     /* ================= OFFER POPUP ================= */

@@ -211,6 +211,12 @@ if ($formType === "admission") {
     $childGender         = clean_text($_POST["childGender"] ?? "");
     $religion            = clean_text($_POST["religion"] ?? "");
     $nationality         = clean_text($_POST["nationality"] ?? "");
+    $childId             = clean_text($_POST["childId"] ?? "");
+    $birthCertificateNo  = clean_text($_POST["birthCertificateNo"] ?? "");
+    $samagraId           = clean_text($_POST["samagraId"] ?? "");
+    $childAadhaar        = clean_text($_POST["childAadhaar"] ?? "");
+    $childBankPassbook   = clean_text($_POST["childBankPassbook"] ?? "");
+    $childBankIfsc       = clean_text($_POST["childBankIfsc"] ?? "");
 
     $bloodGroup          = clean_text($_POST["bloodGroup"] ?? "");
     $allergies           = clean_text($_POST["allergies"] ?? "");
@@ -220,6 +226,15 @@ if ($formType === "admission") {
     $specificInstruction = clean_text($_POST["specificInstruction"] ?? "");
 
     $residentialAddress  = clean_text($_POST["residentialAddress"] ?? "");
+    $temporaryAddress    = clean_text($_POST["temporaryAddress"] ?? "");
+    $permanentAddress    = clean_text($_POST["permanentAddress"] ?? "");
+    if ($temporaryAddress === "" && $residentialAddress !== "") {
+        $temporaryAddress = $residentialAddress;
+    }
+    if ($permanentAddress === "" && $residentialAddress !== "") {
+        $permanentAddress = $residentialAddress;
+    }
+    $residentialAddress = $permanentAddress ?: $temporaryAddress;
     $residencePhone      = clean_text($_POST["residencePhone"] ?? "");
     $fatherContact       = clean_text($_POST["fatherContact"] ?? "");
     $motherContact       = clean_text($_POST["motherContact"] ?? "");
@@ -227,6 +242,7 @@ if ($formType === "admission") {
 
     $motherName          = clean_text($_POST["motherName"] ?? "");
     $motherAge           = clean_text($_POST["motherAge"] ?? "");
+    $motherBloodGroup    = clean_text($_POST["motherBloodGroup"] ?? "");
     $motherQualification = clean_text($_POST["motherQualification"] ?? "");
     $motherOccupation    = clean_text($_POST["motherOccupation"] ?? "");
     $motherDesignation   = clean_text($_POST["motherDesignation"] ?? "");
@@ -235,9 +251,13 @@ if ($formType === "admission") {
     $motherTel           = clean_text($_POST["motherTel"] ?? "");
     $motherEmail         = clean_text($_POST["motherEmail"] ?? "");
     $motherMobile        = clean_text($_POST["motherMobile"] ?? "");
+    $motherAadhaar       = clean_text($_POST["motherAadhaar"] ?? "");
+    $motherBankPassbook  = clean_text($_POST["motherBankPassbook"] ?? "");
+    $motherBankIfsc      = clean_text($_POST["motherBankIfsc"] ?? "");
 
     $fatherName          = clean_text($_POST["fatherName"] ?? "");
     $fatherAge           = clean_text($_POST["fatherAge"] ?? "");
+    $fatherBloodGroup    = clean_text($_POST["fatherBloodGroup"] ?? "");
     $fatherQualification = clean_text($_POST["fatherQualification"] ?? "");
     $fatherOccupation    = clean_text($_POST["fatherOccupation"] ?? "");
     $fatherDesignation   = clean_text($_POST["fatherDesignation"] ?? "");
@@ -246,6 +266,9 @@ if ($formType === "admission") {
     $fatherTel           = clean_text($_POST["fatherTel"] ?? "");
     $fatherEmail         = clean_text($_POST["fatherEmail"] ?? "");
     $fatherMobile        = clean_text($_POST["fatherMobile"] ?? "");
+    $fatherAadhaar       = clean_text($_POST["fatherAadhaar"] ?? "");
+    $fatherBankPassbook  = clean_text($_POST["fatherBankPassbook"] ?? "");
+    $fatherBankIfsc      = clean_text($_POST["fatherBankIfsc"] ?? "");
 
     $emergencyName       = clean_text($_POST["emergencyName"] ?? "");
     $emergencyPhone      = clean_text($_POST["emergencyPhone"] ?? "");
@@ -275,29 +298,26 @@ if ($formType === "admission") {
     $primaryPhone = $fatherContact ?: ($motherContact ?: $guardianContact);
     $replyEmail = $motherEmail ?: $fatherEmail;
 
-    if ($academicSession === "" || $admittedClass === "" || $childFirstName === "" || $childLastName === "" || $childDob === "" || $residentialAddress === "" || $primaryPhone === "" || $parentGuardianName === "" || $undertakingAccepted === "" || $photoUploads["errors"]) {
+    if ($academicSession === "" || $admittedClass === "" || $childFirstName === "" || $childLastName === "" || $childDob === "" || $temporaryAddress === "" || $permanentAddress === "" || $primaryPhone === "" || $parentGuardianName === "" || $undertakingAccepted === "" || $photoUploads["errors"]) {
         redirect_status("admissions.html", "error", "#admission-form");
     }
 
     $emailSubject = "New admission form: " . ($childName ?: $admittedClass);
 
     $body  = "New admission form from Savvy Mother Toddler School website:\n\n";
-    $body .= "Office Details\n";
-    $body .= body_line("Academic Session", $academicSession);
-    $body .= body_line("Admission No.", $admissionNo);
-    $body .= body_line("Registration No.", $registrationNo);
-    $body .= body_line("Date of Admission", $dateOfAdmission);
-    $body .= body_line("Admitted to Class", $admittedClass);
-    $body .= body_line("Admission Incharge", $admissionIncharge);
-    $body .= body_line("Centre Head", $centreHead) . "\n";
-
     $body .= "Child Information\n";
     $body .= body_line("Child Name", $childName);
     $body .= body_line("Date of Birth", $childDob);
     $body .= body_line("Date of Birth in Words", $dobWords);
     $body .= body_line("Gender", $childGender);
     $body .= body_line("Religion", $religion);
-    $body .= body_line("Nationality", $nationality) . "\n";
+    $body .= body_line("Nationality", $nationality);
+    $body .= body_line("Child ID", $childId);
+    $body .= body_line("Birth Certificate No.", $birthCertificateNo);
+    $body .= body_line("Samagra ID", $samagraId);
+    $body .= body_line("Aadhaar No.", $childAadhaar);
+    $body .= body_line("Bank Passbook Account No.", $childBankPassbook);
+    $body .= body_line("Bank IFSC Code", $childBankIfsc) . "\n";
 
     $body .= "Medical Information\n";
     $body .= body_line("Blood Group", $bloodGroup);
@@ -308,7 +328,8 @@ if ($formType === "admission") {
     $body .= body_line("Specific Instruction", $specificInstruction) . "\n";
 
     $body .= "Contact Information\n";
-    $body .= body_line("Residential Address", $residentialAddress);
+    $body .= body_line("Temporary Address", $temporaryAddress);
+    $body .= body_line("Permanent Address", $permanentAddress);
     $body .= body_line("Telephone No.", $residencePhone);
     $body .= body_line("Father Contact No.", $fatherContact);
     $body .= body_line("Mother Contact No.", $motherContact);
@@ -317,6 +338,7 @@ if ($formType === "admission") {
     $body .= "Mother Information\n";
     $body .= body_line("Name", $motherName);
     $body .= body_line("Age", $motherAge);
+    $body .= body_line("Blood Group", $motherBloodGroup);
     $body .= body_line("Educational Qualification", $motherQualification);
     $body .= body_line("Occupation", $motherOccupation);
     $body .= body_line("Designation", $motherDesignation);
@@ -324,11 +346,15 @@ if ($formType === "admission") {
     $body .= body_line("Office Address", $motherOfficeAddress);
     $body .= body_line("Tel", $motherTel);
     $body .= body_line("E-mail", $motherEmail);
-    $body .= body_line("Mobile", $motherMobile) . "\n";
+    $body .= body_line("Mobile", $motherMobile);
+    $body .= body_line("Aadhaar No.", $motherAadhaar);
+    $body .= body_line("Bank Passbook Account No.", $motherBankPassbook);
+    $body .= body_line("Bank IFSC Code", $motherBankIfsc) . "\n";
 
     $body .= "Father Information\n";
     $body .= body_line("Name", $fatherName);
     $body .= body_line("Age", $fatherAge);
+    $body .= body_line("Blood Group", $fatherBloodGroup);
     $body .= body_line("Educational Qualification", $fatherQualification);
     $body .= body_line("Occupation", $fatherOccupation);
     $body .= body_line("Designation", $fatherDesignation);
@@ -336,7 +362,10 @@ if ($formType === "admission") {
     $body .= body_line("Office Address", $fatherOfficeAddress);
     $body .= body_line("Tel", $fatherTel);
     $body .= body_line("E-mail", $fatherEmail);
-    $body .= body_line("Mobile", $fatherMobile) . "\n";
+    $body .= body_line("Mobile", $fatherMobile);
+    $body .= body_line("Aadhaar No.", $fatherAadhaar);
+    $body .= body_line("Bank Passbook Account No.", $fatherBankPassbook);
+    $body .= body_line("Bank IFSC Code", $fatherBankIfsc) . "\n";
 
     $body .= "Emergency\n";
     $body .= body_line("Name", $emergencyName);
@@ -358,9 +387,19 @@ if ($formType === "admission") {
     $body .= "Undertaking\n";
     $body .= body_line("Parent / Guardian Name", $parentGuardianName);
     $body .= body_line("Date", $undertakingDate);
-    $body .= body_line("Accepted", $undertakingAccepted) . "\n";
+    $body .= body_line("Accepted", $undertakingAccepted);
+    $body .= body_line("Form Fee Note", "The admission form fee is non-refundable. Kindly review all details carefully before submitting the form.") . "\n";
     $body .= body_line("Documents Attached", $documents);
-    $body .= body_line("Photo Uploads Attached", $uploadedPhotos);
+    $body .= body_line("Photo Uploads Attached", $uploadedPhotos) . "\n";
+
+    $body .= "Office Details\n";
+    $body .= body_line("Academic Session", $academicSession);
+    $body .= body_line("Admission No.", $admissionNo);
+    $body .= body_line("Registration No.", $registrationNo);
+    $body .= body_line("Date of Admission", $dateOfAdmission);
+    $body .= body_line("Admitted to Class", $admittedClass);
+    $body .= body_line("Admission Incharge", $admissionIncharge);
+    $body .= body_line("Centre Head", $centreHead);
 
     $savedToManagement = forward_to_school_management([
         "formType" => "admission",
@@ -389,6 +428,12 @@ if ($formType === "admission") {
             "childGender" => $childGender,
             "religion" => $religion,
             "nationality" => $nationality,
+            "childId" => $childId,
+            "birthCertificateNo" => $birthCertificateNo,
+            "samagraId" => $samagraId,
+            "childAadhaar" => $childAadhaar,
+            "childBankPassbook" => $childBankPassbook,
+            "childBankIfsc" => $childBankIfsc,
             "bloodGroup" => $bloodGroup,
             "allergies" => $allergies,
             "chronicAilment" => $chronicAilment,
@@ -396,12 +441,15 @@ if ($formType === "admission") {
             "surgeryUndergone" => $surgeryUndergone,
             "specificInstruction" => $specificInstruction,
             "residentialAddress" => $residentialAddress,
+            "temporaryAddress" => $temporaryAddress,
+            "permanentAddress" => $permanentAddress,
             "residencePhone" => $residencePhone,
             "fatherContact" => $fatherContact,
             "motherContact" => $motherContact,
             "guardianContact" => $guardianContact,
             "motherName" => $motherName,
             "motherAge" => $motherAge,
+            "motherBloodGroup" => $motherBloodGroup,
             "motherQualification" => $motherQualification,
             "motherOccupation" => $motherOccupation,
             "motherDesignation" => $motherDesignation,
@@ -410,8 +458,12 @@ if ($formType === "admission") {
             "motherTel" => $motherTel,
             "motherEmail" => $motherEmail,
             "motherMobile" => $motherMobile,
+            "motherAadhaar" => $motherAadhaar,
+            "motherBankPassbook" => $motherBankPassbook,
+            "motherBankIfsc" => $motherBankIfsc,
             "fatherName" => $fatherName,
             "fatherAge" => $fatherAge,
+            "fatherBloodGroup" => $fatherBloodGroup,
             "fatherQualification" => $fatherQualification,
             "fatherOccupation" => $fatherOccupation,
             "fatherDesignation" => $fatherDesignation,
@@ -420,6 +472,9 @@ if ($formType === "admission") {
             "fatherTel" => $fatherTel,
             "fatherEmail" => $fatherEmail,
             "fatherMobile" => $fatherMobile,
+            "fatherAadhaar" => $fatherAadhaar,
+            "fatherBankPassbook" => $fatherBankPassbook,
+            "fatherBankIfsc" => $fatherBankIfsc,
             "emergencyName" => $emergencyName,
             "emergencyPhone" => $emergencyPhone,
             "parentGuardianName" => $parentGuardianName,

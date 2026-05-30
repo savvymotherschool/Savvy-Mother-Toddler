@@ -380,44 +380,164 @@ body {
     0 0 0 1px rgba(255, 255, 255, 0.90);
 }
 
-#play-learn .card {
-  border: 2px solid transparent;
-  padding: 1.8rem;
-  max-width: 390px;
-  margin: 0 auto;
-  background:
-    linear-gradient(#ffffff, #ffffff) padding-box,
-    linear-gradient(135deg, rgba(91, 103, 115, 0.28), rgba(91, 103, 115, 0.28)) border-box;
-}
-
-#play-learn .grid-3 {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 390px));
+#play-learn .play-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
   justify-content: center;
-  gap: 1.8rem;
+  gap: clamp(1.4rem, 3vw, 3rem);
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
-#play-learn .card h3 {
-  margin-bottom: 0.45rem;
+#play-learn .play-learn-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
-#play-learn .card p {
-  font-size: 0.9rem;
-  line-height: 1.5;
+#play-learn .play-photo-slot {
+  position: relative;
+  display: block;
+  width: clamp(150px, 15vw, 205px);
+  aspect-ratio: 1;
+  margin-bottom: 0.3rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(184, 229, 255, 0.95), rgba(255, 242, 170, 0.95));
+  border: 5px solid #ffffff;
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.14);
+  text-decoration: none;
 }
 
-#play-learn .card:hover {
+#play-learn .play-photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+#play-learn .play-photo-slot img[src=""] {
+  display: none;
+}
+
+#play-learn .play-photo-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: #1c5878;
+  font-size: 0.95rem;
+  font-weight: 800;
   background:
-    linear-gradient(#ffffff, #ffffff) padding-box,
-    linear-gradient(135deg, #dc143c, #d4af37, #dc143c) border-box;
-  background-size: 100% 100%, 220% 220%;
-  animation: crimsonGoldBorder 1.8s linear infinite;
-  box-shadow:
-    0 26px 60px rgba(220, 20, 60, 0.22),
-    0 0 0 1px rgba(212, 175, 55, 0.28);
+    radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.86), rgba(82, 189, 236, 0.34) 55%, rgba(255, 35, 127, 0.16));
+}
+
+#play-learn .play-photo-slot img:not([src=""]) + .play-photo-empty {
+  display: none;
+}
+
+#play-learn .play-learn-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 270px);
+  min-height: 124px;
+  margin: 0;
+  padding: 1rem 1.05rem;
+  border-radius: 8px;
+  background: #55bdec;
+  color: #000000;
+  font-size: clamp(1.15rem, 1.55vw, 1.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+#play-learn .play-learn-title:hover,
+#play-learn .play-learn-title:focus-visible {
+  transform: translateY(-3px);
+  background: #43b2e4;
+  box-shadow: 0 16px 30px rgba(67, 178, 228, 0.24);
+}
+
+#play-learn .play-photo-slot:focus-visible,
+#play-learn .play-learn-title:focus-visible {
+  outline: 3px solid rgba(29, 78, 216, 0.32);
+  outline-offset: 4px;
+}
+
+#play-learn .play-did-you-know-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(3rem, 5vw, 4.7rem);
+}
+
+#play-learn .play-did-you-know {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 560px);
+  min-height: 68px;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  background: #ff237f;
+  color: #ffffff;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+#play-learn .play-did-you-know:hover,
+#play-learn .play-did-you-know:focus-visible {
+  transform: translateY(-3px);
+  background: #f31573;
+  box-shadow: 0 18px 36px rgba(255, 35, 127, 0.25);
+}
+
+@media (max-width: 1100px) {
+  #play-learn .play-learn-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    max-width: 680px;
+    row-gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  #play-learn .play-learn-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 340px;
+  }
+
+  #play-learn .play-photo-slot {
+    width: clamp(160px, 56vw, 220px);
+  }
+
+  #play-learn .play-learn-title {
+    min-height: 104px;
+  }
+}
+
+#teachers .grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 1.6rem;
 }
 
 #teachers .card {
+  display: flex;
+  min-height: 326px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   border: 2px solid transparent;
+  padding: 1.55rem;
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(135deg, rgba(91, 103, 115, 0.28), rgba(91, 103, 115, 0.28)) border-box;
@@ -434,12 +554,23 @@ body {
     0 0 0 1px rgba(212, 175, 55, 0.28);
 }
 
-#teachers .card > div:first-child,
+.teacher-photo {
+  width: 100%;
+  height: clamp(175px, 13vw, 210px);
+  border-radius: 16px;
+  margin-bottom: 1.15rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(255,255,255,0.96), rgba(219,234,254,0.9) 58%, rgba(203,213,225,0.95));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
 .play-icon-box {
   overflow: hidden;
 }
 
-#teachers .card > div:first-child img,
+.teacher-photo img,
 .play-icon-box img {
   width: 100%;
   height: 100%;
@@ -448,9 +579,69 @@ body {
   transition: transform 0.35s ease;
 }
 
-#teachers .card:hover > div:first-child img,
-#play-learn .card:hover .play-icon-box img {
-  transform: scale(1.1);
+.teacher-photo .photo-sujay {
+  object-position: center 42%;
+}
+
+.teacher-photo .photo-bhanu {
+  object-position: center 18%;
+}
+
+.teacher-photo .photo-anupma {
+  object-position: center 16%;
+}
+
+.teacher-placeholder {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+.teacher-placeholder i {
+  font-size: 2rem;
+}
+
+.teacher-placeholder span {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+#teachers .card h3 {
+  margin-bottom: 0.45rem;
+  line-height: 1.25;
+}
+
+#teachers .card p {
+  margin: 0;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+#teachers .card:hover .teacher-photo img,
+#play-learn .play-learn-card:hover .play-photo-slot img {
+  transform: scale(1.08);
+}
+
+@media (max-width: 1100px) {
+  #teachers .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #teachers .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-photo {
+    height: clamp(210px, 62vw, 300px);
+  }
 }
 
 @keyframes crimsonGoldBorder {
@@ -1592,7 +1783,7 @@ body {
 
         <ul class="nav-menu" id="navMenu">
           <div class="nav-indicator" id="navIndicator"></div>
-          <li><a href="index.html" class="nav-link active">Home</a></li>
+          <li><a href="index.html" class="nav-link active">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="play-learn.html" class="nav-link">Play &amp; Learn</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery</a></li>
           <li><a href="faculty.html" class="nav-link ">Faculty</a></li>
@@ -1604,6 +1795,7 @@ body {
             </button>
             <ul class="nav-parent-dropdown">
               <li><a href="calendar.html">Academic Calendar</a></li>
+              <li><a href="curriculum.html">CBSE Curriculum</a></li>
               <li><a href="fees.html">Fee Structure</a></li>
               <li><a href="transport.html">Transport</a></li>
               <li><a href="admissions.html">Admission Form</a></li>
@@ -1823,27 +2015,38 @@ body {
 <section id="play-learn" class="section">
   <div class="play-container">
     <h2>PLAY &amp; LEARN</h2>
-    <div class="grid-3">
-      <div class="card reveal">
-        <div class="play-icon-box" style="background:var(--primary-soft);"><img alt="toy train image" src=""></div>
-        <h3>Toy Train</h3>
-        <p>To develop skills like hand-eye coordination, constructive play and fine motor skills.</p>
-      </div>
-      <div class="card reveal">
-        <div class="play-icon-box" style="background:var(--blue-soft);"><img alt="Multiplay image" src=""></div>
-        <h3>Multiplay</h3>
-        <p>To develop skills like slides, swings, climbing structures and walking bridges to indulge physical activities.</p>
-      </div>
-      <div class="card reveal">
-        <div class="play-icon-box" style="background:var(--sky-soft);"><img alt="Rock-Climbing image" src=""></div>
-        <h3>Rock-Climbing</h3>
-        <p>To develop skills like strength, balance, concentration and build problem solving abilities.</p>
-      </div>    
+    <div class="play-learn-grid">
+      <article class="play-learn-card reveal">
+        <a class="play-photo-slot" href="gallery.html" aria-label="Open gallery">
+          <img alt="Holistic learning activity" src="image/image10.avif" loading="lazy">
+          <span class="play-photo-empty" aria-hidden="true"></span>
+        </a>
+        <a class="play-learn-title" href="facilities.html">Holistic Learning<br>with Activity-Based<br>Approach</a>
+      </article>
+      <article class="play-learn-card reveal">
+        <a class="play-photo-slot" href="gallery.html" aria-label="Open gallery">
+          <img alt="Safe caring hygienic environment" src="image/image11.avif" loading="lazy">
+          <span class="play-photo-empty" aria-hidden="true"></span>
+        </a>
+        <a class="play-learn-title" href="facilities.html">Safe, Caring &amp;<br>Hygienic<br>Environment</a>
+      </article>
+      <article class="play-learn-card reveal">
+        <a class="play-photo-slot" href="gallery.html" aria-label="Open gallery">
+          <img alt="Experienced educators giving personalized attention" src="image/image12.avif" loading="lazy">
+          <span class="play-photo-empty" aria-hidden="true"></span>
+        </a>
+        <a class="play-learn-title" href="facilities.html">Experienced<br>Educators &amp;<br>Personalized Attention</a>
+      </article>
+      <article class="play-learn-card reveal">
+        <a class="play-photo-slot" href="gallery.html" aria-label="Open gallery">
+          <img alt="Complete early childhood development" src="image/image13.avif" loading="lazy">
+          <span class="play-photo-empty" aria-hidden="true"></span>
+        </a>
+        <a class="play-learn-title" href="facilities.html">Complete Early<br>Childhood<br>Development</a>
+      </article>
     </div>
-    <div style="text-align:center; margin-top: 2rem;">
-      <button class="play-explore-btn" onclick="window.location.href='play-learn.html'">
-        Explore More
-      </button>
+    <div class="play-did-you-know-wrap">
+      <a class="play-did-you-know" href="play-learn.html">Did you know?</a>
     </div>
   </div> 
 </section>
@@ -1853,34 +2056,37 @@ body {
   <div class="faculty-container">
     <h2>FACULTY</h2>
     <div class="grid-4">
-      <div class="card reveal">
-        <div style="background:linear-gradient(135deg,var(--primary),var(--slate));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <img alt="Sujay Singh image" src="">
+      <article class="card reveal">
+        <div class="teacher-photo">
+          <img class="photo-sujay" alt="Dr. Sujay Singh" src="image/faculty/director_sir.webp" loading="lazy">
         </div>
         <h3>Dr. Sujay Singh</h3>
         <p>Director</p>
-      </div>
-      <div class="card reveal">
-        <div style="background:linear-gradient(135deg,var(--primary),var(--accent));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+      </article>
+      <article class="card reveal">
+        <div class="teacher-photo">
+          <div class="teacher-placeholder" aria-label="Smt. Smriti Pawar">
+            <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+            <span>SP</span>
+          </div>
         </div>
         <h3>Smt. Smriti Pawar</h3>
         <p>Academic Coordinator</p>
-      </div>
-      <div class="card reveal">
-        <div style="background:linear-gradient(135deg,var(--accent-2),var(--primary));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <img alt="Bhanu Mam image" src="image/faculty/bhanu-mam.webp">
+      </article>
+      <article class="card reveal">
+        <div class="teacher-photo">
+          <img class="photo-bhanu" alt="Bhanu Mam" src="image/faculty/bhanu-mam.webp" loading="lazy">
         </div>
         <h3>Bhanu Mam</h3>
         <p>Center Head</p>
-      </div>
-      <div class="card reveal">
-        <div style="background:linear-gradient(135deg,var(--slate),var(--primary));height:150px;border-radius:15px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:white;font-size:1.5rem;">
-          <img alt="Anupma Mishra image" src="image/faculty/anupma-mam.webp">
+      </article>
+      <article class="card reveal">
+        <div class="teacher-photo">
+          <img class="photo-anupma" alt="Anupma Mishra" src="image/faculty/anupma-mam.webp" loading="lazy">
         </div>
         <h3>Anupma Mishra</h3>
         <p>Head Mistress</p>
-      </div>
+      </article>
     </div>
     <div style="text-align:center; margin-top: 2rem;">
       <button class="play-explore-btn" onclick="window.location.href='faculty.html'">
@@ -1962,6 +2168,7 @@ body {
       <h4>For Parents & Students</h4>
       <ul class="footer-links">
         <li><a href="calendar.html">Academic Calendar</a></li>
+        <li><a href="curriculum.html">CBSE Curriculum</a></li>
         <li><a href="fees.html">Fee Structure</a></li>
         <li><a href="transport.html">Transport</a></li>
         <li><a href="admissions.html">Admission Form</a></li>
@@ -2075,6 +2282,18 @@ body {
             <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
             <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
             <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Computer Lab / ICT Lab</strong><span>Technology-enabled learning with supervised digital activities.</span></li>
+            <li><strong>Science Lab / Composite Science Lab</strong><span>Hands-on observation and experiment support for concept clarity.</span></li>
+            <li><strong>Mathematics Lab</strong><span>Activity-based number, shape and measurement learning.</span></li>
+            <li><strong>Multipurpose Hall</strong><span>Space for assemblies, events, arts and group activities.</span></li>
+            <li><strong>Child-Friendly Separate Toilets</strong><span>Separate, hygienic toilet facilities for children and staff.</span></li>
+            <li><strong>Barrier-Free Campus Access</strong><span>Ramps and accessible movement support for inclusive campus use.</span></li>
+            <li><strong>Sports Ground / Multipurpose Court</strong><span>Structured outdoor games, fitness and team play.</span></li>
+            <li><strong>Infirmary / Medical Room</strong><span>Dedicated medical support for first aid and health observation.</span></li>
+            <li><strong>Child Counsellor / Wellness Support</strong><span>Guidance for emotional well-being and positive adjustment.</span></li>
+            <li><strong>Transport Safety System</strong><span>GPS, attendants, first-aid kit and verified route supervision.</span></li>
+            <li><strong>Library / Reading Room</strong><span>Age-appropriate books and storytelling for reading habits and imagination.</span></li>
+            <li><strong>Fire Safety &amp; Evacuation Plan</strong><span>Fire equipment, evacuation routes and emergency response readiness.</span></li>
             <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
           </ul>
           <ul aria-hidden="true">
@@ -2085,6 +2304,18 @@ body {
             <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
             <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
             <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Computer Lab / ICT Lab</strong><span>Technology-enabled learning with supervised digital activities.</span></li>
+            <li><strong>Science Lab / Composite Science Lab</strong><span>Hands-on observation and experiment support for concept clarity.</span></li>
+            <li><strong>Mathematics Lab</strong><span>Activity-based number, shape and measurement learning.</span></li>
+            <li><strong>Multipurpose Hall</strong><span>Space for assemblies, events, arts and group activities.</span></li>
+            <li><strong>Child-Friendly Separate Toilets</strong><span>Separate, hygienic toilet facilities for children and staff.</span></li>
+            <li><strong>Barrier-Free Campus Access</strong><span>Ramps and accessible movement support for inclusive campus use.</span></li>
+            <li><strong>Sports Ground / Multipurpose Court</strong><span>Structured outdoor games, fitness and team play.</span></li>
+            <li><strong>Infirmary / Medical Room</strong><span>Dedicated medical support for first aid and health observation.</span></li>
+            <li><strong>Child Counsellor / Wellness Support</strong><span>Guidance for emotional well-being and positive adjustment.</span></li>
+            <li><strong>Transport Safety System</strong><span>GPS, attendants, first-aid kit and verified route supervision.</span></li>
+            <li><strong>Library / Reading Room</strong><span>Age-appropriate books and storytelling for reading habits and imagination.</span></li>
+            <li><strong>Fire Safety &amp; Evacuation Plan</strong><span>Fire equipment, evacuation routes and emergency response readiness.</span></li>
             <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
           </ul>
         </div>

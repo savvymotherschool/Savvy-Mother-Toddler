@@ -474,6 +474,212 @@
       display: block;
     }
 
+    /* DIRECTOR MESSAGE */
+    .director-message-section {
+      padding: 1.5rem 20px 3.5rem;
+    }
+
+    .director-message-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+      overflow: hidden;
+      position: relative;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 55%, #eef5ff 100%);
+      border: 1px solid rgba(91,103,115,0.18);
+      box-shadow: 0 18px 46px rgba(15,23,42,0.14);
+      transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.25s ease;
+    }
+
+    .director-message-inner:hover {
+      box-shadow: 0 22px 56px rgba(6,43,95,0.18);
+    }
+
+    .director-message-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(212,175,55,0.16) 44%, transparent 72%);
+      transform: translateX(-110%);
+      pointer-events: none;
+    }
+
+    .director-message-inner.animate-ready {
+      opacity: 0;
+      transform: translateY(34px) scale(0.985);
+    }
+
+    .director-message-inner.animate-ready.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .director-message-inner.is-visible::before {
+      animation: directorMessageShine 1.35s ease 0.25s both;
+    }
+
+    .director-message-photo {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      background:
+        radial-gradient(circle at 50% 8%, rgba(255,255,255,0.95), rgba(219,234,254,0.9) 58%, rgba(203,213,225,0.9)),
+        linear-gradient(145deg, rgba(6,43,95,0.08), rgba(212,175,55,0.10));
+      position: relative;
+    }
+
+    .director-message-photo img {
+      width: 100%;
+      max-height: 440px;
+      object-fit: contain;
+      display: block;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(15,23,42,0.16);
+      transition: transform 0.35s ease;
+    }
+
+    .director-message-inner:hover .director-message-photo img {
+      transform: scale(1.025);
+    }
+
+    .director-message-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 10px 22px rgba(6,43,95,0.24);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .director-message-copy {
+      padding: 2.35rem;
+      position: relative;
+    }
+
+    .director-message-kicker {
+      display: inline-flex;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .director-message-copy h2 {
+      color: var(--primary);
+      font-size: clamp(1.85rem, 4vw, 2.7rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .director-quote {
+      position: relative;
+      margin: 0 0 1.25rem;
+      padding: 1rem 1.15rem 1rem 3.25rem;
+      border-radius: 16px;
+      background: rgba(6,43,95,0.07);
+      color: #10233f;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .director-quote i {
+      position: absolute;
+      left: 1rem;
+      top: 1.05rem;
+      color: #d4af37;
+      font-size: 1.35rem;
+      animation: directorQuotePulse 2.8s ease-in-out infinite;
+    }
+
+    .director-message-body {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .director-message-body p {
+      color: #334155;
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    .director-signoff {
+      margin-top: 0.2rem;
+    }
+
+    .director-signature {
+      margin-top: 1.15rem;
+      padding-left: 1rem;
+      border-left: 4px solid #d4af37;
+    }
+
+    .director-signature strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .director-signature span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+    }
+
+    .director-message-inner.animate-ready .director-message-photo,
+    .director-message-inner.animate-ready .director-message-copy > * {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    .director-message-inner.is-visible .director-message-photo,
+    .director-message-inner.is-visible .director-message-copy > * {
+      animation: directorParagraphIn 0.65s ease forwards;
+    }
+
+    .director-message-inner.is-visible .director-message-copy > *:nth-child(1) { animation-delay: 0.12s; }
+    .director-message-inner.is-visible .director-message-copy > *:nth-child(2) { animation-delay: 0.2s; }
+    .director-message-inner.is-visible .director-message-copy > *:nth-child(3) { animation-delay: 0.28s; }
+    .director-message-inner.is-visible .director-message-copy > *:nth-child(4) { animation-delay: 0.36s; }
+    .director-message-inner.is-visible .director-message-copy > *:nth-child(5) { animation-delay: 0.44s; }
+
+    @keyframes directorMessageShine {
+      0% { transform: translateX(-110%); }
+      100% { transform: translateX(110%); }
+    }
+
+    @keyframes directorParagraphIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes directorQuotePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
     /* FOOTER */
     .site-footer {
       background: var(--primary);
@@ -615,6 +821,15 @@
       .faculty-photo-wrap {
         height: 220px;
       }
+      .director-message-inner {
+        grid-template-columns: 1fr;
+      }
+      .director-message-photo {
+        align-items: center;
+      }
+      .director-message-photo img {
+        max-height: 320px;
+      }
     }
 
     @media (max-width: 768px) {
@@ -671,6 +886,22 @@
 
       .simple-slide-inner img {
         height: 280px;
+      }
+      .director-message-section {
+        padding: 1rem 12px 2.5rem;
+      }
+      .director-message-photo,
+      .director-message-copy {
+        padding: 1.25rem;
+      }
+      .director-message-copy h2 {
+        font-size: 1.65rem;
+      }
+      .director-quote {
+        padding: 0.95rem 1rem 0.95rem 2.85rem;
+      }
+      .director-message-body p {
+        font-size: 0.94rem;
       }
       .slider-arrow {
         width: 38px;
@@ -1003,7 +1234,7 @@
 
         <ul class="nav-menu" id="navMenu">
           <div class="nav-indicator" id="navIndicator"></div>
-          <li><a href="index.html" class="nav-link ">Home</a></li>
+          <li><a href="index.html" class="nav-link ">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
           <li><a href="play-learn.html" class="nav-link">Play &amp; Learn</a></li>
           <li><a href="gallery.html" class="nav-link">Gallery</a></li>
           <li><a href="faculty.html" class="nav-link  active">Faculty</a></li>
@@ -1015,6 +1246,7 @@
             </button>
             <ul class="nav-parent-dropdown">
               <li><a href="calendar.html">Academic Calendar</a></li>
+              <li><a href="curriculum.html">CBSE Curriculum</a></li>
               <li><a href="fees.html">Fee Structure</a></li>
               <li><a href="transport.html">Transport</a></li>
               <li><a href="admissions.html">Admission Form</a></li>
@@ -1065,7 +1297,7 @@
       <div class="slide">
         <div class="faculty-card">
           <div class="faculty-photo-wrap">
-            <img src="image/faculty/Sujay-Sir.jpg" alt="Dr. Sujay Singh">
+            <img src="image/faculty/director_sir.webp" alt="Dr. Sujay Singh">
           </div>
           <div class="faculty-info">
             <h3>Dr. Sujay Singh</h3>
@@ -1230,6 +1462,28 @@
         </div>
       </div>
 
+      <div class="slide">
+        <div class="faculty-card">
+          <div class="faculty-photo-wrap">
+            <div class="faculty-photo-placeholder" aria-label="Dr. Bhumesh Tiwari">
+              <i class="fa-solid fa-user-doctor"></i>
+              <span>Child Care</span>
+            </div>
+          </div>
+          <div class="faculty-info">
+            <h3>Dr. Bhumesh Tiwari</h3>
+            <div class="faculty-role">Child Specialist</div>
+            <div class="faculty-meta">
+              MBBS, child health and wellness support.
+            </div>
+            <p class="faculty-bio">
+              Dr. Tiwari provides child health guidance and supports the school team with
+              wellness awareness, first-response care and parent guidance whenever required.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1281,6 +1535,50 @@
   </div>
 </section>
 
+<!-- DIRECTOR'S MESSAGE -->
+<section class="director-message-section" id="directors-message">
+  <div class="director-message-inner">
+    <div class="director-message-photo">
+      <img src="image/faculty/director_sir.webp" alt="Dr. Sujay Singh">
+      <div class="director-message-badge">
+        <i class="fa-solid fa-user-tie"></i>
+        Director
+      </div>
+    </div>
+
+    <div class="director-message-copy">
+      <span class="director-message-kicker">Director's Message</span>
+      <h2>Guiding Young Minds With Purpose</h2>
+
+      <blockquote class="director-quote">
+        <i class="fa-solid fa-quote-left"></i>
+        &ldquo;The first principle of true teaching is that nothing can be taught.&rdquo; &ndash; Sri Aurobindo
+      </blockquote>
+
+      <div class="director-message-body">
+        <p>Dear Parents, Students, and Well-Wishers,</p>
+
+        <p>It gives me immense pleasure to welcome you to Savvy Mother School, Rewa &ndash; a place where young minds are nurtured, values are instilled, and dreams are given wings.</p>
+
+        <p>At Savvy Mother School, we believe that education is a lifelong journey. Our mission is not just academic excellence, but also the holistic development of each student &mdash; intellectually, emotionally, socially, and morally. We foster a learning environment that encourages curiosity, creativity, and critical thinking.</p>
+
+        <p>We take pride in our dedicated faculty, innovative teaching methods, and a curriculum that blends traditional values with modern education. Our school is a community where every child is known, valued, and supported.</p>
+
+        <p>As we continue to grow, our commitment remains the same: To provide a safe, inclusive, and inspiring space for every learner. Together, with the support of parents and guardians, we aim to build a brighter future for our children and the society at large.</p>
+
+        <p>Thank you for placing your trust in Savvy Mother School.</p>
+
+        <p class="director-signoff">Warm regards,</p>
+      </div>
+
+      <div class="director-signature">
+        <strong>Dr. Sujay Singh</strong>
+        <span>Director</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer" id="contact">
   <div class="footer-container">
     <!-- Column 1: Brand -->
@@ -1311,6 +1609,7 @@
       <h4>For Parents & Students</h4>
       <ul class="footer-links">
         <li><a href="calendar.html">Academic Calendar</a></li>
+        <li><a href="curriculum.html">CBSE Curriculum</a></li>
         <li><a href="fees.html">Fee Structure</a></li>
         <li><a href="transport.html">Transport</a></li>
         <li><a href="admissions.html">Admission Form</a></li>
@@ -1424,6 +1723,18 @@
             <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
             <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
             <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Computer Lab / ICT Lab</strong><span>Technology-enabled learning with supervised digital activities.</span></li>
+            <li><strong>Science Lab / Composite Science Lab</strong><span>Hands-on observation and experiment support for concept clarity.</span></li>
+            <li><strong>Mathematics Lab</strong><span>Activity-based number, shape and measurement learning.</span></li>
+            <li><strong>Multipurpose Hall</strong><span>Space for assemblies, events, arts and group activities.</span></li>
+            <li><strong>Child-Friendly Separate Toilets</strong><span>Separate, hygienic toilet facilities for children and staff.</span></li>
+            <li><strong>Barrier-Free Campus Access</strong><span>Ramps and accessible movement support for inclusive campus use.</span></li>
+            <li><strong>Sports Ground / Multipurpose Court</strong><span>Structured outdoor games, fitness and team play.</span></li>
+            <li><strong>Infirmary / Medical Room</strong><span>Dedicated medical support for first aid and health observation.</span></li>
+            <li><strong>Child Counsellor / Wellness Support</strong><span>Guidance for emotional well-being and positive adjustment.</span></li>
+            <li><strong>Transport Safety System</strong><span>GPS, attendants, first-aid kit and verified route supervision.</span></li>
+            <li><strong>Library / Reading Room</strong><span>Age-appropriate books and storytelling for reading habits and imagination.</span></li>
+            <li><strong>Fire Safety &amp; Evacuation Plan</strong><span>Fire equipment, evacuation routes and emergency response readiness.</span></li>
             <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
           </ul>
           <ul aria-hidden="true">
@@ -1434,6 +1745,18 @@
             <li><strong>RO Water</strong><span>Purified drinking water available for safe hydration throughout the day.</span></li>
             <li><strong>Wi-Fi Campus</strong><span>Secure connectivity for administration and learning support.</span></li>
             <li><strong>Digi-Board Classroom</strong><span>Interactive visual lessons that make concepts clearer and more engaging.</span></li>
+            <li><strong>Computer Lab / ICT Lab</strong><span>Technology-enabled learning with supervised digital activities.</span></li>
+            <li><strong>Science Lab / Composite Science Lab</strong><span>Hands-on observation and experiment support for concept clarity.</span></li>
+            <li><strong>Mathematics Lab</strong><span>Activity-based number, shape and measurement learning.</span></li>
+            <li><strong>Multipurpose Hall</strong><span>Space for assemblies, events, arts and group activities.</span></li>
+            <li><strong>Child-Friendly Separate Toilets</strong><span>Separate, hygienic toilet facilities for children and staff.</span></li>
+            <li><strong>Barrier-Free Campus Access</strong><span>Ramps and accessible movement support for inclusive campus use.</span></li>
+            <li><strong>Sports Ground / Multipurpose Court</strong><span>Structured outdoor games, fitness and team play.</span></li>
+            <li><strong>Infirmary / Medical Room</strong><span>Dedicated medical support for first aid and health observation.</span></li>
+            <li><strong>Child Counsellor / Wellness Support</strong><span>Guidance for emotional well-being and positive adjustment.</span></li>
+            <li><strong>Transport Safety System</strong><span>GPS, attendants, first-aid kit and verified route supervision.</span></li>
+            <li><strong>Library / Reading Room</strong><span>Age-appropriate books and storytelling for reading habits and imagination.</span></li>
+            <li><strong>Fire Safety &amp; Evacuation Plan</strong><span>Fire equipment, evacuation routes and emergency response readiness.</span></li>
             <li><strong>Eco-Friendly Campus</strong><span>Clean green surroundings for a calm learning environment.</span></li>
           </ul>
         </div>

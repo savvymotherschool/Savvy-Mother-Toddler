@@ -68,7 +68,7 @@
   background: rgba(29,78,216,0.10);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1270px) {
   .nav-icon-link {
     width: 100%;
     height: 42px;
