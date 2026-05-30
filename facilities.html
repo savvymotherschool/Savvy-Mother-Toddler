@@ -262,88 +262,160 @@
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+      gap: 1.35rem;
       padding: 2rem 0 2.2rem;
     }
 
-.facility-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 1.6rem 1.4rem;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(91,103,115,0.18);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    .facility-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      will-change: transform;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(91,103,115,0.14);
+      border-radius: 16px;
+      text-align: left;
+      box-shadow:
+        0 16px 30px rgba(15,23,42,0.10),
+        0 1px 0 rgba(255,255,255,0.75) inset;
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        border-color 0.28s ease;
+    }
+    .facility-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), #d4af37);
+      z-index: 2;
     }
 
-.facility-card:hover {
-      transform: translateY(-6px);
-      background: linear-gradient(135deg, #fff8dc, #fff1b8);
-      box-shadow: 0 18px 50px rgba(220, 20, 60, 0.22);
-      border-color: rgba(220, 20, 60, 0.45);
+    .facility-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(29,78,216,0.28);
+      box-shadow:
+        0 24px 44px rgba(15,23,42,0.17),
+        0 0 0 1px rgba(29,78,216,0.10);
     }
     .facility-card:focus-visible {
       outline: 3px solid rgba(29,78,216,0.28);
       outline-offset: 3px;
     }
 
-    .facility-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
+    .facility-media {
+      height: 126px;
+      position: relative;
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(135deg, rgba(29,78,216,0.055) 0 1px, transparent 1px 18px),
+        linear-gradient(135deg, rgba(239,246,255,0.98), rgba(255,251,235,0.78));
+    }
+    .facility-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+    .facility-media:has(img) .facility-image-placeholder {
+      display: none;
+    }
+    .facility-card:hover .facility-media img {
+      transform: scale(1.08);
+      filter: saturate(1.08) contrast(1.04);
+    }
+    .facility-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6,43,95,0.03), rgba(6,43,95,0.18));
+    }
+    .facility-image-placeholder {
+      height: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: rgba(29,78,216,0.10);
-      color: var(--primary);
-      font-size: 1.1rem;
-      transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+      gap: 0.4rem;
+      color: rgba(6,43,95,0.58);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .facility-image-placeholder i {
+      font-size: 1.35rem;
+      color: rgba(29,78,216,0.46);
+    }
+
+    .facility-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      left: 0.78rem;
+      top: 0.78rem;
+      z-index: 3;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #ffffff;
+      border: 3px solid rgba(255,255,255,0.95);
+      font-size: 1.05rem;
+      box-shadow: 0 10px 22px rgba(6,43,95,0.24);
+      pointer-events: none;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
     }
     .facility-card:hover .facility-icon {
-      background: linear-gradient(135deg, #dc143c, #d4af37);
-      color: #ffffff;
-      box-shadow: 0 12px 28px rgba(220,20,60,0.26);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 14px 26px rgba(6,43,95,0.30);
     }
 
     .facility-card h3 {
-      font-size: 1.15rem;
+      position: relative;
+      z-index: 1;
       color: var(--primary);
-      margin: 0.3rem 0 0.15rem;
-      transition: color 0.25s ease;
-    }
-    .facility-card:hover h3 {
-      color: #7f1d1d;
+      font-size: 1.02rem;
+      font-weight: 800;
+      margin: 0.4rem 1rem 0.45rem;
+      line-height: 1.22;
     }
     .facility-tag {
-      font-size: 0.78rem;
-      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      align-self: flex-start;
+      margin: 1rem 1rem 0;
+      padding: 0.24rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(29,78,216,0.10);
+      color: var(--primary);
+      font-size: 0.68rem;
+      font-weight: 800;
       letter-spacing: 1px;
-      color: var(--accent);
-      font-weight: 600;
-      transition: color 0.25s ease;
-    }
-    .facility-card:hover .facility-tag {
-      color: #dc143c;
+      text-transform: uppercase;
     }
     .facility-text {
-      font-size: 0.93rem;
-      color: #334155;
-      transition: color 0.25s ease;
-    }
-    .facility-card:hover .facility-text,
-    .facility-card:hover .facility-meta {
-      color: #7f1d1d;
+      position: relative;
+      z-index: 1;
+      margin: 0 1rem;
+      color: var(--slate);
+      font-size: 0.84rem;
+      line-height: 1.52;
     }
     .facility-meta {
-      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+      margin: 0.8rem 1rem 1rem;
+      padding-top: 0.72rem;
+      border-top: 1px solid rgba(91,103,115,0.12);
       color: #64748b;
-      transition: color 0.25s ease;
+      font-size: 0.78rem;
+      line-height: 1.45;
     }
 
     .facility-note {
@@ -540,7 +612,35 @@
         padding: 1.8rem 0 2rem;
       }
       .facility-card {
-        padding: 1.4rem 1.2rem;
+        min-height: 332px;
+        padding: 0;
+      }
+      .facility-media {
+        height: 108px;
+      }
+      .facility-icon {
+        width: 40px;
+        height: 40px;
+        left: 0.6rem;
+        top: 0.6rem;
+        border-radius: 12px;
+        font-size: 0.9rem;
+      }
+      .facility-tag {
+        margin: 0.85rem 0.85rem 0;
+        font-size: 0.62rem;
+      }
+      .facility-card h3 {
+        margin: 0.35rem 0.85rem 0.35rem;
+        font-size: 0.96rem;
+      }
+      .facility-text {
+        margin-inline: 0.85rem;
+        font-size: 0.8rem;
+      }
+      .facility-meta {
+        margin: 0.7rem 0.85rem 0.9rem;
+        font-size: 0.74rem;
       }
     }
 
@@ -989,28 +1089,52 @@
 
         <ul class="nav-menu" id="navMenu">
           <div class="nav-indicator" id="navIndicator"></div>
-          <li><a href="index.html" class="nav-link ">Home</a></li><li><a href="about.html" class="nav-link">About</a></li>
-          <li><a href="play-learn.html" class="nav-link">Play &amp; Learn</a></li>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-parent-menu nav-dropdown-menu">
+            <a href="about.html" class="nav-link nav-dropdown-toggle">About</a>
+            <ul class="nav-parent-dropdown nav-dropdown-list">
+              <li><a href="about.html">About School</a></li>
+              <li><a href="faculty.html">Faculty</a></li>
+              <li><a href="faculty.html#directors-message">Director's Message</a></li>
+              <li><a href="faculty.html">Child Specialist</a></li>
+            </ul>
+          </li>
+          <li class="nav-parent-menu nav-dropdown-menu">
+            <a href="curriculum.html" class="nav-link nav-dropdown-toggle">Academics</a>
+            <ul class="nav-parent-dropdown nav-dropdown-list">
+              <li><a href="play-learn.html">Play &amp; Learn</a></li>
+              <li><a href="curriculum.html">CBSE Curriculum</a></li>
+              <li><a href="admissions.html">Admissions</a></li>
+            </ul>
+          </li>
+          <li class="nav-parent-menu nav-dropdown-menu">
+            <a href="facilities.html" class="nav-link nav-dropdown-toggle active">Facilities</a>
+            <ul class="nav-parent-dropdown nav-dropdown-list">
+              <li><a href="facilities.html" class="active">Facilities Overview</a></li>
+              <li><a href="transport.html">Transport</a></li>
+              <li><a href="play-learn.html#playActivityCards">Indoor Multiplay</a></li>
+              <li><a href="play-learn.html#playActivityCards">Outdoor Multiplay</a></li>
+              <li><a href="play-learn.html#playActivityCards">Trampoline</a></li>
+            </ul>
+          </li>
           <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li><a href="faculty.html" class="nav-link ">Faculty</a></li>
-          <li><a href="facilities.html" class="nav-link active">Facilities</a></li>
           <li><a href="contact.html" class="nav-link">Contact</a></li>
           <li class="nav-parent-menu">
             <button type="button" class="nav-icon-link" aria-label="Parents and Students" title="Parents and Students">
               <i class="fa-solid fa-user-graduate"></i>
             </button>
-            <ul class="nav-parent-dropdown">
+            <ul class="nav-parent-dropdown nav-student-dropdown">
               <li><a href="calendar.html">Academic Calendar</a></li>
-              <li><a href="curriculum.html">CBSE Curriculum</a></li>
               <li><a href="fees.html">Fee Structure</a></li>
-              <li><a href="transport.html">Transport</a></li>
               <li><a href="admissions.html">Admission Form</a></li>
               <li><a href="downloads.html">Downloads &amp; Forms</a></li>
-              <li><a href="privacy-policy.html">Privacy Policy</a></li><li><a href="terms-of-use.html">Terms of Use</a></li><li><a href="refund-policy.html">Refund Policy</a></li><li><a href="faqs.html">FAQs</a></li>
+              <li><a href="privacy-policy.html">Privacy Policy</a></li>
+              <li><a href="terms-of-use.html">Terms of Use</a></li>
+              <li><a href="refund-policy.html">Refund Policy</a></li>
+              <li><a href="faqs.html">FAQs</a></li>
             </ul>
           </li>
         </ul>
-
         <div class="menu-toggle" id="menuToggle">
           <span></span><span></span><span></span>
         </div>
@@ -1102,6 +1226,9 @@
     <div class="grid-3">
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-door-open"></i>
         </div>
@@ -1117,6 +1244,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-bus"></i>
         </div>
@@ -1132,6 +1262,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-utensils"></i>
         </div>
@@ -1147,6 +1280,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-sink"></i>
         </div>
@@ -1162,6 +1298,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-restroom"></i>
         </div>
@@ -1177,6 +1316,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-wheelchair"></i>
         </div>
@@ -1192,6 +1334,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-house"></i>
         </div>
@@ -1207,6 +1352,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-child-reaching"></i>
         </div>
@@ -1222,6 +1370,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-notes-medical"></i>
         </div>
@@ -1237,6 +1388,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-camera"></i>
         </div>
@@ -1252,6 +1406,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-hands-holding-child"></i>
         </div>
@@ -1267,6 +1424,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-heart"></i>
         </div>
@@ -1282,6 +1442,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-droplet"></i>
         </div>
@@ -1297,6 +1460,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-wifi"></i>
         </div>
@@ -1312,6 +1478,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-chalkboard-user"></i>
         </div>
@@ -1327,6 +1496,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-desktop"></i>
         </div>
@@ -1342,6 +1514,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-flask"></i>
         </div>
@@ -1357,6 +1532,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-square-root-variable"></i>
         </div>
@@ -1372,6 +1550,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-leaf"></i>
         </div>
@@ -1387,6 +1568,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-train"></i>
         </div>
@@ -1402,6 +1586,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-futbol"></i>
         </div>
@@ -1417,6 +1604,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-shapes"></i>
         </div>
@@ -1432,6 +1622,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-cubes"></i>
         </div>
@@ -1447,6 +1640,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-up-down"></i>
         </div>
@@ -1462,6 +1658,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-mountain"></i>
         </div>
@@ -1477,6 +1676,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-water"></i>
         </div>
@@ -1492,6 +1694,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-bicycle"></i>
         </div>
@@ -1507,6 +1712,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-person-running"></i>
         </div>
@@ -1522,6 +1730,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-book-open"></i>
         </div>
@@ -1537,6 +1748,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-people-group"></i>
         </div>
@@ -1552,6 +1766,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-palette"></i>
         </div>
@@ -1567,6 +1784,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-music"></i>
         </div>
@@ -1582,6 +1802,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-dice"></i>
         </div>
@@ -1597,6 +1820,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-puzzle-piece"></i>
         </div>
@@ -1612,6 +1838,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-fire-extinguisher"></i>
         </div>
@@ -1627,6 +1856,9 @@
       </div>
 
       <div class="facility-card">
+        <div class="facility-media">
+          <div class="facility-image-placeholder"><i class="fa-regular fa-image" aria-hidden="true"></i><span>Facility Photo</span></div>
+        </div>
         <div class="facility-icon">
           <i class="fa-solid fa-comments"></i>
         </div>

@@ -2,6 +2,28 @@
   position: relative;
 }
 
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.nav-dropdown-toggle::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown-menu:hover .nav-dropdown-toggle::after,
+.nav-dropdown-menu:focus-within .nav-dropdown-toggle::after {
+  transform: rotate(225deg);
+}
+
 .nav-icon-link {
   width: 38px;
   height: 32px;
@@ -18,6 +40,7 @@
 }
 
 .nav-icon-link:hover,
+.nav-icon-link.active,
 .nav-parent-menu:focus-within .nav-icon-link,
 .nav-parent-menu:hover .nav-icon-link {
   color: #ffffff;
@@ -44,6 +67,11 @@
   z-index: 1002;
 }
 
+.nav-dropdown-menu .nav-parent-dropdown {
+  left: 0;
+  right: auto;
+}
+
 .nav-parent-menu:hover .nav-parent-dropdown,
 .nav-parent-menu:focus-within .nav-parent-dropdown {
   opacity: 1;
@@ -68,26 +96,38 @@
   background: rgba(29,78,216,0.10);
 }
 
+.nav-parent-dropdown a.active {
+  color: var(--primary);
+  background: rgba(29,78,216,0.14);
+}
+
 @media (max-width: 1270px) {
+  .nav-menu.open {
+    max-height: calc(100vh - 130px) !important;
+    overflow-y: auto;
+  }
+
+  .nav-dropdown-toggle {
+    justify-content: center;
+  }
+
+  .nav-dropdown-toggle::after {
+    display: none;
+  }
+
   .nav-icon-link {
-    width: 100%;
+    width: 42px;
     height: 42px;
-    justify-content: flex-start;
-    gap: 0.65rem;
-    margin-top: 0.35rem;
-    padding: 0 0.95rem;
-    border-radius: 8px;
+    margin: 0.35rem auto 0;
+    padding: 0;
+    border-radius: 50%;
     font-weight: 700;
     color: var(--primary);
     background: rgba(29,78,216,0.10);
   }
 
   .nav-icon-link::after {
-    content: "Parents & Students";
-    color: inherit;
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    content: none;
   }
 
   .nav-parent-dropdown {
@@ -104,6 +144,10 @@
     opacity: 1;
     visibility: visible;
     transform: none;
+  }
+
+  .nav-dropdown-menu .nav-parent-dropdown {
+    left: auto;
   }
 
   .nav-menu.open .nav-parent-menu:focus-within .nav-parent-dropdown,

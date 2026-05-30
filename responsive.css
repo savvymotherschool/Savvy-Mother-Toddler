@@ -282,6 +282,10 @@ img {
   min-width: 0;
 }
 
+.facilities-wrapper .facility-card {
+  padding: 0;
+}
+
 .contact-input,
 .contact-textarea,
 .search-box input,
@@ -669,6 +673,93 @@ input {
   .features-grid,
   .cards-container {
     grid-template-columns: 1fr;
+  }
+
+  #why-us .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem;
+  }
+
+  #why-us .features-grid li {
+    min-height: 314px;
+    border-radius: 14px;
+  }
+
+  #why-us .facility-media {
+    height: 112px;
+  }
+
+  #why-us .facility-card-icon {
+    width: 42px;
+    height: 42px;
+    left: 0.55rem;
+    top: 0.55rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+  }
+
+  #why-us .facility-card-body {
+    padding: 0.9rem 0.82rem 0.95rem;
+  }
+
+  #why-us .features-grid h3 {
+    font-size: 0.94rem;
+    line-height: 1.22;
+    margin-bottom: 0.35rem;
+  }
+
+  #why-us .features-grid p {
+    font-size: 0.76rem;
+    line-height: 1.46;
+  }
+
+  .facilities-wrapper .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem;
+  }
+
+  .facilities-wrapper .facility-card {
+    min-height: 318px;
+    border-radius: 14px;
+  }
+
+  .facilities-wrapper .facility-media {
+    height: 104px;
+  }
+
+  .facilities-wrapper .facility-icon {
+    width: 38px;
+    height: 38px;
+    left: 0.55rem;
+    top: 0.55rem;
+    border-radius: 12px;
+    font-size: 0.86rem;
+  }
+
+  .facilities-wrapper .facility-tag {
+    margin: 0.78rem 0.72rem 0;
+    padding: 0.2rem 0.42rem;
+    font-size: 0.56rem;
+    letter-spacing: 0.7px;
+  }
+
+  .facilities-wrapper .facility-card h3 {
+    margin: 0.32rem 0.72rem 0.32rem;
+    font-size: 0.82rem;
+    line-height: 1.22;
+  }
+
+  .facilities-wrapper .facility-text {
+    margin-inline: 0.72rem;
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .facilities-wrapper .facility-meta {
+    margin: 0.58rem 0.72rem 0.78rem;
+    padding-top: 0.55rem;
+    font-size: 0.64rem;
+    line-height: 1.3;
   }
 
   .cards-container {
