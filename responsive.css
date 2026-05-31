@@ -1,12 +1,39 @@
 /* Shared responsive fixes for all pages */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   scroll-padding-top: 112px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
   min-width: 0;
   overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+body > * {
+  max-width: 100%;
+}
+
+main,
+section,
+article,
+aside,
+header,
+footer,
+nav {
+  min-width: 0;
+  max-width: 100%;
 }
 
 header {
@@ -257,6 +284,17 @@ img {
 .facilities-wrapper,
 .gallery-wrapper,
 .gallery-header,
+.hero-inner,
+.hero-panel,
+.content-wrap,
+.content-section,
+.about-wrap,
+.about-section,
+.choice-section,
+.testimonials-section,
+.home-game-container,
+.contact-section,
+.contact-map-section,
 .contact-grid,
 .footer-container {
   width: 100%;
@@ -269,6 +307,9 @@ img {
 .features-section,
 .timeline-section,
 .sis-container,
+.choice-section,
+.testimonials-section,
+.home-game-container,
 .facilities-wrapper {
   max-width: calc(100% - 24px);
 }
@@ -277,9 +318,52 @@ img {
 .facility-card,
 .feature-card,
 .faculty-card,
+.info-card,
+.wide-card,
+.choice-card,
+.about-why-card,
+.work-heading,
+.work-copy,
+.focus-panel,
+.admission-form,
+.admission-form-section,
+.admission-office-section,
+.enquiry-group,
 .contact-info-card,
 .contact-form-card {
   min-width: 0;
+}
+
+.content-grid,
+.enquiry-grid,
+.document-checklist,
+.photo-upload-grid,
+.terms-list,
+.source-options,
+.option-row,
+.admission-office-grid,
+.work-intro,
+.focus-grid,
+.about-why-grid,
+.choice-grid,
+.choice-showcase,
+.choice-stats,
+.cards-container,
+.features-grid,
+.gallery-grid,
+.footer-container {
+  min-width: 0;
+}
+
+.fee-table-wrap,
+.sibling-table-wrap {
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.fee-table,
+.sibling-table {
+  max-width: none;
 }
 
 .facilities-wrapper .facility-card {
@@ -472,8 +556,12 @@ input {
     grid-template-columns: 1fr;
   }
 
+  .simple-slide-inner {
+    aspect-ratio: 16 / 9;
+  }
+
   .simple-slide-inner img {
-    height: clamp(260px, 52vw, 420px);
+    height: 100%;
   }
 
   .gallery-grid {
@@ -926,8 +1014,12 @@ input {
     justify-content: center;
   }
 
+  .simple-slide-inner {
+    aspect-ratio: 4 / 3;
+  }
+
   .simple-slide-inner img {
-    height: 240px;
+    height: 100%;
   }
 
   .offer-slider {
@@ -951,10 +1043,11 @@ input {
 
   .faculty-page .simple-slide-inner {
     max-width: 560px;
+    aspect-ratio: 4 / 3;
   }
 
   .faculty-page .simple-slide-inner img {
-    height: 240px;
+    height: 100%;
   }
 }
 
@@ -1057,11 +1150,12 @@ input {
 
   .faculty-page .simple-slide-inner {
     width: 100%;
+    aspect-ratio: 1 / 1;
     border-radius: 14px;
   }
 
   .faculty-page .simple-slide-inner img {
-    height: 210px;
+    height: 100%;
     object-position: center;
   }
 
@@ -1084,8 +1178,12 @@ input {
     line-height: 1.22;
   }
 
+  .faculty-page .simple-slide-inner {
+    aspect-ratio: 1 / 1;
+  }
+
   .faculty-page .simple-slide-inner img {
-    height: 185px;
+    height: 100%;
   }
 }
 
@@ -1269,5 +1367,352 @@ input {
     margin: 0;
     font-size: 0.8rem;
     color: #94a3b8;
+  }
+}
+
+/* Final viewport safety layer for every public page */
+.hero,
+.section,
+.content-section,
+.gallery-section,
+.contact-section,
+.contact-map-section,
+.mini-games-section,
+.home-game-section,
+.director-message-section,
+.site-footer {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.hero-inner,
+.hero-panel,
+.content-wrap,
+.about-wrap,
+.gallery-wrapper,
+.facilities-wrapper,
+.contact-grid,
+.director-message-inner,
+.admission-form,
+.fee-table-wrap,
+.sibling-table-wrap {
+  max-width: 100%;
+}
+
+.content-grid,
+.enquiry-grid,
+.admission-office-grid,
+.document-checklist,
+.photo-upload-grid,
+.terms-list,
+.choice-stats,
+.choice-showcase,
+.choice-grid,
+.work-intro,
+.focus-grid,
+.about-why-grid,
+.cards-container,
+.features-grid {
+  width: 100%;
+}
+
+.brand-text,
+.hero-text,
+.hero-inner,
+.hero-panel,
+.info-card,
+.wide-card,
+.choice-card,
+.about-why-card,
+.work-heading,
+.work-copy,
+.focus-panel,
+.faculty-info,
+.contact-info-text,
+.footer-col {
+  min-width: 0;
+}
+
+.hero-text h1,
+.hero-inner h1,
+.hero-panel h1,
+.section-title h2,
+.section-header h2,
+.work-heading h2,
+.choice-header h2 {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  .hero-panel,
+  .hero-inner,
+  .work-heading,
+  .work-copy,
+  .focus-panel,
+  .about-why,
+  .choice-section,
+  .testimonials-section,
+  .home-game-container,
+  .timeline-section,
+  .sis-container,
+  .play-container,
+  .faculty-container,
+  .facilities-container,
+  .admission-form {
+    max-width: calc(100% - 20px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content-grid,
+  .enquiry-grid,
+  .admission-office-grid,
+  .document-checklist,
+  .photo-upload-grid,
+  .terms-list,
+  .work-intro,
+  .focus-grid,
+  .about-why-grid,
+  .choice-showcase,
+  .choice-grid,
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .fee-table-wrap,
+  .sibling-table-wrap {
+    border-radius: 12px;
+  }
+
+  .source-options,
+  .option-row,
+  .enquiry-submit-row,
+  .admission-form-header,
+  .footer-brand-mark {
+    flex-wrap: wrap;
+  }
+
+  .source-options label,
+  .option-row label,
+  .document-checklist label,
+  .undertaking-confirm label {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding-bottom: 104px;
+  }
+
+  .navbar-inner {
+    width: calc(100% - 12px);
+    padding-inline: 8px;
+  }
+
+  .brand-pill {
+    max-width: calc(100% - 48px);
+  }
+
+  .brand-logo-img {
+    height: 38px;
+  }
+
+  .brand-main {
+    font-size: 0.84rem;
+    line-height: 1.05;
+  }
+
+  .brand-sub {
+    font-size: 0.56rem;
+    letter-spacing: 0.7px;
+  }
+
+  .menu-toggle {
+    width: 26px;
+  }
+
+  .hero,
+  .section,
+  .content-section,
+  .about-section,
+  .gallery-section,
+  .contact-section,
+  .contact-map-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .hero-panel,
+  .hero-inner,
+  .info-card,
+  .wide-card,
+  .admission-form,
+  .admission-form-section,
+  .admission-office-section,
+  .work-heading,
+  .work-copy,
+  .focus-panel,
+  .about-why,
+  .choice-section,
+  .testimonials-section,
+  .home-game-container,
+  .timeline-section,
+  .sis-container,
+  .play-container,
+  .faculty-container,
+  .facilities-container,
+  .contact-form-card,
+  .contact-info-card {
+    max-width: 100%;
+    border-radius: 14px;
+  }
+
+  .hero-panel,
+  .admission-form,
+  .admission-form-section,
+  .admission-office-section,
+  .contact-form-card,
+  .contact-info-card {
+    padding: 1rem;
+  }
+
+  .hero-text h1,
+  .hero-inner h1,
+  .hero-panel h1 {
+    font-size: clamp(1.6rem, 10vw, 2.1rem);
+    line-height: 1.12;
+  }
+
+  .hero-text p,
+  .hero-inner p,
+  .hero-panel p,
+  .section-title p,
+  .section-header p,
+  .info-card p,
+  .wide-card p {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .info-card {
+    min-height: 0;
+  }
+
+  .enquiry-section-title,
+  .admission-form-section .enquiry-section-title,
+  .admission-office-section .enquiry-section-title {
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .admission-form-section .enquiry-section-title::before {
+    width: 34px;
+    height: 34px;
+  }
+
+  .fee-table th,
+  .fee-table td,
+  .sibling-table td {
+    padding: 0.62rem 0.72rem;
+    font-size: 0.82rem;
+  }
+
+  .social-floating {
+    right: 10px;
+    bottom: 10px;
+    gap: 8px;
+  }
+
+  .social-floating a {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .top-bar {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .navbar-inner {
+    width: calc(100% - 8px);
+    gap: 0.45rem;
+  }
+
+  .brand-pill {
+    gap: 0.4rem;
+    padding-inline: 0.45rem;
+  }
+
+  .brand-logo-img {
+    height: 34px;
+  }
+
+  .brand-main {
+    font-size: 0.78rem;
+  }
+
+  .brand-sub {
+    font-size: 0.5rem;
+    letter-spacing: 0.4px;
+  }
+
+  .hero,
+  .section,
+  .content-section,
+  .about-section,
+  .gallery-section,
+  .contact-section,
+  .contact-map-section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .hero-panel,
+  .admission-form,
+  .admission-form-section,
+  .admission-office-section,
+  .info-card,
+  .wide-card,
+  .work-heading,
+  .work-copy,
+  .focus-panel {
+    padding: 0.9rem;
+  }
+
+  .nav-menu {
+    width: min(90vw, 320px);
+  }
+
+  .footer-container {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (hover: none), (max-width: 768px) {
+  .hero-inner:hover,
+  .hero-panel:hover,
+  .info-card:hover,
+  .wide-card:hover,
+  .work-heading:hover,
+  .work-copy:hover,
+  .focus-panel:hover,
+  .choice-card:hover,
+  .about-why-card:hover,
+  .facility-card:hover,
+  .feature-card:hover,
+  .card:hover,
+  .faculty-card:hover,
+  .contact-form-card:hover,
+  .contact-info-card:hover {
+    transform: none;
   }
 }

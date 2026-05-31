@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="image/toddler_logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="parent-pages.css">
+  <link rel="stylesheet" href="responsive.css">
   <link rel="stylesheet" href="nav-dropdown.css">
 </head>
 <body>
@@ -64,9 +65,9 @@
 <section class="hero"><div class="hero-inner"><div class="hero-panel"><h1>Admission Form</h1><p>Savvy Mother Toddler School admission details for the academic session.</p></div></div></section>
 <main class="content-section"><div class="content-wrap">
   <div class="content-grid">
-    <div class="info-card"><i class="fa-solid fa-file-pen"></i><h2>Online Admission</h2><p>Submit child, parent, medical and undertaking details directly to the school office.</p></div>
-    <div class="info-card"><i class="fa-solid fa-camera"></i><h2>Photographs</h2><p>Please keep recent coloured photographs of the child, father and mother ready for office submission.</p></div>
-    <div class="info-card"><i class="fa-solid fa-folder-open"></i><h2>Documents</h2><p>Child ID, Family ID, Aadhaar copies, birth certificate, Samagra ID and other listed documents are required with the form.</p></div>
+    <div class="info-card"><i class="fa-solid fa-file-pen"></i><h2>Online Admission</h2><p>Submit child, parent, medical and undertaking details in one guided form.</p></div>
+    <div class="info-card"><i class="fa-solid fa-camera"></i><h2>Photographs</h2><p>Keep recent child, father and mother photographs ready for office verification.</p></div>
+    <div class="info-card"><i class="fa-solid fa-folder-open"></i><h2>Documents</h2><p>Prepare IDs, Aadhaar copies, birth certificate, Samagra ID and required records.</p></div>
   </div>
 
   <div class="wide-card admission-card" id="admission-form">
@@ -84,9 +85,10 @@
     <form class="enquiry-form admission-form" id="admissionForm" action="send-message.php" method="POST" enctype="multipart/form-data" data-whatsapp-number="919329517009">
       <input type="hidden" name="formType" value="admission">
 
-      <div class="enquiry-section-title">Child Information</div>
-      <p class="admission-helper">Write in capital letters.</p>
-      <div class="enquiry-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Child Information</div>
+        <p class="admission-helper">Write in capital letters.</p>
+        <div class="enquiry-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="childFirstName">First Name</label>
           <input class="enquiry-input caps-input" type="text" id="childFirstName" name="childFirstName" required>
@@ -146,10 +148,12 @@
           <label class="enquiry-label" for="childBankIfsc">Bank IFSC Code</label>
           <input class="enquiry-input caps-input" type="text" id="childBankIfsc" name="childBankIfsc" maxlength="11">
         </div>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Medical Information</div>
-      <div class="enquiry-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Medical Information</div>
+        <div class="enquiry-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="bloodGroup">Blood Group</label>
           <input class="enquiry-input caps-input" type="text" id="bloodGroup" name="bloodGroup">
@@ -174,10 +178,12 @@
           <label class="enquiry-label" for="specificInstruction">Any Specific Instruction</label>
           <textarea class="enquiry-textarea" id="specificInstruction" name="specificInstruction"></textarea>
         </div>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Contact Information</div>
-      <div class="enquiry-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Contact Information</div>
+        <div class="enquiry-grid">
         <div class="enquiry-group wide">
           <label class="enquiry-label" for="temporaryAddress">Temporary Address</label>
           <textarea class="enquiry-textarea" id="temporaryAddress" name="temporaryAddress" required></textarea>
@@ -202,10 +208,12 @@
           <label class="enquiry-label" for="guardianContact">Guardian Contact No.</label>
           <input class="enquiry-input" type="tel" id="guardianContact" name="guardianContact">
         </div>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Mother Information</div>
-      <div class="enquiry-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Mother Information</div>
+        <div class="enquiry-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="motherName">Name</label>
           <input class="enquiry-input caps-input" type="text" id="motherName" name="motherName">
@@ -269,10 +277,12 @@
           <label class="enquiry-label" for="motherBankIfsc">Bank IFSC Code</label>
           <input class="enquiry-input caps-input" type="text" id="motherBankIfsc" name="motherBankIfsc" maxlength="11">
         </div>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Father Information</div>
-      <div class="enquiry-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Father Information</div>
+        <div class="enquiry-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="fatherName">Name</label>
           <input class="enquiry-input caps-input" type="text" id="fatherName" name="fatherName">
@@ -336,10 +346,12 @@
           <label class="enquiry-label" for="fatherBankIfsc">Bank IFSC Code</label>
           <input class="enquiry-input caps-input" type="text" id="fatherBankIfsc" name="fatherBankIfsc" maxlength="11">
         </div>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Emergency and Siblings</div>
-      <div class="enquiry-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Emergency and Siblings</div>
+        <div class="enquiry-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="emergencyName">In Case of Emergency Name</label>
           <input class="enquiry-input caps-input" type="text" id="emergencyName" name="emergencyName">
@@ -348,8 +360,8 @@
           <label class="enquiry-label" for="emergencyPhone">Emergency Contact No.</label>
           <input class="enquiry-input" type="tel" id="emergencyPhone" name="emergencyPhone">
         </div>
-      </div>
-      <div class="sibling-table-wrap">
+        </div>
+        <div class="sibling-table-wrap">
         <table class="fee-table sibling-table">
           <thead>
             <tr>
@@ -380,10 +392,12 @@
             </tr>
           </tbody>
         </table>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Undertaking</div>
-      <ol class="terms-list">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Undertaking</div>
+        <ol class="terms-list">
         <li>I have read the fee structure given in the fee copy and agree to abide by the terms and conditions.</li>
         <li>I declare that the date of birth of my ward is as per the birth certificate attached herewith.</li>
         <li>The decision of the management shall be final and binding.</li>
@@ -391,8 +405,8 @@
         <li>The admission form fee and any fee once deposited are non-refundable.</li>
         <li>The grant of fee concessions and withdrawal of the same at any time is the sole authority of the management.</li>
         <li>I shall abide by the school rules and regulations, as laid down by the management from time to time.</li>
-      </ol>
-      <div class="enquiry-grid">
+        </ol>
+        <div class="enquiry-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="parentGuardianName">Signature Name of Parent / Guardian</label>
           <input class="enquiry-input caps-input" type="text" id="parentGuardianName" name="parentGuardianName" required>
@@ -404,10 +418,12 @@
         <div class="enquiry-group wide">
           <label class="undertaking-confirm"><input type="checkbox" name="undertakingAccepted" value="Yes" required> I accept the admission undertaking and confirm that the information submitted is correct.</label>
         </div>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Documents Attached</div>
-      <div class="document-checklist">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Documents Attached</div>
+        <div class="document-checklist">
         <label><input type="checkbox" name="documents[]" value="Child ID"> Child ID</label>
         <label><input type="checkbox" name="documents[]" value="Family ID"> Family ID</label>
         <label><input type="checkbox" name="documents[]" value="Bank Passbook / IFSC Code"> Bank passbook / IFSC code</label>
@@ -420,10 +436,12 @@
         <label><input type="checkbox" name="documents[]" value="Caste Certificate - Child"> Caste certificate - child</label>
         <label><input type="checkbox" name="documents[]" value="Caste Certificate - Mother"> Caste certificate - mother</label>
         <label><input type="checkbox" name="documents[]" value="Caste Certificate - Father"> Caste certificate - father</label>
-      </div>
+        </div>
+      </section>
 
-      <div class="enquiry-section-title">Photo Uploads</div>
-      <div class="photo-upload-grid">
+      <section class="admission-form-section">
+        <div class="enquiry-section-title">Photo Uploads</div>
+        <div class="photo-upload-grid">
         <div class="photo-upload-field">
           <label class="enquiry-label" for="childPhoto">Child Photo</label>
           <input class="photo-input" type="file" id="childPhoto" name="childPhoto" accept="image/jpeg,image/png,image/webp">
@@ -436,11 +454,13 @@
           <label class="enquiry-label" for="motherPhoto">Mother Photo</label>
           <input class="photo-input" type="file" id="motherPhoto" name="motherPhoto" accept="image/jpeg,image/png,image/webp">
         </div>
-      </div>
-      <p class="photo-upload-note">Only JPG, PNG or WEBP photos are accepted. Maximum file size is 5 MB per photo.</p>
+        </div>
+        <p class="photo-upload-note">Only JPG, PNG or WEBP photos are accepted. Maximum file size is 5 MB per photo.</p>
+      </section>
 
-      <div class="enquiry-section-title">For Office Use</div>
-      <div class="enquiry-grid admission-office-grid">
+      <section class="admission-form-section admission-office-section">
+        <div class="enquiry-section-title">For Office Use</div>
+        <div class="enquiry-grid admission-office-grid">
         <div class="enquiry-group">
           <label class="enquiry-label" for="academicSession">Academic Session</label>
           <input class="enquiry-input" type="text" id="academicSession" name="academicSession" placeholder="Example: 2026-27" required>
@@ -484,7 +504,8 @@
           <label class="enquiry-label" for="centreHead">Centre Head</label>
           <input class="enquiry-input" type="text" id="centreHead" name="centreHead">
         </div>
-      </div>
+        </div>
+      </section>
 
       <div class="enquiry-submit-row">
         <button type="submit" class="enquiry-submit-btn"><i class="fa-solid fa-paper-plane"></i> Submit Admission Form</button>
