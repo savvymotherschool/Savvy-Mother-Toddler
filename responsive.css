@@ -1718,9 +1718,6 @@ input {
 }
 
 /* SEO/performance responsive media support */
-.responsive-picture {
-  display: contents;
-}
 
 .conversion-strip {
   position: relative;
@@ -1901,5 +1898,80 @@ input {
     min-height: 44px;
     padding-inline: 0.8rem;
     font-size: 0.9rem;
+  }
+}
+
+/* First-screen gap cleanup */
+header {
+  padding-bottom: 74px !important;
+}
+
+.navbar-wrapper {
+  position: fixed !important;
+  top: 0;
+}
+
+.navbar-inner {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  header {
+    padding-bottom: 68px !important;
+  }
+
+  .navbar-inner {
+    margin-bottom: 0;
+  }
+
+  #home.hero,
+  .hero,
+  .about-hero,
+  .faculty-page .hero {
+    margin-top: 0 !important;
+  }
+
+  .hero:not(#home),
+  .faculty-page .hero {
+    padding-top: 0.55rem !important;
+  }
+
+  .about-hero {
+    padding-top: clamp(2.4rem, 8vw, 3.6rem) !important;
+  }
+
+  .content-section,
+  .hero:not(#home) + .section,
+  .hero:not(#home) + .gallery-section,
+  .hero:not(#home) + .contact-section {
+    padding-top: 0.55rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding-bottom: 62px !important;
+  }
+
+  .navbar-inner {
+    margin-bottom: 0;
+  }
+
+  .hero:not(#home),
+  .faculty-page .hero {
+    padding-top: 0.35rem !important;
+  }
+
+  .content-section,
+  .hero:not(#home) + .section,
+  .hero:not(#home) + .gallery-section,
+  .hero:not(#home) + .contact-section {
+    padding-top: 0.4rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  header {
+    padding-bottom: 56px !important;
   }
 }
