@@ -59,7 +59,7 @@ function send_site_mail($to, $subject, $body, $email = "", $attachments = []) {
 
     $message .= "--" . $boundary . "--";
 
-    return mail($to, $subject, $message, $headers);
+    return @mail($to, $subject, $message, $headers);
 }
 
 function school_management_leads_url() {
@@ -90,8 +90,8 @@ function forward_to_school_management($payload) {
         curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 2);
 
         $response = curl_exec($ch);
         $statusCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -105,7 +105,7 @@ function forward_to_school_management($payload) {
             "method" => "POST",
             "header" => "Content-Type: application/json\r\n",
             "content" => $json,
-            "timeout" => 5,
+            "timeout" => 2,
             "ignore_errors" => true,
         ],
     ]);
@@ -114,6 +114,38 @@ function forward_to_school_management($payload) {
     $statusLine = $http_response_header[0] ?? "";
 
     return $response !== false && preg_match("/\\s2\\d\\d\\s/", $statusLine);
+}
+
+function school_management_queue_path() {
+    $queuePath = getenv("SCHOOL_MANAGEMENT_LEAD_QUEUE");
+
+    if ($queuePath === false || trim($queuePath) === "") {
+        $queuePath = __DIR__ . DIRECTORY_SEPARATOR . "website-leads-queue" . DIRECTORY_SEPARATOR . "pending-leads.jsonl";
+    }
+
+    return $queuePath;
+}
+
+function queue_school_management_lead($payload) {
+    if (!isset($payload["source"])) {
+        $payload["source"] = "savvy-mother-toddler";
+    }
+
+    $payload["queuedAt"] = gmdate("c");
+
+    $queuePath = school_management_queue_path();
+    $queueDir = dirname($queuePath);
+
+    if (!is_dir($queueDir) && !@mkdir($queueDir, 0755, true)) {
+        return false;
+    }
+
+    $json = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    if ($json === false) {
+        return false;
+    }
+
+    return @file_put_contents($queuePath, $json . PHP_EOL, FILE_APPEND | LOCK_EX) !== false;
 }
 
 function collect_photo_uploads($photoFields) {
@@ -401,7 +433,7 @@ if ($formType === "admission") {
     $body .= body_line("Admission Incharge", $admissionIncharge);
     $body .= body_line("Centre Head", $centreHead);
 
-    $savedToManagement = forward_to_school_management([
+    $managementLead = [
         "formType" => "admission",
         "childName" => $childName,
         "parentName" => $parentGuardianName ?: ($fatherName ?: $motherName),
@@ -484,9 +516,13 @@ if ($formType === "admission") {
             "uploadedPhotos" => $uploadedPhotos,
             "emailBody" => $body,
         ],
-    ]);
+    ];
 
-    if (send_site_mail($to, $emailSubject, $body, $replyEmail, $photoAttachments) || $savedToManagement) {
+    $savedToManagement = forward_to_school_management($managementLead);
+    $queuedForManagement = $savedToManagement ? false : queue_school_management_lead($managementLead);
+    $sentByEmail = send_site_mail($to, $emailSubject, $body, $replyEmail, $photoAttachments);
+
+    if ($sentByEmail || $savedToManagement || $queuedForManagement) {
         redirect_status("admissions.html", "success", "#admission-form");
     }
 
@@ -541,7 +577,7 @@ if ($formType === "enquiry") {
     $body .= "How Did You Hear About Us?: " . $heardAbout . "\n";
     $body .= "Other Source: " . ($otherSource ?: "-") . "\n";
 
-    $savedToManagement = forward_to_school_management([
+    $managementLead = [
         "formType" => "enquiry",
         "childName" => $childName,
         "parentName" => $parentName,
@@ -569,9 +605,13 @@ if ($formType === "enquiry") {
             "otherSource" => $otherSource,
             "emailBody" => $body,
         ],
-    ]);
+    ];
 
-    if (mail($to, $emailSubject, $body, mail_headers($email)) || $savedToManagement) {
+    $savedToManagement = forward_to_school_management($managementLead);
+    $queuedForManagement = $savedToManagement ? false : queue_school_management_lead($managementLead);
+    $sentByEmail = @mail($to, $emailSubject, $body, mail_headers($email));
+
+    if ($sentByEmail || $savedToManagement || $queuedForManagement) {
         redirect_status("downloads.html", "success", "#enquiry-form");
     }
 
@@ -599,7 +639,7 @@ $body .= "Email: " . ($email ?: "-") . "\n";
 $body .= "Subject: " . $subject . "\n\n";
 $body .= "Message:\n" . $message . "\n";
 
-$savedToManagement = forward_to_school_management([
+$managementLead = [
     "formType" => "contact",
     "childName" => $childName,
     "parentName" => $parentName,
@@ -617,9 +657,13 @@ $savedToManagement = forward_to_school_management([
         "message" => $message,
         "emailBody" => $body,
     ],
-]);
+];
 
-if (mail($to, $emailSubject, $body, mail_headers($email)) || $savedToManagement) {
+$savedToManagement = forward_to_school_management($managementLead);
+$queuedForManagement = $savedToManagement ? false : queue_school_management_lead($managementLead);
+$sentByEmail = @mail($to, $emailSubject, $body, mail_headers($email));
+
+if ($sentByEmail || $savedToManagement || $queuedForManagement) {
     redirect_status("contact.html", "success");
 }
 
