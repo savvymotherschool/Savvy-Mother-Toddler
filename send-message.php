@@ -420,7 +420,8 @@ if ($formType === "admission") {
     $body .= body_line("Parent / Guardian Name", $parentGuardianName);
     $body .= body_line("Date", $undertakingDate);
     $body .= body_line("Accepted", $undertakingAccepted);
-    $body .= body_line("Form Fee Note", "The admission form fee is non-refundable. Kindly review all details carefully before submitting the form.") . "\n";
+    $body .= body_line("Office Submission Note", "Please submit this form at the school office with the admission form fee.") . "\n";
+
     $body .= body_line("Documents Attached", $documents);
     $body .= body_line("Photo Uploads Attached", $uploadedPhotos) . "\n";
 
@@ -512,6 +513,7 @@ if ($formType === "admission") {
             "parentGuardianName" => $parentGuardianName,
             "undertakingDate" => $undertakingDate,
             "undertakingAccepted" => $undertakingAccepted,
+            "officeSubmissionNote" => "Please submit this form at the school office with the admission form fee.",
             "documents" => $documents,
             "uploadedPhotos" => $uploadedPhotos,
             "emailBody" => $body,

@@ -128,13 +128,11 @@ function getUploadedPhotoLabels(form) {
   ].filter(([fieldName]) => form.elements[fieldName]?.files?.length).map(([, label]) => label).join(", ") || "-";
 }
 
-admissionForm?.addEventListener("submit", () => {
-  if (!admissionForm.checkValidity()) return;
-
-  const formData = new FormData(admissionForm);
+function buildAdmissionWhatsAppMessage(form, formData) {
   const documents = formData.getAll("documents[]").filter(Boolean).join(", ") || "-";
-  const uploadedPhotos = getUploadedPhotoLabels(admissionForm);
-  const message = [
+  const uploadedPhotos = getUploadedPhotoLabels(form);
+
+  return [
     "New Admission Form",
     "",
     "Child Information",
@@ -211,7 +209,7 @@ admissionForm?.addEventListener("submit", () => {
     "Date: " + getFormText(formData, "undertakingDate"),
     "Accepted: " + getFormText(formData, "undertakingAccepted"),
     "",
-    "Form Fee Note: The admission form fee is non-refundable. Kindly review all details carefully before submitting the form.",
+    "Office Submission Note: Please submit this form at the school office with the admission form fee.",
     "",
     "Documents Attached: " + documents,
     "Photo Uploads Attached by Email: " + uploadedPhotos,
@@ -225,8 +223,46 @@ admissionForm?.addEventListener("submit", () => {
     "Admission Incharge: " + getFormText(formData, "admissionIncharge"),
     "Centre Head: " + getFormText(formData, "centreHead"),
   ].join("\n");
+}
 
+function getAdmissionCopyFileName(formData) {
+  const childName = getChildFullName(formData).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const suffix = childName || "admission-form";
+  return "savvy-mother-toddler-" + suffix + ".txt";
+}
+
+function downloadAdmissionCopy(form) {
+  const formData = new FormData(form);
+  const content = buildAdmissionWhatsAppMessage(form, formData);
+  const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = getAdmissionCopyFileName(formData);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById("downloadAdmissionCopy")?.addEventListener("click", () => {
+  if (!admissionForm.checkValidity()) {
+    admissionForm.reportValidity();
+    return;
+  }
+
+  downloadAdmissionCopy(admissionForm);
+});
+
+admissionForm?.addEventListener("submit", () => {
+  if (!admissionForm.checkValidity()) return;
+
+  const formData = new FormData(admissionForm);
+  const message = buildAdmissionWhatsAppMessage(admissionForm, formData);
   const whatsappNumber = admissionForm.dataset.whatsappNumber || "919329517009";
+
+  downloadAdmissionCopy(admissionForm);
   window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank");
 });
 
@@ -238,7 +274,7 @@ if (window.location.hash === "#enquiry-form" || pageStatus) {
 }
 
 if (pageStatus === "success") {
-  alert("Thank you! Your message has been sent.");
+  alert(admissionForm ? "Thank you! Your admission form has been submitted. Please submit the downloaded form at the school office with the admission form fee." : "Thank you! Your message has been sent.");
 } else if (pageStatus === "error") {
-  alert("There was a problem sending your message. Please try again.");
+  alert(admissionForm ? "There was a problem submitting the admission form. Please try again or contact the school office." : "There was a problem sending your message. Please try again.");
 }
