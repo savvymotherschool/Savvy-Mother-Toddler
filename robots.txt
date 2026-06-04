@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /testing.html
 
-Sitemap: https://savvytoddlerrewa.com/sitemap.xml
+Sitemap: https://savvymotherschool.github.io/Savvy-Mother-Toddler/sitemap.xml
