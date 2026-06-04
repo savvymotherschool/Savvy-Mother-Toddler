@@ -1,6 +1,8 @@
 (function () {
-  const loginUrl = window.SCHOOL_MANAGEMENT_LOGIN_URL || "http://localhost:3000/login";
+  const loginUrl = window.SCHOOL_MANAGEMENT_LOGIN_URL || "";
   const parentDropdown = document.querySelector(".nav-student-dropdown") || document.querySelector(".nav-parent-dropdown");
+
+  if (!loginUrl) return;
 
   const style = document.createElement("style");
   style.textContent = `

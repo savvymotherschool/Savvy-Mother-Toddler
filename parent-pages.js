@@ -54,8 +54,13 @@ openEnquiryButtons.forEach((button) => {
   });
 });
 
-enquiryForm?.addEventListener("submit", () => {
-  if (!enquiryForm.checkValidity()) return;
+enquiryForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!enquiryForm.checkValidity()) {
+    enquiryForm.reportValidity();
+    return;
+  }
 
   const formData = new FormData(enquiryForm);
   const heardFrom = formData.getAll("hearAbout[]").filter(Boolean).join(", ") || "-";
@@ -86,7 +91,20 @@ enquiryForm?.addEventListener("submit", () => {
   ].join("\n");
 
   const whatsappNumber = enquiryForm.dataset.whatsappNumber || "919329517009";
-  window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank");
+
+  if (window.SavvyStaticForms) {
+    window.SavvyStaticForms.submitForm(enquiryForm, {
+      formData,
+      message,
+      subject: "New enquiry form: " + (formData.get("classAppliedFor") || "School enquiry"),
+      whatsappNumber,
+      successMessage: "Thank you! Your enquiry has been submitted.",
+      fallbackMessage: "Your enquiry is ready in WhatsApp. Please tap send there so the school receives it.",
+    });
+    return;
+  }
+
+  window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener");
 });
 
 const admissionForm = document.getElementById("admissionForm");
@@ -255,15 +273,34 @@ document.getElementById("downloadAdmissionCopy")?.addEventListener("click", () =
   downloadAdmissionCopy(admissionForm);
 });
 
-admissionForm?.addEventListener("submit", () => {
-  if (!admissionForm.checkValidity()) return;
+admissionForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!admissionForm.checkValidity()) {
+    admissionForm.reportValidity();
+    return;
+  }
 
   const formData = new FormData(admissionForm);
   const message = buildAdmissionWhatsAppMessage(admissionForm, formData);
   const whatsappNumber = admissionForm.dataset.whatsappNumber || "919329517009";
 
   downloadAdmissionCopy(admissionForm);
-  window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank");
+
+  if (window.SavvyStaticForms) {
+    window.SavvyStaticForms.submitForm(admissionForm, {
+      formData,
+      message,
+      subject: "New admission form: " + getChildFullName(formData),
+      whatsappNumber,
+      resetOnSuccess: false,
+      successMessage: "Thank you! Your admission form has been submitted. Please submit the downloaded copy at the school office with the admission form fee.",
+      fallbackMessage: "The filled copy has downloaded and your admission message is ready in WhatsApp. Please tap send there so the school receives it.",
+    });
+    return;
+  }
+
+  window.open("https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message), "_blank", "noopener");
 });
 
 const pageParams = new URLSearchParams(window.location.search);
