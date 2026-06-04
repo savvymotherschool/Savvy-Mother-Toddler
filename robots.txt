@@ -1,7 +1,7 @@
 User-agent: *
-Allow: /
-Disallow: /testing.html
-Disallow: /send-message.php
-Disallow: /sync-school-management-leads.php
+Allow: /Savvy-Mother-Toddler/
+Disallow: /Savvy-Mother-Toddler/testing.html
+Disallow: /Savvy-Mother-Toddler/send-message.php
+Disallow: /Savvy-Mother-Toddler/sync-school-management-leads.php
 
-Sitemap: https://savvytoddlerrewa.com/sitemap.xml
+Sitemap: https://savvymotherschool.github.io/Savvy-Mother-Toddler/sitemap.xml
