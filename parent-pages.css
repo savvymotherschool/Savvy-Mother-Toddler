@@ -614,6 +614,145 @@ header {
   margin-top: 0.35rem;
 }
 
+.fee-document-shell {
+  position: relative;
+  overflow: hidden;
+  margin-top: 1.35rem;
+  padding: 1.4rem;
+  border: 1px solid rgba(30,58,95,0.16);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,251,255,0.96)),
+    repeating-linear-gradient(135deg, rgba(6,43,95,0.020) 0 1px, transparent 1px 24px);
+  box-shadow:
+    0 20px 46px rgba(15,23,42,0.12),
+    0 1px 0 rgba(255,255,255,0.92) inset;
+}
+
+.fee-document-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 6px;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+}
+
+.fee-document-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(91,103,115,0.16);
+}
+
+.fee-document-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.fee-document-brand img {
+  width: 74px;
+  height: 74px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.fee-document-kicker {
+  display: inline-flex;
+  margin-bottom: 0.25rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.fee-document-brand h2 {
+  margin: 0;
+  color: var(--primary);
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.fee-document-brand p {
+  max-width: 620px;
+  margin: 0.28rem 0 0;
+  color: var(--slate);
+  font-size: 0.9rem;
+}
+
+.fee-document-actions {
+  display: grid;
+  justify-items: end;
+  gap: 0.6rem;
+  flex: 0 0 auto;
+}
+
+.fee-document-actions span {
+  color: var(--gold-dark);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fee-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  min-height: 42px;
+  padding: 0.68rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(29,78,216,0.24);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fee-download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(29,78,216,0.30);
+}
+
+.fee-document-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.fee-document-meta span {
+  min-height: 48px;
+  padding: 0.72rem 0.82rem;
+  border: 1px solid rgba(91,103,115,0.14);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.76);
+  color: var(--slate);
+  font-size: 0.86rem;
+}
+
+.fee-document-meta strong {
+  color: var(--primary);
+}
+
+.fee-document-shell .wide-card {
+  box-shadow:
+    0 12px 28px rgba(15,23,42,0.08),
+    0 1px 0 rgba(255,255,255,0.90) inset;
+}
+
+.fee-document-shell .wide-card:hover {
+  transform: none;
+}
+
 .fee-intro {
   margin-top: 0.25rem;
 }
@@ -1561,6 +1700,20 @@ header {
     gap: 1.15rem;
   }
 
+  .fee-document-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .fee-document-actions {
+    justify-items: start;
+    width: 100%;
+  }
+
+  .fee-document-meta {
+    grid-template-columns: 1fr;
+  }
+
   .info-card {
     min-height: 190px;
   }
@@ -1782,6 +1935,149 @@ header {
   .social-floating a {
     width: 46px;
     height: 46px;
+  }
+}
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111827;
+  }
+
+  .navbar-wrapper,
+  header,
+  .hero,
+  .content-grid,
+  .parent-faq-card,
+  .conversion-strip,
+  .site-footer,
+  .social-floating,
+  .fee-document-actions,
+  script {
+    display: none !important;
+  }
+
+  .content-section {
+    padding: 0 !important;
+  }
+
+  .content-wrap {
+    max-width: none !important;
+    width: 100% !important;
+  }
+
+  .fee-document-shell {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .fee-document-shell::before,
+  .wide-card::before {
+    display: none !important;
+  }
+
+  .fee-document-header {
+    padding-bottom: 10px !important;
+    border-bottom: 2px solid #062b5f !important;
+  }
+
+  .fee-document-brand img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  .fee-document-brand h2 {
+    color: #062b5f !important;
+    font-size: 22px !important;
+  }
+
+  .fee-document-meta {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    margin-top: 10px !important;
+  }
+
+  .fee-document-meta span,
+  .wide-card,
+  .fee-item {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .wide-card {
+    margin-top: 10px !important;
+    padding: 12px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .wide-card h2,
+  .wide-card h3 {
+    color: #062b5f !important;
+    font-size: 15px !important;
+  }
+
+  .fee-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+  }
+
+  .fee-item {
+    padding: 8px !important;
+  }
+
+  .fee-label,
+  .fee-detail,
+  .fee-document-meta span,
+  .wide-card p,
+  .wide-card li {
+    color: #374151 !important;
+    font-size: 10px !important;
+  }
+
+  .fee-amount {
+    color: #062b5f !important;
+    font-size: 14px !important;
+  }
+
+  .fee-table-wrap {
+    overflow: visible !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .fee-table,
+  .installment-table {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .fee-table th,
+  .fee-table td {
+    padding: 6px 7px !important;
+    color: #111827 !important;
+    background: #ffffff !important;
+    border-color: #d1d5db !important;
+    font-size: 9px !important;
+  }
+
+  .fee-table th {
+    color: #ffffff !important;
+    background: #062b5f !important;
+  }
+
+  .fee-table td:last-child {
+    color: #062b5f !important;
   }
 }
 

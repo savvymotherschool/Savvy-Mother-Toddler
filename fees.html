@@ -149,6 +149,29 @@
     <div class="info-card"><i class="fa-solid fa-bus"></i><h2>Transport Fees</h2><p>Rs. 1,500 - Rs. 2,000 per km.</p></div>
     <div class="info-card"><i class="fa-solid fa-plus"></i><h2>Extra Facility</h2><p>Extra charge is Rs. 5,000 per extra facility.</p></div>
   </div>
+  <section class="fee-document-shell" id="feeDocument" aria-labelledby="feeDocumentTitle">
+    <div class="fee-document-header">
+      <div class="fee-document-brand">
+        <img loading="lazy" decoding="async" src="image/toddler_logo.png" alt="Savvy Mother Toddler School logo" width="558" height="563">
+        <div>
+          <span class="fee-document-kicker">Fee Structure Document</span>
+          <h2 id="feeDocumentTitle">Savvy Mother Toddler School Rewa</h2>
+          <p>Near Railway Bridge, Baisa Road, Ward no. 45, Silpara, Rewa, Madhya Pradesh</p>
+        </div>
+      </div>
+      <div class="fee-document-actions">
+        <span>Session 2026-2027</span>
+        <button type="button" class="fee-download-btn" id="feeDownloadBtn">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          Download Fee Structure
+        </button>
+      </div>
+    </div>
+    <div class="fee-document-meta" aria-label="Fee document information">
+      <span><strong>School:</strong> Bella Mente till Senior KG (UKG)</span>
+      <span><strong>School:</strong> Savvy Mother Toddler from Class 1st to 7th</span>
+      <span><strong>Contact:</strong> +91 9329517009, +91 8822776477</span>
+    </div>
   <div class="wide-card">
     <h2>Additional School Charges</h2>
     <div class="fee-grid">
@@ -346,6 +369,7 @@
   </div>
   <div class="wide-card notice"><h3>School Name Note</h3><p>Till Senior KG (UKG), the school name is Bella Mente. From Class 1st to Class 7th, the school name is Savvy Mother Toddler School Rewa.</p></div>
   <div class="wide-card notice"><h3>Fee Note</h3><p>Please contact the Savvy Mother Toddler School Rewa office before payment to confirm the final daycare, preschool, kindergarten or primary fee for the current session.</p></div>
+  </section>
 
   <div class="wide-card parent-faq-card">
     <h2>Parent Quick Answers</h2>
@@ -377,6 +401,21 @@
 
 <footer class="site-footer" id="contact"><div class="footer-container"><div class="footer-col"><div class="footer-brand-mark"><span class="footer-logo-badge"><img loading="lazy" decoding="async" src="image/toddler_logo.png" alt="Savvy Mother Toddler School logo" width="558" height="563"></span><h3 class="footer-logo">Savvy Mother Toddler School</h3></div><p class="footer-tagline">A joyful place where little minds grow with confidence, curiosity and care.</p><p class="footer-copy-small">&copy; <span id="year"></span> Savvy Mother Toddler School. All rights reserved.</p></div><div class="footer-col"><h4>Quick Links</h4><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About School</a></li><li><a href="admissions.html">Admissions</a></li><li><a href="programs.html">Programs</a></li><li><a href="gallery.html">Gallery</a></li></ul></div><div class="footer-col"><h4>For Parents & Students</h4><ul class="footer-links"><li><a href="calendar.html">Academic Calendar</a></li><li><a href="curriculum.html">CBSE Curriculum</a></li><li><a href="fees.html">Fee Structure</a></li><li><a href="transport.html">Transport</a></li><li><a href="admissions.html">Admission Form</a></li><li><a href="downloads.html">Downloads &amp; Forms</a></li><li><a href="faqs.html">FAQs</a></li></ul></div><div class="footer-col"><h4>Contact</h4><p class="footer-contact">Near Railway Bridge,<br>Baisa Road, Ward no. 45,<br>Silpara, Rewa, Madhya Pradesh</p><p class="footer-contact">Phone: <a href="tel:+919329517009">+91 9329517009</a><br>Phone: <a href="tel:+918822776477">+91 8822776477</a><br>Email: <a href="mailto:savvymotherschool@gmail.com">savvymotherschool@gmail.com</a></p><div class="footer-social"><a href="https://wa.me/919329517009?text=Hello%20Savvy%20Mother%20Toddler%20School%2C%20I%20would%20like%20to%20know%20more%20about%20admissions%20and%20facilities." target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://www.facebook.com/savvymothertoddlerrewa" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/savvymothertoddlerrewa/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></div></div></div><div class="footer-bottom"><p><i>Powered by </i><b> SR Tech Innovation &amp; Solution Pvt. Ltd. </b></p></div></footer>
 <div class="social-floating"><a href="https://wa.me/919329517009?text=Hello%20Savvy%20Mother%20Toddler%20School%2C%20I%20would%20like%20to%20know%20more%20about%20admissions%20and%20facilities." target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a><a href="https://www.facebook.com/savvymothertoddlerrewa" target="_blank" class="facebook-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/savvymothertoddlerrewa/?hl=en" target="_blank" class="instagram-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a></div>
+<script>
+  (function () {
+    var feeDownloadBtn = document.getElementById("feeDownloadBtn");
+    if (!feeDownloadBtn) return;
+
+    feeDownloadBtn.addEventListener("click", function () {
+      var currentTitle = document.title;
+      document.title = "Savvy Mother Toddler School Fee Structure 2026-2027";
+      window.print();
+      window.setTimeout(function () {
+        document.title = currentTitle;
+      }, 600);
+    });
+  })();
+</script>
 <script src="school-management-login.js"></script>
 <script src="parent-pages.js"></script>
 <script src="js/site-common.js"></script>
