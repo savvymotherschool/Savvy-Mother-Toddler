@@ -2,6 +2,7 @@
 (function () {
   const schoolEmail = "savvymotherschool@gmail.com";
   const defaultWhatsAppNumber = "919329517009";
+  const defaultFormEndpoint = "https://savvy-school-management-backend.onrender.com/api/website-leads";
 
   function searchSite() {
     const value = document.querySelector(".search-box input")?.value || "";
@@ -60,8 +61,76 @@
     return lines.join("\n");
   }
 
-  async function postToExternalEndpoint(form, formData) {
-    const endpoint = form.dataset.endpoint || window.SAVVY_FORM_ENDPOINT || "";
+  function isFileValue(value) {
+    return typeof File !== "undefined" && value instanceof File;
+  }
+
+  function payloadValue(value) {
+    if (isFileValue(value)) {
+      return value.name || "";
+    }
+    return String(value || "").trim();
+  }
+
+  function collectPayloadFields(formData) {
+    const payload = {};
+
+    formData.forEach((value, key) => {
+      const text = payloadValue(value);
+      if (!text) return;
+
+      const cleanKey = key.endsWith("[]") ? key.slice(0, -2) : key;
+      if (payload[cleanKey] === undefined) {
+        payload[cleanKey] = text;
+      } else if (Array.isArray(payload[cleanKey])) {
+        payload[cleanKey].push(text);
+      } else {
+        payload[cleanKey] = [payload[cleanKey], text];
+      }
+    });
+
+    return payload;
+  }
+
+  function firstText(formData, names) {
+    for (const name of names) {
+      const value = String(formData.get(name) || "").trim();
+      if (value) return value;
+    }
+    return "";
+  }
+
+  function childFullName(formData) {
+    const direct = firstText(formData, ["childName"]);
+    if (direct) return direct;
+
+    return ["childFirstName", "childMiddleName", "childLastName"]
+      .map((name) => String(formData.get(name) || "").trim())
+      .filter(Boolean)
+      .join(" ");
+  }
+
+  function buildLeadPayload(form, formData, message, subject) {
+    const payload = collectPayloadFields(formData);
+    const formType = String(formData.get("formType") || form.dataset.staticForm || "contact").trim().toLowerCase();
+
+    return {
+      source: "savvy-mother-toddler",
+      formType,
+      childName: childFullName(formData),
+      parentName: firstText(formData, ["parentName", "parentGuardianName", "fatherName", "motherName"]),
+      className: firstText(formData, ["className", "admittedClass", "classAppliedFor"]),
+      phone: firstText(formData, ["phone", "fatherContact", "motherContact", "guardianContact", "fatherMobile", "motherMobile"]),
+      email: firstText(formData, ["email", "motherEmail", "fatherEmail"]),
+      subject,
+      message,
+      priority: formType === "admission" ? "high" : "medium",
+      payload,
+    };
+  }
+
+  async function postToExternalEndpoint(form, formData, message, subject) {
+    const endpoint = form.dataset.endpoint || window.SAVVY_FORM_ENDPOINT || defaultFormEndpoint;
 
     if (!endpoint) {
       return false;
@@ -69,10 +138,11 @@
 
     const response = await fetch(endpoint, {
       method: "POST",
-      body: formData,
       headers: {
+        "Content-Type": "application/json",
         Accept: "application/json",
       },
+      body: JSON.stringify(buildLeadPayload(form, formData, message, subject)),
     });
 
     return response.ok;
@@ -87,7 +157,7 @@
     const fallbackMessage = options.fallbackMessage || "Your message is ready in WhatsApp. Please tap send there to share it with the school.";
 
     try {
-      if (await postToExternalEndpoint(form, formData)) {
+      if (await postToExternalEndpoint(form, formData, message, subject)) {
         alert(successMessage);
         if (options.resetOnSuccess !== false) {
           form.reset();

@@ -4,17 +4,18 @@ This site is prepared for GitHub Pages, so the public website must stay static. 
 
 ## Forms
 
-The contact, enquiry and admission forms now use client-side JavaScript:
+The contact, enquiry and admission forms now use client-side JavaScript and work on GitHub Pages:
 
-- If `window.SAVVY_FORM_ENDPOINT` or a form-level `data-endpoint` is configured, the form will POST to that external endpoint.
-- If no endpoint is configured, the form opens a prepared WhatsApp message for the school team.
+- By default, the forms POST JSON leads to `https://savvy-school-management-backend.onrender.com/api/website-leads`.
+- If `window.SAVVY_FORM_ENDPOINT` or a form-level `data-endpoint` is configured, that endpoint overrides the default.
+- If the endpoint is unavailable, the form opens a prepared WhatsApp message for the school team.
 - The admission form still downloads a filled text copy for office submission.
 
 Example endpoint configuration:
 
 ```html
 <script>
-  window.SAVVY_FORM_ENDPOINT = "https://your-form-endpoint.example/submit";
+  window.SAVVY_FORM_ENDPOINT = "https://savvy-school-management-backend.onrender.com/api/website-leads";
 </script>
 ```
 
