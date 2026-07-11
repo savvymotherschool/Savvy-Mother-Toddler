@@ -3,6 +3,9 @@
   const schoolEmail = "savvymotherschool@gmail.com";
   const defaultWhatsAppNumber = "919329517009";
   const defaultFormEndpoint = "https://savvy-school-management-backend.onrender.com/api/website-leads";
+  const schoolAddressShort = "Near Railway Bridge, Baisa Road, Silpara, Rewa";
+  const schoolHoursLabel = "Mon-Sat: 10:00 AM - 4:00 PM";
+  const schoolHoursDateTime = "Mo-Sa 10:00-16:00";
 
   function searchSite() {
     const value = document.querySelector(".search-box input")?.value || "";
@@ -205,6 +208,32 @@
     });
   }
 
+  function injectHeaderInfoBar() {
+    document.querySelectorAll(".navbar-wrapper").forEach((wrapper) => {
+      if (wrapper.querySelector(".top-bar")) {
+        return;
+      }
+
+      const infoBar = document.createElement("div");
+      infoBar.className = "top-bar";
+      infoBar.setAttribute("role", "note");
+      infoBar.setAttribute("aria-label", "School address and opening hours");
+      infoBar.innerHTML = [
+        '<a class="top-bar-link" href="contact.html">',
+        '<span class="top-bar-label">Address:</span>',
+        '<address class="top-bar-address">', schoolAddressShort, "</address>",
+        "</a>",
+        '<span class="top-bar-separator" aria-hidden="true">|</span>',
+        '<span class="top-bar-hours-wrap">',
+        '<span class="top-bar-label">Hours:</span>',
+        '<time class="top-bar-hours" datetime="', schoolHoursDateTime, '">', schoolHoursLabel, "</time>",
+        "</span>",
+      ].join("");
+
+      wrapper.insertBefore(infoBar, wrapper.firstChild);
+    });
+  }
+
   window.SavvyStaticForms = {
     submitForm,
     buildContactMessage,
@@ -215,6 +244,8 @@
   window.searchSite = searchSite;
 
   document.addEventListener("DOMContentLoaded", () => {
+    injectHeaderInfoBar();
+
     document.querySelectorAll(".search-box button").forEach((button) => {
       button.addEventListener("click", searchSite);
     });
